@@ -31,7 +31,7 @@
 - crea .env e sitstema il db
 - npm i
 - composer i
-- nmp install vue-router@3
+- npm install vue-router@3
 - npm run watch
 - php artisan serve;
 
