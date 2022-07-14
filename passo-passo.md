@@ -26,7 +26,7 @@
 - npm run watch;
 (Prova del nove => Public->css->app.css deve esserci scritto: Bootstrap v5.1.3 (https://getbootstrap.com/)).
 
-## Inizializzazione per chi clona
+### Inizializzazione per chi clona
 1. Clonare il progetto e installare:
 - crea .env e sitstema il db
 - npm i
@@ -35,7 +35,7 @@
 - npm run watch
 - php artisan serve;
 
-## Nuovo DB:
+### Nuovo DB:
 1. Lanciare mysql:
 - mysql -uroot -proot;
 
@@ -43,4 +43,3 @@
 - create database (nomeDatabase);
 
 3. Imposta dati per mysql in .env
-
