@@ -15,6 +15,9 @@ class CreatePublicitiesTable extends Migration
     {
         Schema::create('publicities', function (Blueprint $table) {
             $table->id();
+            $table->string('type', 20)->unique();
+            $table->decimal('price', 4, 2)->unsigned();
+            $table->tinyInteger('duration');
             $table->timestamps();
         });
     }
