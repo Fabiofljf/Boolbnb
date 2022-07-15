@@ -31,8 +31,13 @@
                             </td>
                             <td>
                                 <ul>
-                                    <li>View</li>
-                                    <li>Edit</li>
+                                    <li>
+                                        <a href="{{route('admin.apartment.show', $apartment->id)}}">View</a>
+                                    </li>
+                                    <li>
+                                    <a href="{{route('admin.apartment.edit', $apartment->id)}}">Edit</a>
+
+                                    </li>
                                     <li>Delete</li>
                                 </ul>
                             </td>

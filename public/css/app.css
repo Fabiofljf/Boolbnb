@@ -12154,3 +12154,41 @@ fieldset:disabled .btn {
   }
 }
 
+/* COMMONS ROULES */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* UTILITIES */
+
+.bg_grey {
+  background-color: #282B2F;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  padding: 0;
+}
+
+.bg_lightslategray {
+  background-color: lightslategray;
+}
+
+.no-gutter {
+  --bs-gutter-x: 0rem;
+}
+

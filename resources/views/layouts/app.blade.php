@@ -81,34 +81,6 @@
                             </a>
                         </li>
                         <!-- /Apartments -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file" class="align-text-bottom"></span>
-                                Services
-                            </a>
-                        </li>
-                        <!-- /Services -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                                Messages
-                            </a>
-                        </li>
-                        <!-- /Messages -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                                Publicity
-                            </a>
-                        </li>
-                        <!-- /Publicity -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                                Users
-                            </a>
-                        </li>
-                        <!-- /User -->
                     </ul>
                 </aside>
             </div>
