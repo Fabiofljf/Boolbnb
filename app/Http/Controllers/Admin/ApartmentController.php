@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ApartmentRequest;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -28,7 +30,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.apartment.create');
     }
 
     /**
@@ -37,9 +39,23 @@ class ApartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ApartmentRequest $request)
     {
-        //
+        //ddd($request->all());
+
+        // Validazione dati
+        $val_data = $request->validated();
+        // Generazione dello slug
+        $slug = Apartment::generateSlug($request->title);
+        
+        //ddd($val_data);
+
+        // Creazione della risorsa
+        $new_apartment = Apartment::create($val_data);
+        
+
+        // Redirezionamento all'index admin
+        return redirect()->route('admin.apartment.index')->with('message', 'Apartment Created Successfully');
     }
 
     /**
@@ -50,7 +66,9 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
+        return view('admin.apartment.show', compact('apartment'));
+
+
     }
 
     /**
@@ -61,7 +79,7 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        return view('admin.apartment.edit', compact('apartment'));
     }
 
     /**
@@ -71,9 +89,15 @@ class ApartmentController extends Controller
      * @param  \App\Models\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apartment)
+    public function update(ApartmentRequest $request, Apartment $apartment)
     {
-        //
+       
+        $val_data = $request->validated();
+        $slug = Str::slug($request->title, '-');
+        $val_data['slug'] = $slug;
+        $apartment->update($val_data);
+        return redirect()->route('admin.apartment.index');
+        
     }
 
     /**
@@ -84,6 +108,7 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->back()->with('message', "Apartment $apartment->name removed successfully");
     }
 }
