@@ -24,6 +24,6 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     // Admin Dashboard
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::resource('apartments', 'ApartmentController');
-    ///admin/apartments
+    Route::resource('apartment', 'ApartmentController');
+    ///admin/apartment
 });
