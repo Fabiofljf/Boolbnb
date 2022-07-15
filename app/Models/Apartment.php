@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Apartment extends Model
 {
+    protected $fillable = ['title', 'slug', 'thumb', 'description', 'rooms', 'beds', 'baths', 'sqm', 'address', 'lon', 'lat', 'visibility'];
+
     /**
      * Get the user that owns the Apartment
      *
@@ -50,7 +52,7 @@ class Apartment extends Model
     {
         return $this->belongsToMany(Publicity::class);
     }
-    
+
     /**
      * Get all of the views for the User
      *
@@ -61,4 +63,3 @@ class Apartment extends Model
         return $this->hasMany(Message::class);
     }
 }
-
