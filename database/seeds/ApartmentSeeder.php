@@ -21,6 +21,7 @@ class ApartmentSeeder extends Seeder
             $apartment->thumb = $faker->imageUrl(600, 400, 'thumb_apartment', true, 'thumb', true, 'jpg');
             $apartment->description = $faker->text(500);
             $apartment->address = $faker->address();
+            $apartment->user_id = 1;
             $apartment->save();
         }
     }
