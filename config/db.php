@@ -17,5 +17,5 @@ return [
             'duration' => 144
         ],
 
-    ]
+    ],
 ];
