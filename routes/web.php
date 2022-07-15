@@ -23,4 +23,7 @@ Auth::routes();
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
     // Admin Dashboard
     Route::get('/', 'HomeController@index')->name('home');
+
+    Route::resource('apartments', 'ApartmentController');
+    ///admin/apartments
 });
