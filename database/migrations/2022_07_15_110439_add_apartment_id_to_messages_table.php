@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddApartmentIdToViewsTable extends Migration
+class AddApartmentIdToMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddApartmentIdToViewsTable extends Migration
      */
     public function up()
     {
-        Schema::table('views', function (Blueprint $table) {
+        Schema::table('messages', function (Blueprint $table) {
             $table->unsignedBigInteger('apartment_id')->after('id')->nullable();
-            $table->foreign('apartment_id')->references('id')->on('apartments');   
+            $table->foreign('apartment_id')->references('id')->on('apartments');  
         });
     }
 
@@ -26,8 +26,8 @@ class AddApartmentIdToViewsTable extends Migration
      */
     public function down()
     {
-        Schema::table('views', function (Blueprint $table) {
-            $table->dropForeign('views_apartment_id_foreign');
+        Schema::table('messages', function (Blueprint $table) {
+            $table->dropForeign('messages_apartment_id_foreign');
             $table->dropColumn('apartment_id');
         });
     }
