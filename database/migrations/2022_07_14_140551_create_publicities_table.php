@@ -17,7 +17,7 @@ class CreatePublicitiesTable extends Migration
             $table->id();
             $table->string('type', 20)->unique();
             $table->decimal('price', 4, 2)->unsigned();
-            $table->tinyInteger('duration');
+            $table->tinyInteger('duration')->unsigned();
             $table->timestamps();
         });
     }
