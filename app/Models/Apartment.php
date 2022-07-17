@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Apartment extends Model
 {
-    protected $fillable = ['title', 'slug', 'thumb', 'description', 'rooms', 'beds', 'baths', 'sqm', 'address', 'lon', 'lat', 'visibility'];
+    protected $fillable = ['title', 'slug', 'thumb', 'description', 'rooms', 'beds', 'baths', 'sqm', 'address', 'lon', 'lat', 'visibility', 'user_id'];
 
     // metodo statico da richiamare nel controller per generare lo slug
     public static function generateSlug($title)
