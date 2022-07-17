@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -13,6 +14,12 @@ class Apartment extends Model
 {
     protected $fillable = ['title', 'slug', 'thumb', 'description', 'rooms', 'beds', 'baths', 'sqm', 'address', 'lon', 'lat', 'visibility'];
 
+    // metodo statico da richiamare nel controller per generare lo slug
+    public static function generateSlug($title)
+    {
+        return Str::slug($title, '-');
+    }
+   
     /**
      * Get the user that owns the Apartment
      *
