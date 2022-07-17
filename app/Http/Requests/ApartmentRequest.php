@@ -25,10 +25,15 @@ class ApartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', Rule::unique('apartments')->ignore($this->apartments), 'max:150'],
-            'thumb' => ['required'],
-            'address' => ['required'],
-            'content' => ['nullable'],
+            'title' => ['required', Rule::unique('apartments')->ignore($this->apartment), 'max:150'],
+            'thumb' => 'required',
+            'address' => 'required',
+            'content' => 'nullable',
+            'rooms' => 'integer|nullable',
+            'beds' => 'integer|nullable',
+            'baths' => 'integer|nullable',
+            'sqm' => 'integer|nullable',
+            'visibility' => 'nullable',
         ];
     }
 }
