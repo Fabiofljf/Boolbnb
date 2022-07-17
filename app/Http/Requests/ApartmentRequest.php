@@ -26,7 +26,8 @@ class ApartmentRequest extends FormRequest
     {
         return [
             'title' => ['required', Rule::unique('apartments')->ignore($this->apartments), 'max:150'],
-            'thumb' => ['nullable'],
+            'thumb' => ['required'],
+            'address' => ['required'],
             'content' => ['nullable'],
         ];
     }

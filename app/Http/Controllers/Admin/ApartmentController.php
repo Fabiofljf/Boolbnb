@@ -6,6 +6,7 @@ use App\Models\Apartment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApartmentRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
@@ -42,13 +43,15 @@ class ApartmentController extends Controller
     public function store(ApartmentRequest $request)
     {
         //ddd($request->all());
+        $user_id = Auth::id();
+        
 
         // Validazione dati
         $val_data = $request->validated();
         // Generazione dello slug
         $slug = Apartment::generateSlug($request->title);
         $val_data['slug'] = $slug;
-        
+        $val_data['user_id'] = $user_id;
         //ddd($val_data);
 
         // Creazione della risorsa

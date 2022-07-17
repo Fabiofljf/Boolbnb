@@ -33,6 +33,12 @@
         </div>
 
         <!-- In questo punto andrà inserito il campo address che l'utente dovrà inserire. Dobbiamo verificare il modo in cui attraverso questo dato, con la chiamata Api otteniamo lat e long -->
+        <div class="mb-4">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" class="form-control  @error('address') is-invalid @enderror" placeholder="Add apartment address" aria-describedby="addressHelper" value="{{ old('address', $apartment->address) }}">
+            <small id="addressHelper" class="text-muted">Add apartment's address</small>
+        </div>
+
 
         <div class="mb-4">
             <label for="description">Description</label>
