@@ -47,6 +47,7 @@ class ApartmentController extends Controller
         $val_data = $request->validated();
         // Generazione dello slug
         $slug = Apartment::generateSlug($request->title);
+        $val_data['slug'] = $slug;
         
         //ddd($val_data);
 
@@ -107,6 +108,6 @@ class ApartmentController extends Controller
     public function destroy(Apartment $apartment)
     {
         $apartment->delete();
-        return redirect()->back()->with('message', "Apartment $apartment->name removed successfully");
+        return redirect()->back()->with('message', "Apartment $apartment->title removed successfully");
     }
 }
