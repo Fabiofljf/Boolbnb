@@ -71,12 +71,12 @@
                 Visible
             </label>
         </div> --}}
-        {{-- <div class="mb-3">
+        <div class="mb-3">
             <input class="form-check-input" type="radio" name="visibility" id="visibility" {{ !$apartment->visibility ? 'checked' : '' }} value="false">
             <label class="form-check-label" for="visibility">
                 Not Visible
             </label>
-        </div> --}}
+        </div>
         <button type="submit" class="btn btn-primary text-white">Edit</button>
     </form>
     @endsection
