@@ -29,10 +29,10 @@ class ApartmentRequest extends FormRequest
             'thumb' => 'required',
             'address' => 'required',
             'content' => 'nullable',
-            'rooms' => 'integer|nullable',
-            'beds' => 'integer|nullable',
-            'baths' => 'integer|nullable',
-            'sqm' => 'integer|nullable',
+            'rooms' => 'integer|nullable|between:1,20',
+            'beds' => 'integer|nullable|between:1,20',
+            'baths' => 'integer|nullable|between:1,30',
+            'sqm' => 'integer|nullable|between:1,10000',
             'visibility' => 'nullable',
         ];
     }

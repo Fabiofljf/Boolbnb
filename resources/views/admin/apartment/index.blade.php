@@ -9,8 +9,8 @@
         <div class="container">
          <!-- Sezione per aggiungere un ulteriore appartamento -->   
         <div class="d-flex justify-content-between py-4">
-        <h1>List of apartments</h1>
-        <div><a href="{{route('admin.apartment.create')}}" class="btn btn-primary text-white">Add a new Apartment</a></div>
+        <h1>Lista di appartamenti</h1>
+        <div><a href="{{route('admin.apartment.create')}}" class="btn btn-primary text-white">Aggiungi nuovo appartamento</a></div>
     </div>
             <div class="row">
                 <table class="table">
@@ -93,7 +93,7 @@
                         @empty
                         <tr>
                             <td scope="row">
-                                No apartment to show 😥
+                                Nessun appartamento da mostrare 😥
                             </td>
                         </tr>
                         @endforelse

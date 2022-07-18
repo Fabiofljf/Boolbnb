@@ -19,10 +19,10 @@ class CreateApartmentsTable extends Migration
             $table->string('slug');
             $table->string('thumb');
             $table->text('description')->nullable();
-            $table->tinyInteger('rooms')->nullable();
-            $table->tinyInteger('beds')->nullable();
-            $table->tinyInteger('baths')->nullable();
-            $table->smallInteger('sqm')->nullable();
+            $table->float('rooms')->nullable()->between(1,20)->unsigned();
+            $table->float('beds')->nullable()->between(1,20)->unsigned();
+            $table->float('baths')->nullable()->between(1,20)->unsigned();
+            $table->smallInteger('sqm')->nullable()->between(1,10000)->unsigned();
             $table->string('address');
             $table->decimal('lon', 12, 9)->nullable();
             $table->decimal('lat', 12, 9)->nullable();
