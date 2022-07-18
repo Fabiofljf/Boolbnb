@@ -27,7 +27,7 @@
             <a class="navbar-brand p-1" href="{{ url('/') }}">Boolbnb</a>
             <!-- /logo -->
             <div class="container">
-                <h4 class="navbar-brand mb-0">Bentornato (if) </h4>
+                <h4 class="navbar-brand mb-0">Bentornato {{ Auth::user()->name ?? '' }}</h4>
                 <!-- /name user -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
