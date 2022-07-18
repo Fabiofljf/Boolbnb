@@ -11,19 +11,20 @@
     <title>Boolbnb Log-in</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/front.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/front.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg_grey shadow-sm">
+
+<header>
+<nav class="navbar navbar-expand-md navbar-dark bg_grey shadow-sm">
             <a class="navbar-brand p-1" href="{{ url('/') }}">Boolbnb</a>
             <!-- /logo -->
             <div class="container">
@@ -69,30 +70,10 @@
         </nav>
         <!-- /navbar -->
 
-        <div class="row no-gutter">
-            <div class="col-2 bg_grey">
-                <h5 class="p-4 my-3 text-light">Esplora tutte le funzionalità</h5>
-                <aside>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('admin.apartment.index')}}">
-                                <span data-feather="home" class="align-text-bottom"></span>
-                                Apartments
-                            </a>
-                        </li>
-                        <!-- /Apartments -->
-                    </ul>
-                </aside>
-            </div>
-            <!-- /.col sx-->
-            <div class="col bg_lightslategray p-5">
-                <main>
-                    @yield('content')
-                </main>
-            </div>
-            <!-- /.col dx-->
-        </div>
-    </div>
+</header>
+
+    @yield('content')
+
 </body>
 
 </html>
