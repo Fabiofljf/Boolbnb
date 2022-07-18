@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
@@ -27,3 +29,9 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('apartment', 'ApartmentController');
     ///admin/apartment
 });
+
+// inseriamola come ultima rotta
+// alla fine del file web.php
+Route::get('{any?}', function () {
+    return view('guest.home');
+})->where('any', '.*');

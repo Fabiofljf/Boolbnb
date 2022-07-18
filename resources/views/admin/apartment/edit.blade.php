@@ -65,18 +65,18 @@
             <input type="number" name="sqm" id="sqm" class="form-control" placeholder="2" aria-describedby="sqmHelper" value="{{ old('sqm', $apartment->sqm) }}">
             <small id="sqmHelper" class="text-muted">Change the apartment's square meters</small>
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <input class="form-check-input" type="radio" name="visibility" id="visibility" {{ $apartment->visibility ? 'checked' : '' }} value="true">
             <label class="form-check-label" for="visibility">
                 Visible
             </label>
-        </div>
-        <div class="mb-3">
+        </div> --}}
+        {{-- <div class="mb-3">
             <input class="form-check-input" type="radio" name="visibility" id="visibility" {{ !$apartment->visibility ? 'checked' : '' }} value="false">
             <label class="form-check-label" for="visibility">
                 Not Visible
             </label>
-        </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary text-white">Edit</button>
     </form>
     @endsection
