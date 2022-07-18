@@ -93,9 +93,14 @@ class ApartmentController extends Controller
      */
     public function update(ApartmentRequest $request, Apartment $apartment)
     {
-       
         $val_data = $request->validated();
+
+        $visibility = $request->boolean('visibility');
+        $val_data['visibility'] = $visibility;
+        //ddd($visibility);
+        
         $slug = Str::slug($request->title, '-');
+        //dd($val_data);
         $val_data['slug'] = $slug;
         $apartment->update($val_data);
         return redirect()->route('admin.apartment.index');

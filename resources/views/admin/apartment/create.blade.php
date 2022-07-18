@@ -15,19 +15,19 @@
 <form action="{{route('admin.apartment.store')}}" method="post">
     @csrf
     <div class="mb-4">
-        <label for="title">Titolo</label>
+        <label for="title">Titolo*</label>
         <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" placeholder="Add a descriptive title" aria-describedby="titleHelper" value="{{old('title')}}">
         <small id="titleHelper" class="text-muted">Aggiungi il Titolo dell'appartamento, massimo 150 caratteri</small>
     </div>
     <div class="mb-4">
-        <label for="thumb">Immagine</label>
+        <label for="thumb">Immagine*</label>
         <input type="text" name="thumb" id="thumb" class="form-control  @error('thumb') is-invalid @enderror" placeholder="Add a captivating image" aria-describedby="thumbHelper">
         <small id="thumbHelper" class="text-muted">Aggiungi l'immagine dell'appartamento</small>
     </div>
 
     <!-- In questo punto andrà inserito il campo address che l'utente dovrà inserire. Dobbiamo verificare il modo in cui attraverso questo dato, con la chiamata Api otteniamo lat e long -->
     <div class="mb-4">
-        <label for="address">Indirizzo</label>
+        <label for="address">Indirizzo*</label>
         <input type="text" name="address" id="address" class="form-control  @error('address') is-invalid @enderror" placeholder="Add apartment address" aria-describedby="addressHelper" value="{{old('address')}}">
         <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
     </div>
