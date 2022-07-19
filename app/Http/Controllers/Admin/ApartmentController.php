@@ -19,10 +19,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::where(('user_id'), Auth::user()->id)->orderByDesc('id')->get();;
 
-        return view('admin.apartment.index', compact('apartments')); 
-    
+        return view('admin.apartment.index', compact('apartments'));
     }
 
     /**
@@ -42,9 +41,9 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ApartmentRequest $request)
-    {      
+    {
         $user_id = Auth::id();
-        
+
         // Validazione dati
         $val_data = $request->validated();
         // Generazione dello slug
@@ -61,7 +60,7 @@ class ApartmentController extends Controller
 
         // Creazione della risorsa
         $new_apartment = Apartment::create($val_data);
-        
+
 
         // Redirezionamento all'index admin
         return redirect()->route('admin.apartment.index')->with('message', 'Apartment Created Successfully');
@@ -75,7 +74,11 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartment.show', compact('apartment'));
+        if (Auth::id() === $apartment->user_id) {
+            return view('admin.apartment.show', compact('apartment'));
+        } else {
+            dd('utente non autorizzato');
+        }
     }
 
     /**
@@ -86,7 +89,11 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        return view('admin.apartment.edit', compact('apartment'));
+        if (Auth::id() === $apartment->user_id) {
+            return view('admin.apartment.edit', compact('apartment'));
+        } else {
+            dd('utente non autorizzato');
+        }
     }
 
     /**
@@ -98,26 +105,24 @@ class ApartmentController extends Controller
      */
     public function update(ApartmentRequest $request, Apartment $apartment)
     {
-        $val_data = $request->validated();
-
-        $visibility = $request->boolean('visibility');
-        $val_data['visibility'] = $visibility;
-        //ddd($visibility);
-        
-        $slug = Str::slug($request->title, '-');
-        //dd($val_data);
-        $val_data['slug'] = $slug;
-
-        if ($request->hasFile('thumb')) {
-            Storage::delete($apartment->thumb);
-            $path = Storage::put('apartment_images', $request->thumb);
-            $val_data['thumb'] = $path;
+        if (Auth::id() === $apartment->user_id) {
+            $val_data = $request->validated();
+            $visibility = $request->boolean('visibility');
+            $val_data['visibility'] = $visibility;
+            //ddd($visibility);
+            $slug = Str::slug($request->title, '-');
+            //dd($val_data);
+            $val_data['slug'] = $slug;
+            if ($request->hasFile('thumb')) {
+                Storage::delete($apartment->thumb);
+                $path = Storage::put('apartment_images', $request->thumb);
+                $val_data['thumb'] = $path;
+            }
+            $apartment->update($val_data);
+            return redirect()->route('admin.apartment.index');
+        } else {
+            dd('utente non autorizzato');
         }
-        
-
-        $apartment->update($val_data);
-        return redirect()->route('admin.apartment.index');
-        
     }
 
     /**
@@ -128,10 +133,14 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        if ($apartment->thumb) {
-            Storage::delete($apartment->thumb);
-        };
-        $apartment->delete();
-        return redirect()->back()->with('message', "Apartment $apartment->title removed successfully");
+        if (Auth::id() === $apartment->user_id) {
+            if ($apartment->thumb) {
+                Storage::delete($apartment->thumb);
+            };
+            $apartment->delete();
+            return redirect()->back()->with('message', "Apartment $apartment->title removed successfully");
+        } else {
+            dd('utente non autorizzato');
+        }
     }
 }

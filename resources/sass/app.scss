@@ -4,6 +4,15 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// TomTom
+@import '@tomtom-international/web-sdk-maps';
+
+// TomTom
+.map {
+    width: 100%;
+    height: 100%;
+}
+
 
 /* COMMONS ROULES */
 
