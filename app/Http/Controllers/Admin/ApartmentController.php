@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApartmentRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
@@ -41,11 +42,9 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ApartmentRequest $request)
-    {
-        //ddd($request->all());
+    {      
         $user_id = Auth::id();
         
-
         // Validazione dati
         $val_data = $request->validated();
         // Generazione dello slug
@@ -53,6 +52,12 @@ class ApartmentController extends Controller
         $val_data['slug'] = $slug;
         $val_data['user_id'] = $user_id;
         //ddd($val_data);
+        /* thumb */
+
+        if ($request->hasFile('thumb')) {
+            $path = Storage::put('apartment_images', $request->thumb);
+            $val_data['thumb'] = $path;
+        }
 
         // Creazione della risorsa
         $new_apartment = Apartment::create($val_data);
@@ -102,6 +107,14 @@ class ApartmentController extends Controller
         $slug = Str::slug($request->title, '-');
         //dd($val_data);
         $val_data['slug'] = $slug;
+
+        if ($request->hasFile('thumb')) {
+            Storage::delete($apartment->thumb);
+            $path = Storage::put('apartment_images', $request->thumb);
+            $val_data['thumb'] = $path;
+        }
+        
+
         $apartment->update($val_data);
         return redirect()->route('admin.apartment.index');
         
@@ -115,6 +128,9 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
+        if ($apartment->thumb) {
+            Storage::delete($apartment->thumb);
+        };
         $apartment->delete();
         return redirect()->back()->with('message', "Apartment $apartment->title removed successfully");
     }

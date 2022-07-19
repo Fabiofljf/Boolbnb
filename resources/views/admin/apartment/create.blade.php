@@ -12,17 +12,21 @@
     </ul>
 </div>
 @endif
-<form action="{{route('admin.apartment.store')}}" method="post">
+<form action="{{route('admin.apartment.store')}}" method="post" enctype="multipart/form-data">
     @csrf
+
+    <!-- Titolo -->
     <div class="mb-4">
         <label for="title">Titolo*</label>
         <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" placeholder="Add a descriptive title" aria-describedby="titleHelper" value="{{old('title')}}">
         <small id="titleHelper" class="text-muted">Aggiungi il Titolo dell'appartamento, massimo 150 caratteri</small>
     </div>
+
+    <!-- Thumb -->
     <div class="mb-4">
         <label for="thumb">Immagine*</label>
-        <input type="text" name="thumb" id="thumb" class="form-control  @error('thumb') is-invalid @enderror" placeholder="Add a captivating image" aria-describedby="thumbHelper">
-        <small id="thumbHelper" class="text-muted">Aggiungi l'immagine dell'appartamento</small>
+        <input type="file" name="thumb" id="thumb" class="form-control  @error('thumb') is-invalid @enderror" placeholder="Add a captivating image" aria-describedby="thumbHelper">
+        <small id="thumbHelper" class="text-muted">Aggiungi l'immagine dell'appartamento (formati accettati: wpeg,jpg,jpeg,png || max: 2MB)</small>
     </div>
 
     <!-- In questo punto andrà inserito il campo address che l'utente dovrà inserire. Dobbiamo verificare il modo in cui attraverso questo dato, con la chiamata Api otteniamo lat e long -->
@@ -32,7 +36,7 @@
         <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
     </div>
 
-    
+    <!-- Body -->
     <div class="mb-4">
         <label for="description">Aggiungi la descrizione dell'appartamento</label>
         <textarea class="form-control  @error('description') is-invalid @enderror" name="description" id="description" rows="4">
@@ -40,11 +44,13 @@
         </textarea>
     </div>
 
+    <!-- Details -->
     <div class="mb-4">
         <label for="rooms" class="form-label">Stanze</label>
         <input type="number" name="rooms" id="rooms" class="form-control @error('rooms') is-invalid @enderror" placeholder="Add apartment rooms" aria-describedby="roomsHelper" value="{{old('rooms')}}">
         <small id="roomsHelper" class="text-muted">Aggiungi il numero delle stanze dell'appartamento</small>
     </div>
+
     <div class="mb-4">
         <label for="baths" class="form-label">Bagni</label>
         <input type="number" name="baths" id="baths" class="form-control @error('baths') is-invalid @enderror" placeholder="Add apartment baths" aria-describedby="bedsHelper" value="{{old('baths')}}">

@@ -30,7 +30,7 @@
                                 <tr>
                                     <td scope="row">{{ $apartment->id }}</td>
                                     <td>{{ $apartment->title }}</td>
-                                    <td> <img src="{{ asset('/storage/apartment_images/' . $apartment->thumb)}}" alt="thumb of {{$apartment->title}}"></td>
+                                    <td> <img src="{{ asset('/storage/' . $apartment->thumb)}}" alt="thumb of {{$apartment->title}}"></td>
                                     <td>{{ $apartment->address }}</td>
                                     <td>
                                         {{ Str::limit($apartment->description, 200) }}
