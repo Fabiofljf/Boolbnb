@@ -9,7 +9,8 @@
                 <!-- Sezione per aggiungere un ulteriore appartamento -->
                 <div class="d-flex justify-content-between py-4">
                     <h1>Lista di appartamenti</h1>
-                    <div><a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo
+                    <div>
+                        <a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo
                             appartamento</a></div>
                 </div>
                 <div class="row">
@@ -29,9 +30,7 @@
                                 <tr>
                                     <td scope="row">{{ $apartment->id }}</td>
                                     <td>{{ $apartment->title }}</td>
-                                    <div><a href="{{ route('admin.apartment.create') }}"
-                                            class="btn btn-primary text-white">Aggiungi nuovo
-                                            appartamento</a></div>
+                                    <td> <img src="{{ asset('/storage/apartment_images/' . $apartment->thumb)}}" alt="thumb of {{$apartment->title}}"></td>
                                     <td>{{ $apartment->address }}</td>
                                     <td>
                                         {{ Str::limit($apartment->description, 200) }}
