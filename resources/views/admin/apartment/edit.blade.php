@@ -32,7 +32,7 @@
         <div class="mb-4">
             <label for="thumb">Immagine*</label>
             <input type="file" name="thumb" id="thumb" class="form-control  @error('thumb') is-invalid @enderror" aria-describedby="thumbHelper" value="{{ old('thumb', $apartment->thumb) }}">
-            <small id="thumbHelper" class="text-muted">Aggiungi l'immagine dell'appartamento</small>
+            <small id="thumbHelper" class="text-muted">Aggiungi l'immagine dell'appartamento (formati accettati: wpeg,jpg,jpeg,png || max: 2MB)</small>
         </div>
 
         <!-- In questo punto andrà inserito il campo address che l'utente dovrà inserire. Dobbiamo verificare il modo in cui attraverso questo dato, con la chiamata Api otteniamo lat e long -->

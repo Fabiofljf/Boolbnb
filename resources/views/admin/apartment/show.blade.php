@@ -7,7 +7,7 @@
         <h2>{{$apartment->title}}</h2>
         <p>{{$apartment->address}}</p>
         <div class="apartment-thumb">
-            <img src="{{$apartment->thumb}}" alt="cover of {{$apartment->title}}">
+            <img src="{{ asset('/storage/' . $apartment->thumb)}}" alt="thumb of {{$apartment->title}}">
         </div>
         <div class="apartment-description mt-3">
             <h3>Description:</h3>
