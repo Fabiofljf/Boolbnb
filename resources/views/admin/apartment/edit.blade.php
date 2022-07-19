@@ -18,17 +18,20 @@
         </ul>
     </div>
     @endif
-    <form action="{{ route('admin.apartment.update', $apartment->id) }}" method="post">
+    <form action="{{ route('admin.apartment.update', $apartment->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+
+        <!-- Titolo -->
         <div class="mb-4">
             <label for="title">Titolo*</label>
             <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" placeholder="type title" aria-describedby="titleHelper" value="{{ old('title', $apartment->title) }}">
             <small id="titleHelper" class="text-muted">Aggiungi il Titolo dell'appartamento, massimo 150 caratteri</small>
         </div>
+        <!-- Thumb -->
         <div class="mb-4">
             <label for="thumb">Immagine*</label>
-            <input type="text" name="thumb" id="thumb" class="form-control  @error('thumb') is-invalid @enderror" aria-describedby="thumbHelper" value="{{ old('thumb', $apartment->thumb) }}">
+            <input type="file" name="thumb" id="thumb" class="form-control  @error('thumb') is-invalid @enderror" aria-describedby="thumbHelper" value="{{ old('thumb', $apartment->thumb) }}">
             <small id="thumbHelper" class="text-muted">Aggiungi l'immagine dell'appartamento</small>
         </div>
 
@@ -39,12 +42,14 @@
             <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
         </div>
 
-
+        <!-- Body -->
         <div class="mb-4">
             <label for="description">Descrizione</label>
             <textarea class="form-control  @error('description') is-invalid @enderror" name="description" id="description" rows="4">{{ old('description', $apartment->description) }}
             </textarea>
         </div>
+
+        <!-- Details -->
         <div class="mb-3">
             <label for="rooms" class="form-label">Stanze</label>
             <input type="number" name="rooms" id="rooms" class="form-control" placeholder="5" aria-describedby="roomsHelper" value="{{ old('rooms', $apartment->rooms) }}">
@@ -65,6 +70,7 @@
             <input type="number" name="sqm" id="sqm" class="form-control" placeholder="2" aria-describedby="sqmHelper" value="{{ old('sqm', $apartment->sqm) }}">
             <small id="sqmHelper" class="text-muted">Aggiungi i metri quadrati dell'appartamento</small>
         </div>
+        <!-- Visibility -->
         <div class="mb-3">
             <input class="form-check-input" type="radio" name="visibility" id="visibility" {{ $apartment->visibility ? 'checked' : '' }} value="true">
             <label class="form-check-label" for="visibility">
