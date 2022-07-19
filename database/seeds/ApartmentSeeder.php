@@ -18,7 +18,7 @@ class ApartmentSeeder extends Seeder
             $apartment = new Apartment;
             $apartment->title = $faker->sentence(4);
             $apartment->slug = Str::slug($apartment->title, '-');
-            $apartment->thumb = $faker->imageUrl(600, 400, 'thumb_apartment', true, 'thumb', true, 'jpg');
+            $apartment->thumb = 'apartment-1.webp';
             $apartment->description = $faker->text(500);
             $apartment->address = $faker->address();
             $apartment->user_id = 1;
