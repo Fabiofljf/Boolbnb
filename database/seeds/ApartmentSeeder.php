@@ -20,7 +20,9 @@ class ApartmentSeeder extends Seeder
             $apartment->slug = Str::slug($apartment->title, '-');
             $apartment->thumb = 'apartment_images/apartment-1.webp';
             $apartment->description = $faker->text(500);
-            $apartment->address = $faker->address();
+            $apartment->address = "Via Rodolfo Morandi 15, 20090 Buccinasco";
+            $apartment->lat = 45.42327;
+            $apartment->lon = 9.12977;
             $apartment->user_id = 1;
             $apartment->save();
         }
