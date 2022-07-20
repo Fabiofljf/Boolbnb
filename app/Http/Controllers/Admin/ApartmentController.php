@@ -19,7 +19,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where(('user_id'), Auth::user()->id)->orderByDesc('id')->get();;
+        $apartments = Apartment::where(('user_id'), Auth::user()->id)->orderByDesc('id')->get();
 
         return view('admin.apartment.index', compact('apartments'));
     }
@@ -30,7 +30,8 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        
         return view('admin.apartment.create');
     }
 
@@ -46,6 +47,8 @@ class ApartmentController extends Controller
 
         // Validazione dati
         $val_data = $request->validated();
+        $visibility = $request->boolean('visibility');
+        $val_data['visibility'] = $visibility;
         // Generazione dello slug
         $slug = Apartment::generateSlug($request->title);
         $val_data['slug'] = $slug;
