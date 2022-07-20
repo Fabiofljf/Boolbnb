@@ -1,12 +1,13 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;700;900&display=swap');
+// Common
+@import 'common';
 // Variables
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 // TomTom
 @import '@tomtom-international/web-sdk-maps';
-
 // TomTom
 .map {
     width: 100%;
@@ -20,6 +21,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 img {
