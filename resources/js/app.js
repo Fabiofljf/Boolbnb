@@ -10,24 +10,39 @@ require('./bootstrap');
 
 /* window.Vue = require('vue'); */
 
+
 import tt from '@tomtom-international/web-sdk-maps';
+import { services } from '@tomtom-international/web-sdk-services';
+import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
+
+const options = {
+    idleTimePress: 100,
+    minNumberOfCharacters: 0,
+    searchOptions: {
+        key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
+        language: 'it-IT',
+    },
+    autocompleteOptions: {
+        key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
+        language: 'it-IT',
+    },
+    noResultsMessage: 'No results found.'
+};
 
 const map = tt.map({
     key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
     container: 'map'
 });
 
-/* import tt from '@tomtom-international/web-sdk-services';
+const ttSearchBox = new SearchBox(services, options);
+map.addControl(ttSearchBox, 'top-left');
 
-tt.services.copyrights({
-    key: 'ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm'
-})
-    .then(function (results) {
-        console.log('Copyrights', results);
-    })
-    .catch(function (reason) {
-        console.log('Copyrights', reason);
-    }); */
+ttSearchBox.on('tomtom.searchbox.resultsfound', function(data) {
+    console.log(data);
+});
+
+
+
 
 /**
  * The following block of code may be used to automatically register your
