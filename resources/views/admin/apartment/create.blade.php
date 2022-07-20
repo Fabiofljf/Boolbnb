@@ -37,8 +37,7 @@
         <div class="my-3">
             <label for="address">Indirizzo*</label>
             <input type="text" name="address" id="address" class="form-control  @error('address') is-invalid @enderror"
-                required placeholder="Aggiungi l'indirizzo" aria-describedby="addressHelper" value="{{ old('address') }}"
-                readonly>
+                required placeholder="Indirizzo" aria-describedby="addressHelper" value="{{ old('address') }}" readonly>
             <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
         </div>
         <div class="mb-3">

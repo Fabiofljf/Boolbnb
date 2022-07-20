@@ -53,7 +53,7 @@
                 <div class="my-3">
                     <label for="address">Indirizzo*</label>
                     <input type="text" name="address" id="address"
-                        class="form-control  @error('address') is-invalid @enderror" placeholder="Aggiungi l'indirizzo"
+                        class="form-control  @error('address') is-invalid @enderror" placeholder="Indirizzo"
                         aria-describedby="addressHelper" value="{{ old('address', $apartment->address) }}" readonly>
                     <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
                 </div>
