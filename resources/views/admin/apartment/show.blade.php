@@ -12,11 +12,9 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div id='map' class='map'></div>
+                   <!-- inserire map -->
                 </div>
-                <div id="search-box">
-                    
-                </div>
+
             </div>
             <div class="apartment-description mt-3">
                 <h3>Description:</h3>
