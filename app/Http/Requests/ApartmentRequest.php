@@ -29,7 +29,6 @@ class ApartmentRequest extends FormRequest
             'thumb' => ['required', 'image', 'max:2024'],
             'address' => 'required',
             'description' => 'nullable|string',
-            'content' => 'nullable',
             'rooms' => 'integer|nullable|between:1,20',
             'beds' => 'integer|nullable|between:1,20',
             'baths' => 'integer|nullable|between:1,30',

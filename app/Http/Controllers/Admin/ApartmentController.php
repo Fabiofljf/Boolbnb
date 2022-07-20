@@ -10,6 +10,7 @@ use App\Http\Requests\ApartmentRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ApartmentController extends Controller
 {
@@ -109,21 +110,49 @@ class ApartmentController extends Controller
      * @param  \App\Models\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function update(ApartmentRequest $request, Apartment $apartment)
+    public function update(Request $request, Apartment $apartment)
     {
         if (Auth::id() === $apartment->user_id) {
-            $val_data = $request->validated();
+            if ($request->hasFile('thumb')) {
+                //dd("immagine si");
+                $val_data = $request->validate(
+                    [
+                        'title' => ['required', Rule::unique('apartments')->ignore($apartment), 'max:150'],
+                        'thumb' => ['required', 'image', 'max:2024'],
+                        'address' => 'required',
+                        'description' => 'nullable',
+                        'rooms' => 'integer|nullable|between:1,20',
+                        'beds' => 'integer|nullable|between:1,20',
+                        'baths' => 'integer|nullable|between:1,30',
+                        'sqm' => 'integer|nullable|between:1,10000',
+                        'visibility' => 'nullable',
+                        ]
+                    );
+                    Storage::delete($apartment->thumb);
+                    $path = Storage::put('apartment_images', $request->thumb);
+                    $val_data['thumb'] = $path;
+            } else {
+                $val_data = $request->validate(
+                    [
+                        'title' => ['required', Rule::unique('apartments')->ignore($apartment), 'max:150'],
+                        'address' => 'required',
+                        'description' => 'nullable',
+                        'rooms' => 'integer|nullable|between:1,20',
+                        'beds' => 'integer|nullable|between:1,20',
+                        'baths' => 'integer|nullable|between:1,30',
+                        'sqm' => 'integer|nullable|between:1,10000',
+                        'visibility' => 'nullable',
+                        ]
+                    );
+
+            }
             $visibility = $request->boolean('visibility');
             $val_data['visibility'] = $visibility;
             //ddd($visibility);
             $slug = Str::slug($request->title, '-');
             //dd($val_data);
             $val_data['slug'] = $slug;
-            if ($request->hasFile('thumb')) {
-                Storage::delete($apartment->thumb);
-                $path = Storage::put('apartment_images', $request->thumb);
-                $val_data['thumb'] = $path;
-            }
+        
             $apartment->update($val_data);
             $apartment->services()->sync($request->services);
             return redirect()->route('admin.apartment.index');

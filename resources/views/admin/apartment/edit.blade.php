@@ -29,6 +29,9 @@
             <small id="titleHelper" class="text-muted">Aggiungi il Titolo dell'appartamento, massimo 150 caratteri</small>
         </div>
         <!-- Thumb -->
+        <div class="apartment-thumb">
+            <img width='500' src="{{ asset('/storage/' . $apartment->thumb) }}" alt="thumb of {{ $apartment->title }}">
+        </div>
         <div class="mb-4">
             <label for="thumb">Immagine*</label>
             <input type="file" name="thumb" id="thumb" class="form-control  @error('thumb') is-invalid @enderror" aria-describedby="thumbHelper" value="{{ old('thumb', $apartment->thumb) }}">
@@ -52,22 +55,22 @@
         <!-- Details -->
         <div class="mb-3">
             <label for="rooms" class="form-label">Stanze</label>
-            <input type="number" name="rooms" id="rooms" class="form-control" placeholder="5" aria-describedby="roomsHelper" value="{{ old('rooms', $apartment->rooms) }}">
+            <input type="number" name="rooms" id="rooms" class="form-control" placeholder="5" aria-describedby="roomsHelper" min=0 value="{{ old('rooms', $apartment->rooms) }}">
             <small id="roomsHelper" class="text-muted">Aggiungi il numero delle stanze dell'appartamento</small>
         </div>
         <div class="mb-3">
             <label for="baths" class="form-label">Bagni</label>
-            <input type="number" name="baths" id="baths" class="form-control" placeholder="3" aria-describedby="bedsHelper" value="{{ old('baths', $apartment->baths) }}">
+            <input type="number" name="baths" id="baths" class="form-control" placeholder="3" aria-describedby="bedsHelper" min=0 value="{{ old('baths', $apartment->baths) }}">
             <small id="bedsHelper" class="text-muted">Aggiungi il numero dei bagni dell'appartamento</small>
         </div>
         <div class="mb-3">
             <label for="beds" class="form-label">Letti</label>
-            <input type="number" name="beds" id="beds" class="form-control" placeholder="2" aria-describedby="bedsHelper" value="{{ old('beds', $apartment->beds) }}">
+            <input type="number" name="beds" id="beds" class="form-control" placeholder="2" aria-describedby="bedsHelper" min=0 value="{{ old('beds', $apartment->beds) }}">
             <small id="bedsHelper" class="text-muted">Aggiungi il numero dei posti letto dell'appartamento</small>
         </div>
         <div class="mb-3">
             <label for="sqm" class="form-label">Metri quadrati</label>
-            <input type="number" name="sqm" id="sqm" class="form-control" placeholder="2" aria-describedby="sqmHelper" value="{{ old('sqm', $apartment->sqm) }}">
+            <input type="number" name="sqm" id="sqm" class="form-control" placeholder="2" aria-describedby="sqmHelper" min=0 value="{{ old('sqm', $apartment->sqm) }}">
             <small id="sqmHelper" class="text-muted">Aggiungi i metri quadrati dell'appartamento</small>
         </div>
 
