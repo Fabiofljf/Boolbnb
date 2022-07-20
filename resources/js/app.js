@@ -11,7 +11,7 @@ require('./bootstrap');
 import tt from '@tomtom-international/web-sdk-maps';
 
 const map = tt.map({
-    key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
+    key: 'ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm',
     container: 'map'
 });
 
@@ -25,7 +25,7 @@ const options = {
     idleTimePress: 100,
     minNumberOfCharacters: 0,
     searchOptions: {
-        key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
+        key: 'ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm',
         language: 'it-IT',
         extendedPostalCodesFor: 'Str',
         limit: 1,
@@ -34,7 +34,7 @@ const options = {
 
     },
     autocompleteOptions: {
-        key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
+        key: 'ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm',
         language: 'it-IT',
     },
     noResultsMessage: 'No results found.'
@@ -67,7 +67,7 @@ ttSearchBox.on('tomtom.searchbox.resultsfound', function (data) {
 
 });
 
-/** 
+/**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
