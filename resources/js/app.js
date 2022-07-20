@@ -17,17 +17,35 @@ const map = tt.map({
     container: 'map'
 });
 
-/* import tt from '@tomtom-international/web-sdk-services';
+/* Search bar */
+import { services } from '@tomtom-international/web-sdk-services';
+import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
 
-tt.services.copyrights({
-    key: 'ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm'
-})
-    .then(function (results) {
-        console.log('Copyrights', results);
-    })
-    .catch(function (reason) {
-        console.log('Copyrights', reason);
-    }); */
+const options = {
+    idleTimePress: 100,
+    minNumberOfCharacters: 0,
+    searchOptions: {
+        key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
+        language: 'en-GB',
+        //bestResult: true,
+    },
+    autocompleteOptions: {
+        key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
+        language: 'en-GB',
+    },
+    noResultsMessage: 'No results found.'
+};
+
+
+const ttSearchBox = new SearchBox(services, options);
+//Attach searchboxHTML to your page
+
+var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+document.getElementById('search-box').appendChild(searchBoxHTML);
+
+ttSearchBox.on('tomtom.searchbox.resultsfound', function(data) {
+console.log(data);
+});
 
 /**
  * The following block of code may be used to automatically register your
