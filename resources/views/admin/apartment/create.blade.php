@@ -32,12 +32,26 @@
         </div>
 
         <!-- In questo punto andrà inserito il campo address che l'utente dovrà inserire. Dobbiamo verificare il modo in cui attraverso questo dato, con la chiamata Api otteniamo lat e long -->
-        <div class="mb-4">
+        <div id='map' class='map'></div>
+        <div id="search-box"></div>
+        <div class="my-3">
             <label for="address">Indirizzo*</label>
             <input type="text" name="address" id="address" class="form-control  @error('address') is-invalid @enderror"
                 required placeholder="Add apartment address" aria-describedby="addressHelper" value="{{ old('address') }}"
                 readonly>
             <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
+        </div>
+        <div class="mb-3">
+            <input class="form-control" type="text" name="lat" id="lat" readonly>
+            <label class="text-muted" for="lat">
+                Latitudine
+            </label>
+        </div>
+        <div class="mb-3">
+            <input class="form-control" type="text" name="lon" id="lon" readonly>
+            <label class="text-muted" for="lon">
+                Longitudine
+            </label>
         </div>
 
         <!-- Body -->
@@ -97,26 +111,6 @@
             <input class="form-check-input" type="radio" name="visibility" id="visibility" value="false">
             <label class="form-check-label" for="visibility">
                 Non visibile
-            </label>
-        </div>
-
-        <div id='map' class='map'>
-
-        </div>
-        <div id="search-box">
-
-        </div>
-
-        <div class="mb-3">
-            <input class="form-control" type="text" name="lat" id="lat" readonly>
-            <label class="text-muted" for="lat">
-                Latitudine
-            </label>
-        </div>
-        <div class="mb-3">
-            <input class="form-control" type="text" name="lon" id="lon" readonly>
-            <label class="text-muted" for="lon">
-                Longitudine
             </label>
         </div>
 

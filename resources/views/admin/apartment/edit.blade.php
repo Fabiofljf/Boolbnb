@@ -45,13 +45,30 @@
                     wpeg,jpg,jpeg,png || max: 2MB)</small>
             </div>
 
-            <!-- Address -->
-            <div class="mb-4">
-                <label for="address">Indirizzo*</label>
-                <input type="text" name="address" id="address"
-                    class="form-control  @error('address') is-invalid @enderror" placeholder="Add apartment address"
-                    aria-describedby="addressHelper" value="{{ old('address', $apartment->address) }}" readonly>
-                <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
+            {{-- search-box --}}
+            <div id='map' class='map'></div>
+            <div id="search-box"></div>
+            <div class="my-3">
+                <!-- Address -->
+                <div class="my-3">
+                    <label for="address">Indirizzo*</label>
+                    <input type="text" name="address" id="address"
+                        class="form-control  @error('address') is-invalid @enderror" placeholder="Add apartment address"
+                        aria-describedby="addressHelper" value="{{ old('address', $apartment->address) }}" readonly>
+                    <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
+                </div>
+                <input class="form-control" type="text" name="lat" id="lat"
+                    value="{{ old('lat', $apartment->lat) }}" readonly>
+                <label class="text-muted" for="lat">
+                    Latitudine
+                </label>
+            </div>
+            <div class="mb-3">
+                <input class="form-control" type="text" name="lon" id="lon"
+                    value="{{ old('lon', $apartment->lon) }}" readonly>
+                <label class="text-muted" for="lon">
+                    Longitudine
+                </label>
             </div>
 
             <!-- Body -->
@@ -123,26 +140,6 @@
                     Non visibile
                 </label>
             </div>
-
-            {{-- search-box --}}
-            <div id='map' class='map'></div>
-            <div id="search-box"></div>
-            <div class="my-3">
-                <input class="form-control" type="text" name="lat" id="lat"
-                    value="{{ old('lat', $apartment->lat) }}" readonly>
-                <label class="text-muted" for="lat">
-                    Latitudine
-                </label>
-            </div>
-            <div class="mb-3">
-                <input class="form-control" type="text" name="lon" id="lon"
-                    value="{{ old('lon', $apartment->lon) }}" readonly>
-                <label class="text-muted" for="lon">
-                    Longitudine
-                </label>
-            </div>
-
-
             <button type="submit" class="btn btn-primary text-white">Conferma modifiche</button>
         </form>
     @endsection

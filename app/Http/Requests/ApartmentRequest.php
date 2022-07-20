@@ -26,7 +26,7 @@ class ApartmentRequest extends FormRequest
     {
         return [
             'title' => ['required', Rule::unique('apartments')->ignore($this->apartment), 'max:150'],
-            'thumb' => ['required', 'image', 'max:2024'],
+            'thumb' => ['image', 'max:2024'],
             'address' => 'required',
             'description' => 'nullable|string',
             'rooms' => 'integer|nullable|between:1,20',
@@ -37,8 +37,6 @@ class ApartmentRequest extends FormRequest
             'services' => ['exists:services,id'],
             'lat' => 'required|numeric',
             'lon' => 'required|numeric',
-
-
         ];
     }
 }

@@ -10,7 +10,8 @@
                 <div class="d-flex justify-content-between py-4">
                     <h1>Lista di appartamenti</h1>
                     <div>
-                        <a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo appartamento
+                        <a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo
+                            appartamento
                         </a>
                     </div>
                 </div>
@@ -19,12 +20,12 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Thumb</th>
-                                <th>Address</th>
-                                <th>Body</th>
+                                <th>Titolo</th>
+                                <th>Immagine</th>
+                                <th>Indirizzo</th>
+                                <th>Descrizione</th>
                                 <th>Servizi</th>
-                                <th>Actions</th>
+                                <th>Azioni</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
@@ -32,18 +33,19 @@
                                 <tr>
                                     <td scope="row">{{ $apartment->id }}</td>
                                     <td>{{ $apartment->title }}</td>
-                                    <td> <img style="max-width: 200px" src="{{ asset('/storage/' . $apartment->thumb)}}" alt="thumb of {{$apartment->title}}"></td>
+                                    <td> <img style="max-width: 200px" src="{{ asset('/storage/' . $apartment->thumb) }}"
+                                            alt="thumb of {{ $apartment->title }}"></td>
                                     <td>{{ $apartment->address }}</td>
                                     <td>
                                         {{ Str::limit($apartment->description, 200) }}
                                     </td>
                                     <td>
-                                         @if(count($apartment->services) > 0) 
-                                             @foreach($apartment->services as $service)
-                                                <span>#{{$service->name}}</span>
-                                             @endforeach
-                                        @else 
-                                          <span>Nessun Servizio</span>
+                                        @if (count($apartment->services) > 0)
+                                            @foreach ($apartment->services as $service)
+                                                <span>#{{ $service->name }}</span>
+                                            @endforeach
+                                        @else
+                                            <span>Nessun Servizio</span>
                                         @endif
                                     </td>
                                     <td>
