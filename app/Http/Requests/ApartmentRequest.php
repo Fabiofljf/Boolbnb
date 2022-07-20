@@ -34,7 +34,11 @@ class ApartmentRequest extends FormRequest
             'baths' => 'integer|nullable|between:1,30',
             'sqm' => 'integer|nullable|between:1,10000',
             'visibility' => 'nullable',
-            'services' => ['exists:services,id']
+            'services' => ['exists:services,id'],
+            'lat' => 'required|numeric',
+            'lon' => 'required|numeric',
+
+
         ];
     }
 }

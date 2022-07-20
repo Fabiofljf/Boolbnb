@@ -66,36 +66,58 @@
         <input type="number" name="sqm" id="sqm" class="form-control @error('sqm') is-invalid @enderror" placeholder="Add apartment square meters" min=0 aria-describedby="sqmHelper" value="{{old('sqm')}}">
         <small id="sqmHelper" class="text-muted">Aggiungi i metri quadrati dell'appartamento</small>
     </div>
-    
-    <div class="mb-4">
-      <label for="services" class="form-label">Servizi</label>
-      <select multiple class="form-select" name="services[]" id="services" aria-label="services">
-        <option value= "" disabled>Seleziona uno o più servizi</option>
-        @forelse ($services as $service)
-        <option value="{{$service->id}}">{{$service->name}}</option>
-        @empty
-        <option value="">Non ci sono servizi</option>
 
-        @endforelse
-   
-      </select>
+    <div class="mb-4">
+        <label for="services" class="form-label">Servizi</label>
+        <select multiple class="form-select" name="services[]" id="services" aria-label="services">
+            <option value="" disabled>Seleziona uno o più servizi</option>
+            @forelse ($services as $service)
+            <option value="{{$service->id}}">{{$service->name}}</option>
+            @empty
+            <option value="">Non ci sono servizi</option>
+
+            @endforelse
+
+        </select>
     </div>
-      <!-- Visibility -->
-      <div class="mb-3">
-            <input class="form-check-input" type="radio" name="visibility" id="visibility"  value="true">
-            <label class="form-check-label" for="visibility">
-                Visibile
-            </label>
-        </div>
-        <div class="mb-3">
-            <input class="form-check-input" type="radio" name="visibility" id="visibility"  value="false">
-            <label class="form-check-label" for="visibility">
-                Non visibile
-            </label>
-        </div>
+    <!-- Visibility -->
+    <div class="mb-3">
+        <input class="form-check-input" type="radio" name="visibility" id="visibility" value="true">
+        <label class="form-check-label" for="visibility">
+            Visibile
+        </label>
+    </div>
+    <div class="mb-3">
+        <input class="form-check-input" type="radio" name="visibility" id="visibility" value="false">
+        <label class="form-check-label" for="visibility">
+            Non visibile
+        </label>
+    </div>
+
+    <div id='map' class='map'>
+
+    </div>
+    <div id="search-box">
+
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control" type="text" name="lat" id="lat" readonly>
+        <label class="text-muted" for="lat">
+            Latitudine
+        </label>
+    </div>
+    <div class="mb-3">
+        <input class="form-control" type="text" name="lon" id="lon" readonly>
+        <label class="text-muted" for="lon">
+            Longitudine
+        </label>
+    </div>
 
     <button type="submit" class="btn btn-primary text-white">Creare nuovo appartamento</button>
 
 </form>
 
+
 @endsection
+

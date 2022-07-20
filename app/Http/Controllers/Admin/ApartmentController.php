@@ -47,21 +47,32 @@ class ApartmentController extends Controller
     {
         $user_id = Auth::id();
 
+        dd($request);
+
         // Validazione dati
         $val_data = $request->validated();
         $visibility = $request->boolean('visibility');
         $val_data['visibility'] = $visibility;
+
         // Generazione dello slug
         $slug = Apartment::generateSlug($request->title);
         $val_data['slug'] = $slug;
         $val_data['user_id'] = $user_id;
         //ddd($val_data);
+        
         /* thumb */
-
         if ($request->hasFile('thumb')) {
             $path = Storage::put('apartment_images', $request->thumb);
             $val_data['thumb'] = $path;
         }
+
+        /* Address & coordinate */
+
+        $val_data['lat'] = $request->lat;
+        $val_data['lon'] = $request->lon;
+
+
+     
 
         // Creazione della risorsa
         $new_apartment = Apartment::create($val_data);

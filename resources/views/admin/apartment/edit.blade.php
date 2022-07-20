@@ -103,25 +103,7 @@
                 Non visibile
             </label>
         </div>
-        <div id='map' class='map'>
-            
-        </div>
-        <div id="search-box">
-
-        </div>
-
-        <div class="mb-3">
-            <input  class="form-control" type="number" name="lat" id="lat" value="" disabled>
-            <label class="text-muted" for="lat">
-                Latitudine
-            </label>
-        </div>
-        <div class="mb-3">
-            <input  class="form-control" type="number" name="lon" id="lon" value="" disabled>
-            <label class="text-muted" for="lon">
-                Longitudine
-            </label>
-        </div>
+       
         <button type="submit" class="btn btn-primary text-white">Conferma modifiche</button>
     </form>
     @endsection
