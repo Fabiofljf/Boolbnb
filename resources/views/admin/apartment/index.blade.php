@@ -10,8 +10,9 @@
                 <div class="d-flex justify-content-between py-4">
                     <h1>Lista di appartamenti</h1>
                     <div>
-                        <a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo
-                            appartamento</a></div>
+                        <a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo appartamento
+                        </a>
+                    </div>
                 </div>
                 <div class="row">
                     <table class="table">
@@ -22,6 +23,7 @@
                                 <th>Thumb</th>
                                 <th>Address</th>
                                 <th>Body</th>
+                                <th>Servizi</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -34,6 +36,15 @@
                                     <td>{{ $apartment->address }}</td>
                                     <td>
                                         {{ Str::limit($apartment->description, 200) }}
+                                    </td>
+                                    <td>
+                                         @if(count($apartment->services) > 0) 
+                                             @foreach($apartment->services as $service)
+                                                <span>#{{$service->name}}</span>
+                                             @endforeach
+                                        @else 
+                                          <span>Nessun Servizio</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Apartment;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApartmentRequest;
@@ -20,8 +21,8 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::where(('user_id'), Auth::user()->id)->orderByDesc('id')->get();
-
-        return view('admin.apartment.index', compact('apartments'));
+        $services = Service::all();
+        return view('admin.apartment.index', compact('apartments', 'services'));
     }
 
     /**
@@ -31,8 +32,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {   
-        
-        return view('admin.apartment.create');
+        $services = Service::all();
+        return view('admin.apartment.create', compact('services'));
     }
 
     /**
@@ -63,6 +64,7 @@ class ApartmentController extends Controller
 
         // Creazione della risorsa
         $new_apartment = Apartment::create($val_data);
+        $new_apartment->services()->attach($request->services);
 
 
         // Redirezionamento all'index admin
@@ -93,7 +95,8 @@ class ApartmentController extends Controller
     public function edit(Apartment $apartment)
     {
         if (Auth::id() === $apartment->user_id) {
-            return view('admin.apartment.edit', compact('apartment'));
+            $services = Service::all();
+            return view('admin.apartment.edit', compact('apartment','services'));
         } else {
             dd('utente non autorizzato');
         }
@@ -122,6 +125,7 @@ class ApartmentController extends Controller
                 $val_data['thumb'] = $path;
             }
             $apartment->update($val_data);
+            $apartment->services()->sync($request->services);
             return redirect()->route('admin.apartment.index');
         } else {
             dd('utente non autorizzato');
