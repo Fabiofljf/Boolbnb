@@ -28,12 +28,14 @@ class ApartmentRequest extends FormRequest
             'title' => ['required', Rule::unique('apartments')->ignore($this->apartment), 'max:150'],
             'thumb' => ['required', 'image', 'max:2024'],
             'address' => 'required',
+            'description' => 'nullable|string',
             'content' => 'nullable',
             'rooms' => 'integer|nullable|between:1,20',
             'beds' => 'integer|nullable|between:1,20',
             'baths' => 'integer|nullable|between:1,30',
             'sqm' => 'integer|nullable|between:1,10000',
             'visibility' => 'nullable',
+            'services' => ['exists:services,id']
         ];
     }
 }

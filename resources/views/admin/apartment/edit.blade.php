@@ -70,6 +70,23 @@
             <input type="number" name="sqm" id="sqm" class="form-control" placeholder="2" aria-describedby="sqmHelper" value="{{ old('sqm', $apartment->sqm) }}">
             <small id="sqmHelper" class="text-muted">Aggiungi i metri quadrati dell'appartamento</small>
         </div>
+
+        <div class="mb-4">
+              <label for="tags" class="form-label m-0">Servizi</label>
+              <select multiple class="form-select" name="services[]" id="services" aria-label="services">
+              <option value= "" disabled>Modifica uno o più servizi</option>
+              @forelse ($services as $service)
+                @if($errors->any())
+                    <option value="{{$service->id}}" {{in_array($service->id,old('services')) ? 'selected' : ''}}>{{$service->name}}</option>
+                @else
+                    <option value="{{$service->id}}" {{$apartment->services->contains($service->id) ? 'selected' : ''}}>{{$service->name}}</option>
+                @endif
+              @empty
+                  <option value="">Non ci sono servizi</option>
+
+              @endforelse
+              </select>
+            </div>
         <!-- Visibility -->
         <div class="mb-3">
             <input class="form-check-input" type="radio" name="visibility" id="visibility" {{ $apartment->visibility ? 'checked' : '' }} value="true">

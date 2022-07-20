@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Service extends Model
 {
+    protected $fillable = ['name', 'icon'];
     /**
      * The apartments that belong to the Service
      *

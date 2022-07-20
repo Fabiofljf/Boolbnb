@@ -10,8 +10,9 @@
                 <div class="d-flex justify-content-between py-4">
                     <h1>Lista di appartamenti</h1>
                     <div>
-                        <a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo
-                            appartamento</a></div>
+                        <a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo appartamento
+                        </a>
+                    </div>
                 </div>
                 <div class="row">
                     <table class="table">
@@ -22,6 +23,7 @@
                                 <th>Thumb</th>
                                 <th>Address</th>
                                 <th>Body</th>
+                                <th>Servizi</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -34,6 +36,15 @@
                                     <td>{{ $apartment->address }}</td>
                                     <td>
                                         {{ Str::limit($apartment->description, 200) }}
+                                    </td>
+                                    <td>
+                                         @if(count($apartment->services) > 0) 
+                                             @foreach($apartment->services as $service)
+                                                <span>#{{$service->name}}</span>
+                                             @endforeach
+                                        @else 
+                                          <span>Nessun Servizio</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <ul>
@@ -79,18 +90,18 @@
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Delete apartment:
+                                                                <h5 class="modal-title">Elimina appartmento:
                                                                     "{{ $apartment->title }}"</h5>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                Are you sure you want to delete this apartment? <br>
-                                                                !Caution this is a destructive operation!
+                                                                Sei sicuro di voler eliminare questo appartamento?<br>
+                                                                !Attenzione questa è un'operazione distruttiva!
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Cancel</button>
+                                                                    data-bs-dismiss="modal">Annulla</button>
 
 
                                                                 <form
@@ -100,7 +111,7 @@
                                                                     @method('DELETE')
 
                                                                     <button type="submit"
-                                                                        class="btn btn-danger">Delete</button>
+                                                                        class="btn btn-danger">Elimina</button>
                                                                 </form>
 
                                                             </div>
