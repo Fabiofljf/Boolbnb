@@ -26,12 +26,16 @@ const options = {
     minNumberOfCharacters: 0,
     searchOptions: {
         key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
-        language: 'en-GB',
+        language: 'it-IT',
+        extendedPostalCodesFor: 'Str',
+        limit: 1,      
+        countrySet: 'IT'
         //bestResult: true,
+        
     },
     autocompleteOptions: {
         key: 'wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj',
-        language: 'en-GB',
+        language: 'it-IT',
     },
     noResultsMessage: 'No results found.'
 };
@@ -44,7 +48,19 @@ var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 document.getElementById('search-box').appendChild(searchBoxHTML);
 
 ttSearchBox.on('tomtom.searchbox.resultsfound', function(data) {
-console.log(data);
+
+
+
+let lat = data.data.results.fuzzySearch.results[0].position.lat;
+let lon = data.data.results.fuzzySearch.results[0].position.lng;
+
+let address = data.data.results.fuzzySearch.results[0].address.freeformAddress;
+
+console.log(address);
+
+document.getElementById('lat').value = lat ;
+document.getElementById('lon').value = lon ;
+document.getElementById('address').value = address ;
 });
 
 /**
