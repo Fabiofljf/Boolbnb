@@ -108,11 +108,7 @@ class ApartmentController extends Controller
     {
         if (Auth::id() === $apartment->user_id) {
             $services = Service::all();
-            $servicesSelected = [];
-            foreach ($apartment->services as $service) {
-                array_push($servicesSelected, $service->name);
-            }
-            return view('admin.apartment.edit', compact('apartment', 'services', 'servicesSelected'));
+            return view('admin.apartment.edit', compact('apartment', 'services'));
         } else {
             dd('utente non autorizzato');
         }
