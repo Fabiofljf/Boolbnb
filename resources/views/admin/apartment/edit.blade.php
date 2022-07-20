@@ -26,7 +26,7 @@
             <div class="mb-4">
                 <label for="title">Titolo*</label>
                 <input type="text" name="title" id="title"
-                    class="form-control @error('title') is-invalid @enderror" placeholder="type title"
+                    class="form-control @error('title') is-invalid @enderror" placeholder="Aggiungi il titolo"
                     aria-describedby="titleHelper" value="{{ old('title', $apartment->title) }}">
                 <small id="titleHelper" class="text-muted">Aggiungi il Titolo dell'appartamento, massimo 150
                     caratteri</small>
@@ -53,7 +53,7 @@
                 <div class="my-3">
                     <label for="address">Indirizzo*</label>
                     <input type="text" name="address" id="address"
-                        class="form-control  @error('address') is-invalid @enderror" placeholder="Add apartment address"
+                        class="form-control  @error('address') is-invalid @enderror" placeholder="Aggiungi l'indirizzo"
                         aria-describedby="addressHelper" value="{{ old('address', $apartment->address) }}" readonly>
                     <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
                 </div>

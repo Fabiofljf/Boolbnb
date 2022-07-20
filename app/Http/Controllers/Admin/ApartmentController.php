@@ -137,6 +137,10 @@ class ApartmentController extends Controller
                 $path = Storage::put('apartment_images', $request->thumb);
                 $val_data['thumb'] = $path;
             }
+
+            $val_data['lat'] = $request->lat;
+            $val_data['lon'] = $request->lon;
+
             $apartment->update($val_data);
             $apartment->services()->sync($request->services);
             return redirect()->route('admin.apartment.index');
