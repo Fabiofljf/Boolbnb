@@ -5102,13 +5102,37 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Home',
+  name: "Home",
   data: function data() {
-    return {};
+    return {
+      apartments: ""
+    };
   },
-  methods: {},
-  mounted: function mounted() {}
+  methods: {
+    getCallApi: function getCallApi() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("API/Apartment").then(function (response) {
+        console.log(response); //console.log(response.data);
+        //console.log(response.data.data);
+        //this.apartments = response.data;
+      })["catch"](function (e) {
+        console.error(e);
+      });
+    },
+    trimText: function trimText(text) {
+      if (text.length > 100) {
+        return text.slice(0, 50) + "...";
+      }
+
+      return text;
+    }
+  },
+  mounted: function mounted() {
+    this.getCallApi();
+  }
 });
 
 /***/ }),
@@ -5160,18 +5184,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "App",
-  data: function data() {
-    return {
-      menu_items: [{
-        route_name: "home",
-        route_text: "Home"
-      }, {
-        route_name: "search",
-        route_text: "Search"
-      }]
-    };
-  }
+  name: "App"
 });
 
 /***/ }),
@@ -5191,7 +5204,47 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", {
+    staticClass: "wrapper mt-5"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row row-cols-5"
+  }, _vm._l(_vm.apartments, function (apartment) {
+    return _c("div", {
+      key: apartment.id,
+      staticClass: "col"
+    }, [_c("div", {
+      staticClass: "card text-start"
+    }, [_c("img", {
+      attrs: {
+        src: "'storage/' + apartment.thumb",
+        alt: ""
+      }
+    }), _vm._v(" "), _c("div", {
+      staticClass: "card-body"
+    }, [_c("h4", {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(apartment.title))]), _vm._v(" "), _c("p", {
+      staticClass: "card-text"
+    }, [_vm._v(_vm._s(_vm.trimText(apartment.description)) + " ")])])])]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "btn btn-dark shadow rounded-3 d-flex justify-content-center w_fix"
+  }, [_vm._v("\n    Mostra la mappa\n    "), _c("svg", {
+    staticClass: "bi bi-map",
+    attrs: {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "16",
+      height: "16",
+      fill: "currentColor",
+      viewBox: "0 0 16 16"
+    }
+  }, [_c("path", {
+    attrs: {
+      "fill-rule": "evenodd",
+      d: "M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+    }
+  })])])]);
 };
 
 var staticRenderFns = [function () {
@@ -5199,10 +5252,8 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "wrapper"
-  }, [_c("h1", {
-    staticClass: "text-center"
-  }, [_vm._v("Home")])]);
+    staticClass: "container my-5"
+  }, [_c("h1", [_vm._v("Benvenuto in boolbnb")]), _vm._v(" "), _c("h3", [_vm._v("Lasciati ispirare dai luoghi o effettua la tua ricerca")])]);
 }];
 render._withStripped = true;
 
@@ -5298,31 +5349,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("nav", {
-    staticClass: "navbar navbar-expand-md navbar-light bg-white shadow-sm"
-  }, [_c("div", {
-    staticClass: "container"
-  }, [_c("div", {
-    staticClass: "collapse navbar-collapse",
-    attrs: {
-      id: "navbarSupportedContent"
-    }
-  }, [_c("ul", {
-    staticClass: "navbar-nav mr-auto"
-  }, _vm._l(_vm.menu_items, function (item) {
-    return _c("li", {
-      key: item.id,
-      staticClass: "nav-item mx-2"
-    }, [_c("router-link", {
-      attrs: {
-        to: {
-          name: item.route_name
-        }
-      }
-    }, [_vm._v(_vm._s(item.route_text))])], 1);
-  }), 0), _vm._v(" "), _c("ul", {
-    staticClass: "navbar-nav ml-auto"
-  })])])]), _vm._v(" "), _c("router-view")], 1);
+  return _c("div", {
+    staticClass: "collegamenti"
+  }, [_c("router-view")], 1);
 };
 
 var staticRenderFns = [];
@@ -57032,7 +57061,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\final_proj\Boolbnb\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/Laravel/progetto-finale/Boolbnb/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
