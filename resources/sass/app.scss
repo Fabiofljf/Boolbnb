@@ -61,5 +61,5 @@ ul {
 }
 
 .full_screen {
-    height: min(calc(100vh - 55.05px));
+    min-height: calc(100vh - 55.05px);
 }

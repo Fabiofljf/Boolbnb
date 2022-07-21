@@ -25,7 +25,7 @@
             <!-- Titolo -->
             <div class="mb-4">
                 <label for="title">Titolo*</label>
-                <input type="text" name="title" id="title"
+                <input type="text" name="title" required id="title"
                     class="form-control @error('title') is-invalid @enderror" placeholder="Modifica il titolo"
                     aria-describedby="titleHelper" value="{{ old('title', $apartment->title) }}">
                 <small id="titleHelper" class="text-muted">Modifica il Titolo dell'appartamento, massimo 150
@@ -52,18 +52,20 @@
                 <!-- Address -->
                 <div class="my-3">
                     <label for="address">Indirizzo*</label>
-                    <input type="text" name="address" id="address"
+                    <input type="text" name="address" required id="address"
                         class="form-control  @error('address') is-invalid @enderror" placeholder="Modifica l'indirizzo"
                         aria-describedby="addressHelper" value="{{ old('address', $apartment->address) }}" readonly>
                     <small id="addressHelper" class="text-muted">Modifica l'indirizzo dell'appartamento</small>
                 </div>
-                <input class="form-control" type="text" name="lat" id="lat"
-                    value="{{ old('lat', $apartment->lat) }}" readonly>
-                <label class="text-muted" for="lat">
-                    Latitudine
-                </label>
+                <div class="mb-3 d-none">
+                    <input class="form-control d-none" type="text" name="lat" id="lat"
+                        value="{{ old('lat', $apartment->lat) }}" readonly>
+                    <label class="text-muted" for="lat">
+                        Latitudine
+                    </label>
+                </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 d-none">
                 <input class="form-control" type="text" name="lon" id="lon"
                     value="{{ old('lon', $apartment->lon) }}" readonly>
                 <label class="text-muted" for="lon">
@@ -73,41 +75,39 @@
 
             <!-- Body -->
             <div class="mb-4">
-                <label for="description">Descrizione</label>
-                <textarea class="form-control  @error('description') is-invalid @enderror" name="description" id="description"
-                    rows="4">{{ old('description', $apartment->description) }}
-            </textarea>
+                <label for="description">Descrizione*</label>
+                <textarea class="form-control  @error('description') is-invalid @enderror" name="description" required id="description" rows="4">{{ old('description', $apartment->description) }}</textarea>
             </div>
 
             <!-- Details -->
             <div class="mb-3">
-                <label for="rooms" class="form-label">Stanze</label>
-                <input type="number" name="rooms" id="rooms" class="form-control" placeholder="5"
-                    aria-describedby="roomsHelper" min=0 value="{{ old('rooms', $apartment->rooms) }}">
+                <label for="rooms" class="form-label">Stanze*</label>
+                <input type="number" name="rooms" required id="rooms" class="form-control" placeholder="5"
+                    aria-describedby="roomsHelper" min=1 value="{{ old('rooms', $apartment->rooms) }}">
                 <small id="roomsHelper" class="text-muted">Modifica il numero delle stanze dell'appartamento</small>
             </div>
             <div class="mb-3">
-                <label for="baths" class="form-label">Bagni</label>
-                <input type="number" name="baths" id="baths" class="form-control" placeholder="3"
-                    aria-describedby="bedsHelper" min=0 value="{{ old('baths', $apartment->baths) }}">
+                <label for="baths" class="form-label">Bagni*</label>
+                <input type="number" name="baths" required id="baths" class="form-control" placeholder="3"
+                    aria-describedby="bedsHelper" min=1 value="{{ old('baths', $apartment->baths) }}">
                 <small id="bedsHelper" class="text-muted">Modifica il numero dei bagni dell'appartamento</small>
             </div>
             <div class="mb-3">
-                <label for="beds" class="form-label">Letti</label>
-                <input type="number" name="beds" id="beds" class="form-control" placeholder="2"
-                    aria-describedby="bedsHelper" min=0 value="{{ old('beds', $apartment->beds) }}">
+                <label for="beds" class="form-label">Letti*</label>
+                <input type="number" name="beds" required id="beds" class="form-control" placeholder="2"
+                    aria-describedby="bedsHelper" min=1 value="{{ old('beds', $apartment->beds) }}">
                 <small id="bedsHelper" class="text-muted">Modifica il numero dei posti letto dell'appartamento</small>
             </div>
             <div class="mb-3">
-                <label for="sqm" class="form-label">Metri quadrati</label>
-                <input type="number" name="sqm" id="sqm" class="form-control" placeholder="80"
-                    aria-describedby="sqmHelper" min=0 value="{{ old('sqm', $apartment->sqm) }}">
+                <label for="sqm" class="form-label">Metri quadrati*</label>
+                <input type="number" name="sqm" required id="sqm" class="form-control" placeholder="80"
+                    aria-describedby="sqmHelper" min=10 value="{{ old('sqm', $apartment->sqm) }}">
                 <small id="sqmHelper" class="text-muted">Modifica i metri quadrati dell'appartamento</small>
             </div>
 
             <div class="mb-4">
-                <label for="tags" class="form-label m-0">Servizi</label>
-                <select multiple class="form-select" name="services[]" id="services" aria-label="services">
+                <label for="tags" class="form-label m-0">Servizi*</label>
+                <select multiple class="form-select" name="services[]" required id="services" aria-label="services">
                     <option value="" disabled>Modifica uno o più servizi</option>
                     @forelse ($services as $service)
                         @if ($errors->any())

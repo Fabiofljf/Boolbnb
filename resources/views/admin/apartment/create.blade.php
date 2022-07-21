@@ -42,13 +42,13 @@
                 value="{{ old('address') }}" readonly>
             <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 d-none">
             <input class="form-control" type="text" name="lat" id="lat" readonly placeholder="44.19108">
             <label class="text-muted" for="lat">
                 Latitudine
             </label>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 d-none">
             <input class="form-control" type="text" name="lon" id="lon" readonly placeholder="11.21899">
             <label class="text-muted" for="lon">
                 Longitudine
@@ -57,41 +57,41 @@
 
         <!-- Body -->
         <div class="mb-4">
-            <label for="description">Aggiungi la descrizione dell'appartamento</label>
-            <textarea class="form-control  @error('description') is-invalid @enderror" name="description" id="description"
+            <label for="description">Aggiungi la descrizione dell'appartamento*</label>
+            <textarea class="form-control  @error('description') is-invalid @enderror" name="description" required id="description"
                 rows="4">{{ old('description') }}</textarea>
         </div>
 
         <!-- Details -->
         <div class="mb-4">
-            <label for="rooms" class="form-label">Stanze</label>
-            <input type="number" name="rooms" id="rooms" class="form-control @error('rooms') is-invalid @enderror"
-                placeholder="4" min=0 aria-describedby="roomsHelper" value="{{ old('rooms') }}">
+            <label for="rooms" class="form-label">Stanze*</label>
+            <input type="number" name="rooms" required id="rooms" class="form-control @error('rooms') is-invalid @enderror"
+                placeholder="stanze" min=1 aria-describedby="roomsHelper" value="{{ old('rooms') }}">
             <small id="roomsHelper" class="text-muted">Aggiungi il numero delle stanze dell'appartamento</small>
         </div>
 
         <div class="mb-4">
-            <label for="baths" class="form-label">Bagni</label>
-            <input type="number" name="baths" id="baths" class="form-control @error('baths') is-invalid @enderror"
-                placeholder="1" min=0 aria-describedby="bedsHelper" value="{{ old('baths') }}">
+            <label for="baths" class="form-label">Bagni*</label>
+            <input type="number" name="baths" required id="baths" class="form-control @error('baths') is-invalid @enderror"
+                placeholder="bagni" min=1 aria-describedby="bedsHelper" value="{{ old('baths') }}">
             <small id="bedsHelper" class="text-muted">Aggiungi il numero dei bagni dell'appartamento</small>
         </div>
         <div class="mb-4">
-            <label for="beds" class="form-label">Letti</label>
-            <input type="number" name="beds" id="beds" class="form-control @error('beds') is-invalid @enderror"
-                placeholder="3" min=0 aria-describedby="bedsHelper" value="{{ old('beds') }}">
+            <label for="beds" class="form-label">Letti*</label>
+            <input type="number" name="beds" required id="beds" class="form-control @error('beds') is-invalid @enderror"
+                placeholder="letti" min=1 aria-describedby="bedsHelper" value="{{ old('beds') }}">
             <small id="bedsHelper" class="text-muted">Aggiungi il numero dei posti letto dell'appartamento</small>
         </div>
         <div class="mb-4">
-            <label for="sqm" class="form-label">Metri quadrati</label>
-            <input type="number" name="sqm" id="sqm" class="form-control @error('sqm') is-invalid @enderror"
-                placeholder="70" min=0 aria-describedby="sqmHelper" value="{{ old('sqm') }}">
+            <label for="sqm" class="form-label">Metri quadrati*</label>
+            <input type="number" name="sqm" required id="sqm" class="form-control @error('sqm') is-invalid @enderror"
+                placeholder="metratura" min=10 aria-describedby="sqmHelper" value="{{ old('sqm') }}">
             <small id="sqmHelper" class="text-muted">Aggiungi i metri quadrati dell'appartamento</small>
         </div>
 
         <div class="mb-4">
-            <label for="services" class="form-label">Servizi</label>
-            <select multiple class="form-select" name="services[]" id="services" aria-label="services">
+            <label for="services" class="form-label">Servizi*</label>
+            <select multiple class="form-select" name="services[]" required id="services" aria-label="services">
                 <option value="" disabled>Seleziona uno o più servizi</option>
                 @forelse ($services as $service)
                     <option value="{{ $service->id }}">{{ $service->name }}</option>
