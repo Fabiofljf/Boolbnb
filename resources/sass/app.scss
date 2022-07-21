@@ -9,6 +9,7 @@
 // TomTom
 @import '@tomtom-international/web-sdk-maps';
 @import '@tomtom-international/web-sdk-plugin-searchbox';
+
 // TomTom
 .map {
     width: 100%;
@@ -57,4 +58,8 @@ ul {
 
 .no-gutter {
     --bs-gutter-x: 0rem;
+}
+
+.full_screen {
+    height: min(calc(100vh - 55.05px));
 }

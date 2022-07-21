@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                   <!-- inserire map -->
+                    <div id="map" style="height:100%"></div>
                 </div>
             </div>
             <div class="apartment-description mt-3">

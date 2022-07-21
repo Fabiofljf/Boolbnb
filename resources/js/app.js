@@ -37,7 +37,10 @@ const options = {
         key: 'ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm',
         language: 'it-IT',
     },
-    noResultsMessage: 'No results found.'
+    noResultsMessage: 'No results found.',
+    labels: {
+        placeholder: 'Cerca qui l\'Indirizzo del tuo Appartamento'
+    }
 };
 
 

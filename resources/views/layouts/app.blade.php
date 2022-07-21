@@ -28,7 +28,9 @@
             <a class="navbar-brand p-1" href="{{ url('/') }}">Boolbnb</a>
             <!-- /logo -->
             <div class="container">
-                <h4 class="navbar-brand mb-0">Bentornato {{ Auth::user()->name ?? '' }}</h4>
+                @auth
+                    <h4 class="navbar-brand mb-0">Bentornato {{ Auth::user()->name ?? '' }}</h4>
+                @endauth
                 <!-- /name user -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -76,14 +78,13 @@
         </nav>
         <!-- /navbar -->
 
-        <div class="row no-gutter">
+        <div class="row no-gutter full_screen">
             <div class="col-2 bg_grey">
                 <h5 class="p-4 my-3 text-light">Esplora tutte le funzionalità</h5>
                 <aside>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"
-                                href="{{ route('admin.apartment.index') }}">
+                            <a class="nav-link active" aria-current="page" href="{{ route('admin.apartment.index') }}">
                                 <span data-feather="home" class="align-text-bottom"></span>
                                 Appartamenti
                             </a>

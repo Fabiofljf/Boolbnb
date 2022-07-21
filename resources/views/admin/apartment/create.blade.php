@@ -18,7 +18,8 @@
         <div class="mb-4">
             <label for="title">Titolo*</label>
             <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror"
-                placeholder="Abbiungi un titolo" required aria-describedby="titleHelper" value="{{ old('title') }}">
+                placeholder="Appartamento con Soffitto Affrescato Vista Mare" required aria-describedby="titleHelper"
+                value="{{ old('title') }}">
             <small id="titleHelper" class="text-muted">Aggiungi il Titolo dell'appartamento, massimo 150 caratteri</small>
         </div>
 
@@ -37,18 +38,18 @@
         <div class="my-3">
             <label for="address">Indirizzo*</label>
             <input type="text" name="address" id="address" class="form-control  @error('address') is-invalid @enderror"
-                required placeholder="Aggiungi l'indirizzo" aria-describedby="addressHelper" value="{{ old('address') }}"
-                readonly>
+                required placeholder="Via Stazione 25, 40048 San Benedetto Val di Sambro" aria-describedby="addressHelper"
+                value="{{ old('address') }}" readonly>
             <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
         </div>
         <div class="mb-3">
-            <input class="form-control" type="text" name="lat" id="lat" readonly>
+            <input class="form-control" type="text" name="lat" id="lat" readonly placeholder="44.19108">
             <label class="text-muted" for="lat">
                 Latitudine
             </label>
         </div>
         <div class="mb-3">
-            <input class="form-control" type="text" name="lon" id="lon" readonly>
+            <input class="form-control" type="text" name="lon" id="lon" readonly placeholder="11.21899">
             <label class="text-muted" for="lon">
                 Longitudine
             </label>
@@ -65,27 +66,26 @@
         <div class="mb-4">
             <label for="rooms" class="form-label">Stanze</label>
             <input type="number" name="rooms" id="rooms" class="form-control @error('rooms') is-invalid @enderror"
-                placeholder="Abbiungi il numero di stanze" min=0 aria-describedby="roomsHelper"
-                value="{{ old('rooms') }}">
+                placeholder="4" min=0 aria-describedby="roomsHelper" value="{{ old('rooms') }}">
             <small id="roomsHelper" class="text-muted">Aggiungi il numero delle stanze dell'appartamento</small>
         </div>
 
         <div class="mb-4">
             <label for="baths" class="form-label">Bagni</label>
             <input type="number" name="baths" id="baths" class="form-control @error('baths') is-invalid @enderror"
-                placeholder="Abbiungi il numero di bagni" min=0 aria-describedby="bedsHelper" value="{{ old('baths') }}">
+                placeholder="1" min=0 aria-describedby="bedsHelper" value="{{ old('baths') }}">
             <small id="bedsHelper" class="text-muted">Aggiungi il numero dei bagni dell'appartamento</small>
         </div>
         <div class="mb-4">
             <label for="beds" class="form-label">Letti</label>
             <input type="number" name="beds" id="beds" class="form-control @error('beds') is-invalid @enderror"
-                placeholder="Abbiungi il numero di letti" min=0 aria-describedby="bedsHelper" value="{{ old('beds') }}">
+                placeholder="3" min=0 aria-describedby="bedsHelper" value="{{ old('beds') }}">
             <small id="bedsHelper" class="text-muted">Aggiungi il numero dei posti letto dell'appartamento</small>
         </div>
         <div class="mb-4">
             <label for="sqm" class="form-label">Metri quadrati</label>
             <input type="number" name="sqm" id="sqm" class="form-control @error('sqm') is-invalid @enderror"
-                placeholder="Add apartment square meters" min=0 aria-describedby="sqmHelper" value="{{ old('sqm') }}">
+                placeholder="70" min=0 aria-describedby="sqmHelper" value="{{ old('sqm') }}">
             <small id="sqmHelper" class="text-muted">Aggiungi i metri quadrati dell'appartamento</small>
         </div>
 

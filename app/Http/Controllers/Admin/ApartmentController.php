@@ -47,8 +47,6 @@ class ApartmentController extends Controller
     {
         $user_id = Auth::id();
 
-        dd($request);
-
         // Validazione dati
         $val_data = $request->validated();
         $visibility = $request->boolean('visibility');

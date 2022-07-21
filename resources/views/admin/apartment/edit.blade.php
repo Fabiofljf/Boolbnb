@@ -26,9 +26,9 @@
             <div class="mb-4">
                 <label for="title">Titolo*</label>
                 <input type="text" name="title" id="title"
-                    class="form-control @error('title') is-invalid @enderror" placeholder="Aggiungi il titolo"
+                    class="form-control @error('title') is-invalid @enderror" placeholder="Modifica il titolo"
                     aria-describedby="titleHelper" value="{{ old('title', $apartment->title) }}">
-                <small id="titleHelper" class="text-muted">Aggiungi il Titolo dell'appartamento, massimo 150
+                <small id="titleHelper" class="text-muted">Modifica il Titolo dell'appartamento, massimo 150
                     caratteri</small>
             </div>
             <!-- Thumb -->
@@ -41,7 +41,7 @@
                 <input type="file" name="thumb" id="thumb"
                     class="form-control  @error('thumb') is-invalid @enderror" aria-describedby="thumbHelper"
                     value="{{ old('thumb', $apartment->thumb) }}">
-                <small id="thumbHelper" class="text-muted">Aggiungi l'immagine dell'appartamento (formati accettati:
+                <small id="thumbHelper" class="text-muted">Modifica l'immagine dell'appartamento (formati accettati:
                     wpeg,jpg,jpeg,png || max: 2MB)</small>
             </div>
 
@@ -53,9 +53,9 @@
                 <div class="my-3">
                     <label for="address">Indirizzo*</label>
                     <input type="text" name="address" id="address"
-                        class="form-control  @error('address') is-invalid @enderror" placeholder="Aggiungi l'indirizzo"
+                        class="form-control  @error('address') is-invalid @enderror" placeholder="Modifica l'indirizzo"
                         aria-describedby="addressHelper" value="{{ old('address', $apartment->address) }}" readonly>
-                    <small id="addressHelper" class="text-muted">Aggiungi l'indirizzo dell'appartamento</small>
+                    <small id="addressHelper" class="text-muted">Modifica l'indirizzo dell'appartamento</small>
                 </div>
                 <input class="form-control" type="text" name="lat" id="lat"
                     value="{{ old('lat', $apartment->lat) }}" readonly>
@@ -84,25 +84,25 @@
                 <label for="rooms" class="form-label">Stanze</label>
                 <input type="number" name="rooms" id="rooms" class="form-control" placeholder="5"
                     aria-describedby="roomsHelper" min=0 value="{{ old('rooms', $apartment->rooms) }}">
-                <small id="roomsHelper" class="text-muted">Aggiungi il numero delle stanze dell'appartamento</small>
+                <small id="roomsHelper" class="text-muted">Modifica il numero delle stanze dell'appartamento</small>
             </div>
             <div class="mb-3">
                 <label for="baths" class="form-label">Bagni</label>
                 <input type="number" name="baths" id="baths" class="form-control" placeholder="3"
                     aria-describedby="bedsHelper" min=0 value="{{ old('baths', $apartment->baths) }}">
-                <small id="bedsHelper" class="text-muted">Aggiungi il numero dei bagni dell'appartamento</small>
+                <small id="bedsHelper" class="text-muted">Modifica il numero dei bagni dell'appartamento</small>
             </div>
             <div class="mb-3">
                 <label for="beds" class="form-label">Letti</label>
                 <input type="number" name="beds" id="beds" class="form-control" placeholder="2"
                     aria-describedby="bedsHelper" min=0 value="{{ old('beds', $apartment->beds) }}">
-                <small id="bedsHelper" class="text-muted">Aggiungi il numero dei posti letto dell'appartamento</small>
+                <small id="bedsHelper" class="text-muted">Modifica il numero dei posti letto dell'appartamento</small>
             </div>
             <div class="mb-3">
                 <label for="sqm" class="form-label">Metri quadrati</label>
-                <input type="number" name="sqm" id="sqm" class="form-control" placeholder="2"
+                <input type="number" name="sqm" id="sqm" class="form-control" placeholder="80"
                     aria-describedby="sqmHelper" min=0 value="{{ old('sqm', $apartment->sqm) }}">
-                <small id="sqmHelper" class="text-muted">Aggiungi i metri quadrati dell'appartamento</small>
+                <small id="sqmHelper" class="text-muted">Modifica i metri quadrati dell'appartamento</small>
             </div>
 
             <div class="mb-4">
