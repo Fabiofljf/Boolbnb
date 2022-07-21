@@ -94,7 +94,7 @@
                 </aside>
             </div>
             <!-- /.col sx-->
-            <div class="col bg_lightslategray p-5">
+            <div class="col bg_lightslategray p-5 full_screen">
                 <main>
                     @yield('content')
                 </main>

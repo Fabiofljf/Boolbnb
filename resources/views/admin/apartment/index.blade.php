@@ -30,7 +30,7 @@
                         </thead>
                         <tbody class="align-middle">
                             @forelse($apartments as $apartment)
-                                <tr>
+                                <tr class={{ $apartment->visibility ? 'bg-light' : '' }}>
                                     <td scope="row">{{ $apartment->id }}</td>
                                     <td>{{ $apartment->title }}</td>
                                     <td> <img style="max-width: 200px" src="{{ asset('/storage/' . $apartment->thumb) }}"
@@ -127,7 +127,7 @@
                             @empty
                                 <tr>
                                     <td scope="row">
-                                        Nessun appartamento da mostrare 😥
+                                        Nessun appartamento da mostrare 😥. Inserisci il tuo primo appartamento<a class='display-5 text-primary' href="{{route('admin.apartment.create')}}"> Qui</a>
                                     </td>
                                 </tr>
                             @endforelse
