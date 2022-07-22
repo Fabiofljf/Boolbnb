@@ -10,6 +10,7 @@
 @import '@tomtom-international/web-sdk-maps';
 // TomTom searchbox
 @import '@tomtom-international/web-sdk-plugin-searchbox';
+
 .map {
     width: 100%;
     height: 100%;
@@ -79,4 +80,8 @@ ul {
 
 .tt-search-box-input-container:focus-within {
     width: 500px;
+}
+
+.bg_warning {
+    background-color: $bg_warning;
 }
