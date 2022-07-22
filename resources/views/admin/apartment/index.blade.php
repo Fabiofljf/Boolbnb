@@ -6,6 +6,12 @@
 
             <!-- /.col sx -->
             <div class="container">
+                {{-- messaggio di creazione, modifica, eliminazione --}}
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <!-- Sezione per aggiungere un ulteriore appartamento -->
                 <div class="d-flex justify-content-between py-4">
                     <h1>Lista di appartamenti</h1>
@@ -52,7 +58,7 @@
                                         <ul>
                                             <li>
                                                 <a class="btn btn-primary text-white btn-sm"
-                                                    href="{{ route('admin.apartment.show', $apartment->id) }}">
+                                                    href="{{ route('admin.apartment.show', $apartment->slug) }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                                         <path
@@ -64,7 +70,7 @@
                                             </li>
                                             <li>
                                                 <a class="btn btn-success text-white btn-sm"
-                                                    href="{{ route('admin.apartment.edit', $apartment->id) }}">
+                                                    href="{{ route('admin.apartment.edit', $apartment->slug) }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                                         <path
@@ -77,7 +83,7 @@
                                                 <!-- Bottone per avviare la modale -->
                                                 <button type="button" class="btn btn-danger btn-sm text-white"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#delete-apartment-{{ $apartment->id }}">
+                                                    data-bs-target="#delete-apartment-{{ $apartment->slug }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                         <path
@@ -86,7 +92,7 @@
                                                 </button>
 
                                                 <!-- Modale -->
-                                                <div class="modal fade" id="delete-apartment-{{ $apartment->id }}"
+                                                <div class="modal fade" id="delete-apartment-{{ $apartment->slug }}"
                                                     tabindex="-1" role="dialog"
                                                     aria-labelledby="modelTitle-{{ $apartment->id }}" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -107,7 +113,7 @@
 
 
                                                                 <form
-                                                                    action="{{ route('admin.apartment.destroy', $apartment->id) }}"
+                                                                    action="{{ route('admin.apartment.destroy', $apartment->slug) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     @method('DELETE')
