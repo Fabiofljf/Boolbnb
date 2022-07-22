@@ -33,7 +33,8 @@
         </div>
 
         <!-- In questo punto andrà inserito il campo address che l'utente dovrà inserire. Dobbiamo verificare il modo in cui attraverso questo dato, con la chiamata Api otteniamo lat e long -->
-        <div id='map' class='map'></div>
+        {{-- search-box --}}
+        <div id="map" style="height:600px"></div>
         <div id="search-box"></div>
         <div class="my-3">
             <label for="address">Indirizzo*</label>
@@ -118,4 +119,5 @@
         <button type="submit" class="btn btn-primary text-white">Creare nuovo appartamento</button>
 
     </form>
+    <script src="{{ asset('js/map_create.js') }}"></script>
 @endsection

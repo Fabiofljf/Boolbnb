@@ -66,3 +66,17 @@ ul {
 .w_100 {
     width: 100%;
 }
+
+.tt-search-box{
+    border-radius: 10px;
+}
+
+.tt-search-box-input-container{
+    width: 300px;
+    border-radius: 10px;
+    transition: all 1s linear ;
+}
+.tt-search-box-input-container:focus-within{
+    width: 500px;
+
+}
