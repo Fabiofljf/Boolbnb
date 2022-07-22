@@ -15,7 +15,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Username*') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus minlength="3" maxlength="255">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required value="{{ old('name') }}" autocomplete="name" autofocus minlength="3" maxlength="255">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo email*') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required value="{{ old('email') }}" autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -110,4 +110,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    let password = document.getElementById("password");
+    let passwordConfirm = document.getElementById("password-confirm");
+
+function validatePassword(){
+  if(password.value != passwordConfirm.value) {
+    passwordConfirm.setCustomValidity("La password non coincide");
+  } else {
+    passwordConfirm.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+passwordConfirm.onkeyup = validatePassword;
+</script>
 @endsection
