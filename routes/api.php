@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Creazione rotte 
 Route::get('apartments', 'API\ApartmentController@index');
+Route::get('apartments/{post:slug}','API\ApartmentController@show');

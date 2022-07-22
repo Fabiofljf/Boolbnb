@@ -5,7 +5,7 @@
       <div class="row row-cols-2">
         <div class="col">
             <label for="">Cerca</label>
-            <input type="text">
+            <input type="text" v-model="ricerca">
         </div>
         <!-- /.col input -->
         <div class="col">maps</div>
@@ -20,7 +20,9 @@
 export default {
   name: "Search",
   data() {
-    return {};
+    return {
+      ricerca: ""
+    };
   },
   methods: {},
   mounted() {},

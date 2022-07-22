@@ -14,16 +14,16 @@ class ApartmentController extends Controller
         return $apartments;
     }
 
-    // public function show($slug)
-    // {
-    //     $card = Apartment::with(['publicity','service'])->where('slug', $slug)->first();
-    //     if ($card){
-    //         return $card;
-    //     }else {
-    //         return response()->json ([
-    //             'status_code' => 404,
-    //             'status_message' => 'Nothing found'
-    //         ]);
-    //     }
-    // }
+    public function show($slug)
+    {
+        $card = Apartment::with(['services','user'])->where('slug', $slug)->first();
+        if ($card){
+            return $card;
+        }else {
+            return response()->json ([
+                'status_code' => 404,
+                'status_message' => 'Nothing found'
+            ]);
+        }
+    }
 }
