@@ -10,18 +10,20 @@ class ApartmentController extends Controller
 {
     public function index()
     {
-        return Apartment::with(['publicity','service'])->orderByDesc('id')->paginate(5);
+        $apartments =  Apartment::with(['services','user'])->orderByDesc('id')->get();
+        return $apartments;
     }
-    public function show($slug)
-    {
-        $card = Apartment::with(['publicity','service'])->where('slug', $slug)->first();
-        if ($card){
-            return $card;
-        }else {
-            return response()->json ([
-                'status_code' => 404,
-                'status_message' => 'Nothing found'
-            ]);
-        }
-    }
+
+    // public function show($slug)
+    // {
+    //     $card = Apartment::with(['publicity','service'])->where('slug', $slug)->first();
+    //     if ($card){
+    //         return $card;
+    //     }else {
+    //         return response()->json ([
+    //             'status_code' => 404,
+    //             'status_message' => 'Nothing found'
+    //         ]);
+    //     }
+    // }
 }

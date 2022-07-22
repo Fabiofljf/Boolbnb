@@ -32,15 +32,14 @@
                 <div class="row w_100 align-items-center">
                     <div class="col">
                         <a href="{{ url('/') }}">
-                            <img src="resources/img/logo.png" alt="">
+                            <img style="width:100px" src="{{asset('img/logo.png')}}" alt="">
                         </a>
                     </div>
                     <!-- /.col sx -->
                     <div class="col d-flex justify-content-center">
-                        <div class="search">
-                            <label for="text">Ricerca</label>
-                            <input type="text" class="ms-2 border rounded-pill shadow">
-                        </div>
+                        <a href="{{ url('/search') }}">
+                            Ricerca avanzata
+                        </a>
                     </div>
                     <!-- /.col central-->
                     <div class="col d-flex justify-content-end">
@@ -87,34 +86,6 @@
             </div>
         </nav>
         <!-- /Nav UP -->
-
-        <div class="navbar">
-            <div class="container">
-                <div class="row w_100 align-items-center">
-                    <div class="col d-flex justify-content-center">
-                        <ul class="d-flex">
-                            <li class="p-2">
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="p-2">
-                                <a href="#">Ricerca</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.col sx -->
-                    <div class="col d-flex justify-content-end">
-                        <div class="btn btn-light shadow">
-                            filter
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
-                                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <!-- /.col dx -->
-                </div>
-            </div>
-        </div>
-        <!-- /Nav DOWN -->
     </header>
     <!-- /#site_header_front -->
 

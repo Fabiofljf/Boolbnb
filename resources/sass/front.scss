@@ -54,6 +54,29 @@ ul {
     width: 100%;
 }
 
+.h_400 {
+    height: 400px;
+}
+
 .w_fix {
     width: fit-content;
+}
+
+.p_relative {
+    position: relative;
+}
+
+.p_fixed_maps {
+    position: fixed;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bg_trend {
+    background-color: #3471ebc7
+}
+
+.font_size_big {
+    font-size: 1.5rem;
 }

@@ -6,10 +6,10 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-// TomTom
+// TomTom maps
 @import '@tomtom-international/web-sdk-maps';
+// TomTom searchbox
 @import '@tomtom-international/web-sdk-plugin-searchbox';
-// TomTom
 .map {
     width: 100%;
     height: 100%;
@@ -59,3 +59,13 @@ ul {
     --bs-gutter-x: 0rem;
 }
 
+<<<<<<< HEAD
+.full_screen {
+    min-height: calc(100vh - 55.05px);
+}
+
+.w_100 {
+    width: 100%;
+}
+=======
+>>>>>>> 25fd65d7e436a55b67a32ad373f997a1720cb318
