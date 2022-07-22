@@ -12191,3 +12191,13 @@ ul {
   --bs-gutter-x: 0rem;
 }
 
+.w_100 {
+  width: 100%;
+}
+
+.w_fix {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
