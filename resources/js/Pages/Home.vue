@@ -118,6 +118,11 @@
                 <h4 class="card-title">{{ apartment.title }}</h4>
                 <p class="card-text">{{ trimText(apartment.description) }}</p>
               </div>
+              <router-link
+                  class="btn btn-primary"
+                  :to="{ name: 'apartment', params: { slug: apartment.slug } }"
+                  >Visualizza</router-link
+                >
             </div>
           </div>
         </div>
