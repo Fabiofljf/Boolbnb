@@ -42,8 +42,8 @@ ul {
     padding: 0;
 }
 
-.bg_lightslategray {
-    background-color: lightslategray;
+.bg_primary {
+    background-color: $bg_primary;
 }
 
 .no-gutter {
@@ -73,8 +73,8 @@ ul {
     transform: translate(-50%, -50%);
 }
 
-.bg_trend {
-    background-color: #3471ebc7
+.bg_secondary {
+    background-color: $bg_secondary
 }
 
 .font_size_big {

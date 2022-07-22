@@ -31,7 +31,7 @@
     <!-- /welcomepages -->
 
     <!-- INIZIO CARD -->
-    <section id="promotion" class="shadow h_400 bg_trend">
+    <section id="promotion" class="shadow h_400 bg_secondary">
       <div class="container">
         <h4 class="d-flex justify-content-end m-2 p-3">I trend del momento</h4>
         <div class="row row-cols-5">
@@ -110,9 +110,9 @@
         <h4 class="d-flex justify-content-end mt-4 m-2 p-3">
           I nostri appartamenti
         </h4>
-        <div class="row row-cols-5">
+        <div class="row row-cols-5 g-4">
           <div class="col" v-for="apartment in apartments" :key="apartment.id">
-            <div class="card text-start">
+            <div class="card h-100 text-start">
               <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
               <div class="card-body">
                 <h4 class="card-title">{{ apartment.title }}</h4>

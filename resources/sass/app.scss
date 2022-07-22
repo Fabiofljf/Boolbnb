@@ -35,8 +35,8 @@ img {
 
 /* UTILITIES */
 
-.bg_grey {
-    background-color: $grey;
+.bg_secondary {
+    background-color: $bg_secondary;
 }
 
 a {
@@ -51,8 +51,8 @@ ul {
     padding: 0;
 }
 
-.bg_lightslategray {
-    background-color: rgb(167, 184, 201);
+.bg_primary {
+    background-color: $bg_primary
 }
 
 .no-gutter {
@@ -67,16 +67,16 @@ ul {
     width: 100%;
 }
 
-.tt-search-box{
+.tt-search-box {
     border-radius: 10px;
 }
 
-.tt-search-box-input-container{
+.tt-search-box-input-container {
     width: 300px;
     border-radius: 10px;
-    transition: all 1s linear ;
+    transition: all 1s linear;
 }
-.tt-search-box-input-container:focus-within{
-    width: 500px;
 
+.tt-search-box-input-container:focus-within {
+    width: 500px;
 }
