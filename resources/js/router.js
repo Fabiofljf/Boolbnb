@@ -12,9 +12,6 @@ Vue.use(VueRouter)
 import Home from './Pages/Home';
 import Search from './Pages/Search';
 
-/* const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' } */
-
 // 2. Define some routes
 // Each route should map to a component. The "component" can
 // either be an actual component constructor created via
@@ -22,8 +19,8 @@ const Bar = { template: '<div>bar</div>' } */
 // We'll talk about nested routes later.
 
 const routes = [
-  { path: '/', component: Home, name:'home' },
-  { path: '/search', component: Search, name:'search' },
+    { path: '/', component: Home, name: 'home' },
+    { path: '/search', component: Search, name: 'search' },
 ]
 
 // 3. Create the router instance and pass the routes option
@@ -31,7 +28,7 @@ const routes = [
 // keep it simple for now.
 const router = new VueRouter({
     mode: 'history',
-  routes // short for routes: routes
+    routes // short for routes: routes
 })
 
 export default router;

@@ -16,7 +16,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/front.scss', 'public/css')
     .sass('resources/sass/common.scss', 'public/css')
-    // .copyDirectory('resources/img', 'public/img')
-    // .options({
-    //     processCssUrls: false
-    // });
+    .copyDirectory('resources/img', 'public/img')
+    .options({
+        processCssUrls: false
+    });
