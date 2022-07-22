@@ -18,16 +18,19 @@ use Illuminate\Support\Facades\Auth;
     return view('welcome');
 });
  */
+
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
     // Admin Dashboard
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::resource('apartment', 'ApartmentController');
+    Route::resource('apartment', 'ApartmentController')->parameters([
+        'apartment' => 'apartment:slug'
+    ]);
     ///admin/apartment
 });
 
-Route::get("{any?}", function(){
+Route::get("{any?}", function () {
     return view("guest.home");
-})->where("any", ".*"); 
+})->where("any", ".*");
