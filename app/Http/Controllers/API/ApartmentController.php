@@ -16,9 +16,9 @@ class ApartmentController extends Controller
 
     public function show($slug)
     {
-        $card = Apartment::with(['services','user'])->where('slug', $slug)->first();
-        if ($card){
-            return $card;
+        $apartment = Apartment::with(['services','user'])->where('slug', $slug)->first();
+        if ($apartment){
+            return $apartment;
         }else {
             return response()->json ([
                 'status_code' => 404,

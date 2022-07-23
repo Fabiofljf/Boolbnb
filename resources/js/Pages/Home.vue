@@ -105,26 +105,28 @@
     </section>
     <!-- /#promotion -->
 
-    <section id="normal" class="">
+    <section id="normal" class="py-3">
       <div class="container">
         <h4 class="d-flex justify-content-end mt-4 m-2 p-3">
           I nostri appartamenti
         </h4>
-        <div class="row row-cols-5 g-4">
+        <div class="row row-cols-5 g-4 py-3">
+         
           <div class="col" v-for="apartment in apartments" :key="apartment.id">
-            <div class="card h-100 text-start">
+            <router-link :to="{ name: 'apartment', params: { slug: apartment.slug } }">
+            <div class="card_hover card h-100 text-start">
               <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
               <div class="card-body">
                 <h4 class="card-title">{{ apartment.title }}</h4>
                 <p class="card-text">{{ trimText(apartment.description) }}</p>
               </div>
-              <router-link
-                  class="btn btn-primary"
-                  :to="{ name: 'apartment', params: { slug: apartment.slug } }"
-                  >Visualizza</router-link
-                >
+              <!-- In valutazione perché optato per la soluzione del click sull'intera card dell'appartamento-->
+             <!--  <router-link class="btn btn-primary" :to="{ name: 'apartment', params: { slug: apartment.slug } }">Visualizza</router-link>
+             -->
             </div>
+            </router-link> 
           </div>
+
         </div>
       </div>
     </section>
