@@ -67,7 +67,9 @@ ul {
 }
 
 .p_fixed_maps {
+    color: $primary_color;
     position: fixed;
+    z-index: 3;
     top: 85%;
     left: 50%;
     transform: translate(-50%, -50%);

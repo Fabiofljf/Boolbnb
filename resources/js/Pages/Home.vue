@@ -112,9 +112,9 @@
         </h4>
         <div class="row row-cols-5 g-4 py-3">
          
-          <div class="col" v-for="apartment in apartments" :key="apartment.id">
+          <div class="col rounded" v-for="apartment in apartments" :key="apartment.id">
             <router-link :to="{ name: 'apartment', params: { slug: apartment.slug } }">
-            <div class="card_hover card h-100 text-start">
+            <div class="card_hover card h-100 text-start rounded">
               <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
               <div class="card-body">
                 <h4 class="card-title">{{ apartment.title }}</h4>
@@ -132,7 +132,7 @@
     </section>
     <!-- /#normal -->
     <!-- /FINE CARD -->
-
+   <router-link :to="{ name: 'search' }">
     <div
       class="
         btn btn-dark
@@ -146,8 +146,9 @@
         p_fixed_maps
       "
     >
+    
       <p class="me-2 mb-0">
-        <router-link :to="{ name: 'search' }">Mostra la mappa</router-link>
+       Mostra la mappa
       </p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -163,6 +164,7 @@
         />
       </svg>
     </div>
+    </router-link>
     <!-- /maps -->
   </div>
 </template>
