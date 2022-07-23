@@ -22,7 +22,7 @@ import Apartment from './Pages/Apartment';
 const routes = [
     { path: '/', component: Home, name: 'home' },
     { path: '/search', component: Search, name: 'search' },
-    { path: "/apartment/:slug", component: Apartment, name: "apartment" },
+    { path: '/apartment/:slug', component: Apartment, name: "apartment" },
 ]
 
 // 3. Create the router instance and pass the routes option

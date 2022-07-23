@@ -80,3 +80,17 @@ ul {
 .font_size_big {
     font-size: 1.5rem;
 }
+
+.icon_color{
+    color: $primary_color;
+}
+
+.card_hover{
+    transition: all 600ms;
+}
+
+.card_hover:hover{
+    transform: scale(1.2);
+    position: relative;
+    z-index: 2;
+}
