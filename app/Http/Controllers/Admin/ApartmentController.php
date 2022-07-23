@@ -170,7 +170,7 @@ class ApartmentController extends Controller
 
             $apartment->update($val_data);
             $apartment->services()->sync($request->services);
-            return redirect()->route('admin.apartment.index')->with('message', "Appartamento \"$apartment->title\" creato con successo");
+            return redirect()->route('admin.apartment.index')->with('message', "Appartamento \"$apartment->title\" modificato con successo");
         } else {
             dd('utente non autorizzato');
         }
