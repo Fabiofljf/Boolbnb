@@ -29,22 +29,18 @@
                                 <th>Titolo</th>
                                 <th>Immagine</th>
                                 <th>Indirizzo</th>
-                                <th>Descrizione</th>
                                 <th>Servizi</th>
                                 <th>Azioni</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
                             @forelse($apartments as $apartment)
-                                <tr class={{ $apartment->visibility ? 'bg-light' : 'bg_warning' }}>
+                                <tr class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }}>
                                     <td scope="row">{{ $apartment->id }}</td>
                                     <td>{{ $apartment->title }}</td>
                                     <td> <img style="max-width: 200px" src="{{ asset('/storage/' . $apartment->thumb) }}"
                                             alt="thumb of {{ $apartment->title }}"></td>
                                     <td>{{ $apartment->address }}</td>
-                                    <td>
-                                        {{ Str::limit($apartment->description, 200) }}
-                                    </td>
                                     <td>
                                         @if (count($apartment->services) > 0)
                                             @foreach ($apartment->services as $service)
