@@ -7,38 +7,16 @@
 
           <form method="POST" @submit.prevent="getGeoPosition">
             <div class="mb-3">
-              <label for="query" class="form-label"
-                >Cerca per città o per indirizzo:</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                name="query"
-                id="query"
-                aria-describedby="helpId"
-                placeholder="Milano"
-                v-model="query"
-                @keyup.enter="getGeoPosition"
-              />
-              <small id="helpId" class="form-text text-muted"
-                >Inserisci una città o un indirizzo anche parziale</small
-              >
+              <label for="query" class="form-label">Cerca per città o per indirizzo:</label>
+              <input type="text" class="form-control" name="query" id="query" aria-describedby="helpId"
+                placeholder="Milano" v-model="query" @keyup.enter="getGeoPosition" />
+              <small id="helpId" class="form-text text-muted">Inserisci una città o un indirizzo anche parziale</small>
             </div>
             <div class="form-group">
               <label for="radius">Distanza dal centro:</label>
-              <input
-                type="number"
-                class="form-control"
-                name="radius"
-                id="radius"
-                aria-describedby="helpId"
-                placeholder="2000"
-                v-model="radius"
-                @keyup.enter="getGeoPosition"
-              />
-              <small id="helpId" class="form-text text-muted"
-                >Inserisci in m il raggio dal centro</small
-              >
+              <input type="number" class="form-control" name="radius" id="radius" aria-describedby="helpId"
+                placeholder="2000" v-model="radius" @keyup.enter="getGeoPosition" />
+              <small id="helpId" class="form-text text-muted">Inserisci in m il raggio dal centro</small>
             </div>
 
             <button type="submit" class="btn btn-primary">Cerca</button>
@@ -56,26 +34,17 @@
               I nostri appartamenti
             </h4>
             <div class="row row-cols-5 g-4 py-3">
-              <div
-                class="col"
-                v-for="apartment in apartments"
-                :key="apartment.id"
-              >
-                <router-link
-                  :to="{
-                    name: 'apartment',
-                    params: {
-                      slug: apartment.slug,
-                      query: query,
-                      radius: radius,
-                    },
-                  }"
-                >
+              <div class="col" v-for="apartment in apartments" :key="apartment.id">
+                <router-link :to="{
+                  name: 'apartment',
+                  params: {
+                    slug: apartment.slug,
+                    query: query,
+                    radius: radius,
+                  },
+                }">
                   <div class="card_hover card h-100 text-start">
-                    <img
-                      :src="'storage/' + apartment.thumb"
-                      :alt="apartment.title"
-                    />
+                    <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
                     <div class="card-body">
                       <h4 class="card-title">{{ apartment.title }}</h4>
                     </div>
@@ -98,9 +67,10 @@
               </svg>
             </div>
           </div>
-         
-          <div v-else-if="!loading && lat && lon " class="mt-5">😴😴😴Nessun Risultato</div>
-           <div v-else class="mt-5">🔎Inzia la tua ricerca: cerca un appartemento in base alla città o all'indirizzo🔎</div>
+
+          <div v-else-if="!loading && lat && lon" class="mt-5">😴😴😴Nessun Risultato</div>
+          <div v-else class="mt-5">🔎Inzia la tua ricerca: cerca un appartemento in base alla città o all'indirizzo🔎
+          </div>
 
         </div>
       </div>
@@ -126,6 +96,27 @@ export default {
     };
   },
   methods: {
+    getAutocomplete() {
+      //console.log('digitando');
+      if (this.query) {
+        axios
+          .get(`https://api.tomtom.com/search/2/search/${this.query}.json?key=ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm&limit=10&countrySet=IT&language=it-IT`)
+          .then((response) => {
+            //console.log(response.data.results);
+            const results = response.data.results;
+            this.autocomplete = []
+            results.forEach(result => {
+              //console.log(result.address.freeformAddress);
+              let address = result.address.freeformAddress
+              this.autocomplete.push(address)
+            });
+            //console.log(this.autocomplete);
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+      }
+    },
     getGeoPosition() {
       // Get Geodata from Axios based on input and radius(2000 standard)
       let query = this.query;
@@ -182,9 +173,11 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 #page-loader {
   width: 150px;
   height: 150px;
+
   circle {
     fill: none;
     stroke-width: 5;
@@ -200,22 +193,26 @@ export default {
       stroke-dasharray: 50;
       animation-delay: -0.2s;
     }
+
     &:nth-child(2) {
       stroke: #ff5248;
       stroke-dasharray: 100;
       animation-delay: -0.4s;
     }
+
     &:nth-child(3) {
       stroke: #19cdca;
       stroke-dasharray: 180;
       animation-delay: -0.6s;
     }
+
     &:nth-child(4) {
       stroke: #4e88e1;
       stroke-dasharray: 350;
       stroke-dashoffset: -100;
       animation-delay: -0.8s;
     }
+
     @keyframes loader {
       50% {
         transform: rotate(360deg);
