@@ -29,7 +29,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+  window.axios.defaults.headers.common = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+}; 
+ 
 const app = new Vue({
     el: '#front',
     render: h => h(App),
