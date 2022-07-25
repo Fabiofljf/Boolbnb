@@ -1,6 +1,9 @@
 <template>
   <div id="SingleApartment" class="mt-5">
     <div id="titleAndThumb" class="container">
+      <router-link :to="{ name: 'search', params: { query: query, radius: radius } }"
+        >Torna Alla tua ricerca:</router-link
+      >
       <h2 class="">{{ apartment.title }}</h2>
       <div class="row">
         <div class="col">
@@ -8,31 +11,60 @@
             <p>
               <!-- Icona stella da implementare con voto -->
               <span class="icon_color">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                </svg> 
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  fill="currentColor"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
               </span>
-              &bull; <strong>5.0</strong> 
+              &bull; <strong>5.0</strong>
               |
               <!-- Icona user -->
               <span class="icon_color">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
-                  <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  fill="currentColor"
+                  class="bi bi-person-badge"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+                  />
+                  <path
+                    d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"
+                  />
                 </svg>
               </span>
-              &bull; <strong>{{ apartment.user.name }}</strong> 
+              &bull; <strong v-if="apartment.user.name">{{ apartment.user.name }}</strong>
               |
-            </p>           
-            <p> 
+            </p>
+            <p>
               <!-- Icona location -->
               <span class="icon_color">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  fill="currentColor"
+                  class="bi bi-geo-alt-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                  />
                 </svg>
               </span>
               &bull; <strong>{{ apartment.address }}</strong>
-              </p>
+            </p>
           </div>
         </div>
         <!-- /.col sx -->
@@ -47,7 +79,12 @@
       </div>
       <div class="my-3 d-flex justify-content-center align-items-center">
         <img
-          style="width: 100%; height:600px; object-fit:cover; object-position: bottom;"
+          style="
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            object-position: bottom;
+          "
           class="rounded-3"
           :src="'/storage/' + apartment.thumb"
           :alt="apartment.title"
@@ -55,15 +92,20 @@
       </div>
       <!-- /titleAndThumb -->
       <div class="row row-cols-2" id="hosting">
-        <div class="col d-flex mt-2 mb-0">
-          <div class="col-10 d-flex flex-column justify-content-center border-bottom">
-            <h4>{{ apartment.title }} - Host: <strong>{{ apartment.user.name }}</strong> </h4>
-            <p class="pb-4 m-0">
-             <span> <strong>Camere</strong> : {{ apartment.rooms }}</span>  &bull; <span> <strong>Letti</strong> : {{ apartment.beds }} </span> &bull; <span> <strong>Bagni</strong> : {{ apartment.baths }}</span>  &bull; <span> <strong>m<sup>2</sup></strong> : {{ apartment.sqm }}</span> 
+        <div class="col d-flex my-3">
+          <div class="col-10 d-flex flex-column justify-content-center">
+
+            <h4>{{ apartment.title }} - Host: {{ apartment.user.name  }}</h4>
+            <p class="pb-4 m-0 border-bottom">
+              <span> <strong>Camere</strong> : {{ apartment.rooms }}</span>
+              &bull;
+              <span> <strong>Letti</strong> : {{ apartment.beds }} </span>
+              &bull;
+              <span> <strong>Bagni</strong> : {{ apartment.baths }}</span>
             </p>
           </div>
           <!-- /.col info hosting -->
-          <div class="col d-flex align-items-center justify-content-end pb-3">
+          <div class="col d-flex align-items-center justify-content-end pb-5">
             <img
               style="width: 100px; aspect-ratio: 1/1"
               class="rounded-circle"
@@ -79,30 +121,21 @@
       </div>
       <!-- /HostingAndbooking -->
       <div class="col mt-3 border-bottom">
-        <h3>Descrizione alloggio</h3>
+        <h5>Descrizione alloggio</h5>
         <p class="description">
-           {{ apartment.description }}
+          {{ apartment.description }}
         </p>
-          <div>
-            <hr> 
-            <h3>Servizi Forniti</h3>
-             <p v-for="service in apartment.services" :key="service.id">
-              <span class="icon_color">
-                <!--  Se la inserisco dinamicamente mostra il markdown piuttosto che renderizzare l'svg -->
-                <span v-html="service.icon"></span> 
-               <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16">
-                  <path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/>
-                  <path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/>
-               </svg> -->
-              </span> |
-              <small>{{ service.name }}</small>                                       
-             </p>
-            
-        </div>
       </div>
       <!-- /Description -->
       <div class="row">
         <h3>Da sapere</h3>
+        <div class="col">
+            <h5>Servizi</h5>
+            <ul>
+                <li>Loop here!</li>
+            </ul>
+        </div>
+        <!-- /.col servizi sx -->
         <div class="col">
             <h5>Salute e sicurezza</h5>
             <ul>
@@ -110,14 +143,19 @@
                 <li>Rilevatore di monossido di carbonio non segnalato</li>
                 <li>Telecamera di sicurezza o dispositivo di registrazione</li>
             </ul>
+
         </div>
         <!-- /.col (non toccare, statica) centrale -->
         <div class="col">
-            <h5>Termini di cancellazione</h5>
-            <ul>
-                <li>Cancellazione gratuita entro il giorno 1 mag.</li>
-                <li>Leggi i termini di cancellazione completi dell'host, che si applicano anche in caso di malattia o disagi legati alla pandemia di COVID-19.</li>
-            </ul>
+          <h5>Termini di cancellazione</h5>
+          <ul>
+            <li>Cancellazione gratuita entro il giorno 1 mag.</li>
+            <li>
+              Leggi i termini di cancellazione completi dell'host, che si
+              applicano anche in caso di malattia o disagi legati alla pandemia
+              di COVID-19.
+            </li>
+          </ul>
         </div>
         <!-- /.col (non toccare, statica) dx -->
       </div>
@@ -130,22 +168,27 @@
 <script>
 export default {
   name: "Apartment",
-      data() {
-        return {
-            apartment: ''
-        }
-    },
-    mounted() {
-        axios.get('/api/apartments/' + this.$route.params.slug)
-        .then(response => {
-            //console.log(response.data);
-            this.apartment = response.data
-     
-        })
-        .catch(e => {
-            console.error(e);
-        })
-    } 
+
+  data() {
+    return {
+      apartment: "",
+      query: "",
+      radius: "",
+    };
+  },
+  mounted() {
+    this.query = this.$route.params.query;
+    this.radius = this.$route.params.radius;
+    axios
+      .get("/api/apartments/" + this.$route.params.slug)
+      .then((response) => {
+        console.log(response.data);
+        this.apartment = response.data;
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  },
 };
 </script>
 
