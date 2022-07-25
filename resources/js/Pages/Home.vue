@@ -1,11 +1,14 @@
 <template>
   <div class="wrapper mt-5">
-
     <section class="container my-5 p_relative">
       <div class="row align-items-center">
         <div class="col">
           <h1>Benvenuto in boolbnb</h1>
           <h3>Lasciati ispirare dai luoghi o effettua la tua ricerca</h3>
+          <input type="text" v-model="query" />
+          <router-link
+            :to="{ name: 'search', params: { query: query } }"
+          ><button type="button" class="btn btn-primary">Cerca</button></router-link>
         </div>
         <!-- Benvenuto -->
         <div class="col d-flex justify-content-end">
@@ -111,28 +114,34 @@
           I nostri appartamenti
         </h4>
         <div class="row row-cols-5 g-4 py-3">
-         
-          <div class="col rounded" v-for="apartment in apartments" :key="apartment.id">
-            <router-link :to="{ name: 'apartment', params: { slug: apartment.slug } }">
-            <div class="card_hover card h-100 text-start rounded">
-              <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
-              <div class="card-body">
-                <h4 class="card-title">{{ apartment.title }}</h4>
-                <p class="card-text">{{ trimText(apartment.description) }}</p>
-              </div>
-              <!-- In valutazione perché optato per la soluzione del click sull'intera card dell'appartamento-->
-             <!--  <router-link class="btn btn-primary" :to="{ name: 'apartment', params: { slug: apartment.slug } }">Visualizza</router-link>
+          <div class="col" v-for="apartment in apartments" :key="apartment.id">
+            <router-link
+              :to="{
+                name: 'apartment',
+                params: { slug: apartment.slug, query: query },
+              }"
+            >
+              <div class="card_hover card h-100 text-start">
+                <img
+                  :src="'storage/' + apartment.thumb"
+                  :alt="apartment.title"
+                />
+                <div class="card-body">
+                  <h4 class="card-title">{{ apartment.title }}</h4>
+                  <p class="card-text">{{ trimText(apartment.description) }}</p>
+                </div>
+                <!-- In valutazione perché optato per la soluzione del click sull'intera card dell'appartamento-->
+                <!--  <router-link class="btn btn-primary" :to="{ name: 'apartment', params: { slug: apartment.slug } }">Visualizza</router-link>
              -->
-            </div>
-            </router-link> 
+              </div>
+            </router-link>
           </div>
-
         </div>
       </div>
     </section>
     <!-- /#normal -->
     <!-- /FINE CARD -->
-   <router-link :to="{ name: 'search' }">
+
     <div
       class="
         btn btn-dark
@@ -146,9 +155,8 @@
         p_fixed_maps
       "
     >
-    
       <p class="me-2 mb-0">
-       Mostra la mappa
+        <router-link :to="{ name: 'search' }">Mostra la mappa</router-link>
       </p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +172,6 @@
         />
       </svg>
     </div>
-    </router-link>
     <!-- /maps -->
   </div>
 </template>
@@ -176,6 +183,7 @@ export default {
   data() {
     return {
       apartments: "",
+      query: "",
     };
   },
   methods: {
@@ -183,8 +191,6 @@ export default {
       axios
         .get("api/apartments")
         .then((response) => {
-          //console.log(response);
-          //console.log(response.data);
           this.apartments = response.data;
         })
         .catch((e) => {
