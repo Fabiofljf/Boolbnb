@@ -3,5 +3,8 @@
     "/css/app.css": "/css/app.css",
     "/css/front.css": "/css/front.css",
     "/css/common.css": "/css/common.css",
-    "/js/front.js": "/js/front.js"
+    "/js/front.js": "/js/front.js",
+    "/js/map_create.js": "/js/map_create.js",
+    "/js/map_edit.js": "/js/map_edit.js",
+    "/js/map_show.js": "/js/map_show.js"
 }
