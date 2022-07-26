@@ -23,6 +23,10 @@ class ApartmentSeeder extends Seeder
             $apartment->address = "Via Rodolfo Morandi 15, 20090 Buccinasco";
             $apartment->lat = 45.42327;
             $apartment->lon = 9.12977;
+            $apartment->rooms = $faker->numberBetween(1, 20);
+            $apartment->baths = $faker->numberBetween(1, 20);
+            $apartment->beds = $faker->numberBetween(1, 20);
+            $apartment->sqm = $faker->numberBetween(10, 1000);
             $apartment->user_id = 1;
             $apartment->save();
         }
