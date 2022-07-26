@@ -49,16 +49,23 @@ class ApartmentController extends Controller
 
         $filteredApartments = [];
 
-        foreach ($apartments as $apartment) {
-            $services = $apartment->services;
-            $servicesId = [];
-            foreach ($services as $service) {
-                array_push($servicesId, $service->id);
+        if ( in_array("all",$selectedServices)) {
+            $filteredApartments = $apartments;
+        } else {
+            foreach ($apartments as $apartment) {
+                $services = $apartment->services;
+                $servicesId = [];
+                foreach ($services as $service) {
+                    array_push($servicesId, $service->id);
+                }
+                if (count(array_diff($selectedServices, $servicesId)) === 0) {
+                    array_push($filteredApartments, $apartment);
+                }
             }
-            if (count(array_diff($selectedServices, $servicesId)) === 0) {
-                array_push($filteredApartments, $apartment);
-            }
+
         }
+
+
 
         $apartmentList = [];
 
