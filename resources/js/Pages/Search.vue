@@ -4,80 +4,154 @@
       <h1 class="p-2">Effettua una nuova ricerca</h1>
       <div class="row row-cols-2">
         <div class="col">
+          <!-- Advanced search -->
           <form method="POST" @submit.prevent="getGeoPosition">
             <div class="mb-3">
-              <label for="query" class="form-label">Cerca per città o per indirizzo:</label>
+              <label for="query" class="form-label"
+                >Cerca per città o per indirizzo:</label
+              >
               <div class="dropdown flex-grow-1">
-                <input type="text" id="query_address" class="w-100" placeholder="Milano" v-model="query"
-                  @keyup="getAutocomplete" @keyup.38="listUp" @keyup.40="listDown" @keyup.enter="getGeoPosition" />
+                <input
+                  type="text"
+                  id="query_address"
+                  class="w-100"
+                  placeholder="Milano"
+                  v-model="query"
+                  @keyup="getAutocomplete"
+                  @keyup.38="listUp"
+                  @keyup.40="listDown"
+                  @keyup.enter="getGeoPosition"
+                />
                 <ul class="dropdown_menu w-100" v-if="query.length > 0">
                   <li v-for="(address, index) in autocomplete" :key="index">
-                    <input type="text" class="w-100" readonly :value="address" @click="setQuery(address)">
+                    <input
+                      type="text"
+                      class="w-100"
+                      readonly
+                      :value="address"
+                      @click="setQuery(address)"
+                    />
                   </li>
                 </ul>
               </div>
-
-              <!--               <input type="text" class="form-control" name="query" id="query" placeholder="Milano" v-model="query"
-                 /> -->
             </div>
             <div class="mb-3">
               <label for="radius">Distanza dal centro (in km):</label>
-              <input type="number" class="form-control" name="radius" id="radius" placeholder="20" v-model="radius"
-                @keyup.enter="getGeoPosition" />
+              <input
+                type="number"
+                class="form-control"
+                name="radius"
+                id="radius"
+                placeholder="20"
+                v-model="radius"
+                @keyup.enter="getGeoPosition"
+              />
             </div>
             <div class="mb-3">
-              <label for="rooms" class="form-label">Numero minimo di stanze:</label>
-              <input type="number" class="form-control" name="rooms" id="rooms" min="1" max="20" v-model="rooms">
+              <label for="rooms" class="form-label"
+                >Numero minimo di stanze:</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                name="rooms"
+                id="rooms"
+                min="1"
+                max="20"
+                v-model="rooms"
+              />
             </div>
             <div class="mb-3">
-              <label for="beds" class="form-label">Numero minimo di letti:</label>
-              <input type="number" class="form-control" name="beds" id="beds" min="1" max="20" v-model="beds">
+              <label for="beds" class="form-label"
+                >Numero minimo di letti:</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                name="beds"
+                id="beds"
+                min="1"
+                max="20"
+                v-model="beds"
+              />
             </div>
             <div class="mb-3">
-              <label for="baths" class="form-label">Numero minimo di bagni:</label>
-              <input type="number" class="form-control" name="baths" id="baths" min="1" max="20" v-model="baths">
+              <label for="baths" class="form-label"
+                >Numero minimo di bagni:</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                name="baths"
+                id="baths"
+                min="1"
+                max="20"
+                v-model="baths"
+              />
             </div>
             <div class="mb-3">
-              <label for="services" class="form-label">Seleziona uno o più servizi:</label>
-              <select class="form-select" name="services" id="services" v-model="selectedServices" multiple>
-                <option :value="service.id" v-for="service in services" :key="service.id">{{ service.name }}</option>
+              <label for="services" class="form-label"
+                >Seleziona uno o più servizi:</label
+              >
+              <select
+                class="form-select"
+                name="services"
+                id="services"
+                v-model="selectedServices"
+                multiple
+              >
+                <option
+                  :value="service.id"
+                  v-for="service in services"
+                  :key="service.id"
+                >
+                  {{ service.name }}
+                </option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary text-white">Cerca</button>
+            <button type="submit" class="btn btn-primary text-white">
+              Cerca
+            </button>
           </form>
         </div>
-        <!-- /.col input -->
       </div>
+      <!-- Results Advanced Search -->
       <div class="results">
         <div class="container">
-
           <div v-if="apartments.length > 0">
             <h4 class="d-flex justify-content-end mt-4 m-2 p-3">
               I nostri appartamenti
             </h4>
             <div class="row row-cols-5 g-4 py-3">
-              <div class="col" v-for="apartment in apartments" :key="apartment.id">
-                <router-link :to="{
-                  name: 'apartment',
-                  params: {
-                    slug: apartment.slug,
-                    query: query,
-                    radius: radius,
-                  },
-                }">
+              <div
+                class="col"
+                v-for="apartment in apartments"
+                :key="apartment.id"
+              >
+                <router-link
+                  :to="{
+                    name: 'apartment',
+                    params: {
+                      slug: apartment.slug,
+                      query: query,
+                      radius: radius,
+                    },
+                  }"
+                >
                   <div class="card_hover card h-100 text-start">
-                    <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
+                    <img
+                      :src="'storage/' + apartment.thumb"
+                      :alt="apartment.title"
+                    />
                     <div class="card-body">
                       <h4 class="card-title">{{ apartment.title }}</h4>
                     </div>
-                    <!-- In valutazione perché optato per la soluzione del click sull'intera card dell'appartamento-->
-                    <!--  <router-link class="btn btn-primary" :to="{ name: 'apartment', params: { slug: apartment.slug } }">Visualizza</router-link>
-             -->
                   </div>
                 </router-link>
               </div>
             </div>
           </div>
+          <!-- Loading -->
           <div v-else-if="loading" class="mt-5">
             <h2 class="text-center d-block">Loading:</h2>
             <div class="loader">
@@ -89,15 +163,18 @@
               </svg>
             </div>
           </div>
-
-          <div v-else-if="!loading && lat && lon" class="mt-5">😴😴😴Nessun Risultato</div>
-          <div v-else class="mt-5">🔎Inzia la tua ricerca: cerca un appartemento in base alla città o all'indirizzo🔎
+          <!-- No Results-->
+          <div v-else-if="!loading && lat && lon" class="mt-5">
+            😴😴😴Nessun Risultato
           </div>
-
+          <!-- Start your search -->
+          <div v-else class="mt-5">
+            🔎Inzia la tua ricerca: cerca un appartemento in base alla città o
+            all'indirizzo🔎
+          </div>
         </div>
       </div>
     </section>
-    <!-- /ricerca avanzata -->
   </div>
 </template>
 
@@ -127,44 +204,42 @@ export default {
       //console.log('digitando');
       if (this.query) {
         axios
-          .get(`https://api.tomtom.com/search/2/search/${this.query}.json?key=ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm&limit=5&countrySet=IT&language=it-IT`)
+          .get(
+            `https://api.tomtom.com/search/2/search/${this.query}.json?key=ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm&limit=5&countrySet=IT&language=it-IT`
+          )
           .then((response) => {
-            //console.log(response.data.results);
             const results = response.data.results;
-            this.autocomplete = []
-            results.forEach(result => {
-              //console.log(result.address.freeformAddress);
-              let address = result.address.freeformAddress
-              this.autocomplete.push(address)
+            this.autocomplete = [];
+            results.forEach((result) => {
+              let address = result.address.freeformAddress;
+              this.autocomplete.push(address);
             });
-            //console.log(this.autocomplete);
           })
           .catch((e) => {
             console.log(e);
-          })
+          });
       }
     },
     setQuery(add) {
       this.query = add;
-      this.autocomplete = []
+      this.autocomplete = [];
     },
     getServices() {
       axios
-        .get('api/services')
+        .get("api/services")
         .then((response) => {
-          //console.log(response);
-          this.services = response.data
+          this.services = response.data;
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     },
     getGeoPosition() {
-      this.apartments = []
+      this.apartments = [];
       // Get Geodata from Axios based on input and radius(2000 standard)
       let query = this.query;
-
       let radius = this.radius * 1000;
+
       if (query) {
         this.loading = true;
         axios
@@ -176,14 +251,22 @@ export default {
             let lon = response.data.results[0].position.lon;
             this.lat = lat;
             this.lon = lon;
-            if (this.selectedServices.length > 0) {
-              console.log('array maggiore di 0');
+            if (this.selectedServices.length === 0) {
+              this.selectedServices = ["all"];
             }
 
             // Pass Geo data to ApiController and recieve apartements filtered as response
             axios
               .get("api/search", {
-                params: { lat: this.lat, lon: this.lon, radius: radius, rooms: this.rooms, beds: this.beds, baths: this.baths, services: this.selectedServices },
+                params: {
+                  lat: this.lat,
+                  lon: this.lon,
+                  radius: radius,
+                  rooms: this.rooms,
+                  beds: this.beds,
+                  baths: this.baths,
+                  services: this.selectedServices,
+                },
               })
               .then((response) => {
                 //console.log(this.lat, this.lon, this.radius);
@@ -196,10 +279,6 @@ export default {
           .catch((e) => console.error(e));
       }
     },
-  },
-
-  created() {
-    //this.query = this.$route.params.query;
   },
   mounted() {
     if (this.$route.params.query) {
