@@ -164,7 +164,7 @@ export default {
     listDown() {
       console.log('giu');
       const list = document.getElementById('dropdown_menu'); // targets the <ul>
-      const first = list.firstChild; // targets the first <li>
+      const first = document.getElementById('dropdown_menu').firstChild; // targets the first <li>
       const maininput = document.getElementById('query_address');  // targets the input, which triggers the functions populating the list
       if (document.activeElement == maininput) {
         // if the currently focused element is the main input --> focus the first <li>
