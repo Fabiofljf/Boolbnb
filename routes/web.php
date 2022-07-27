@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MessageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,8 +29,10 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::resource('apartment', 'ApartmentController')->parameters([
         'apartment' => 'apartment:slug'
     ]);
-    ///admin/apartment
+
 });
+
+Route::post('message/create', 'MessageController@store');
 
 Route::get("{any?}", function () {
     return view("guest.home");
