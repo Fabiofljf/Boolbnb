@@ -30,6 +30,10 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
         'apartment' => 'apartment:slug'
     ]);
 
+    Route::get('apartment/{apartment}/publicity','PaymentController@select')->name('publicity.index');
+    Route::get('apartment/{apartment}/publicity/{publicity}','PaymentController@take')->name('publicity.edit');
+    Route::post('apartment/{apartment}/publicity/{publicity}/checkout','PaymentController@checkout')->name('publicity.checkout');
+
 });
 
 Route::post('message/create', 'MessageController@store');
