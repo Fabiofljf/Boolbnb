@@ -6,6 +6,10 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// TomTom maps
+@import '@tomtom-international/web-sdk-maps';
+// TomTom searchbox
+@import '@tomtom-international/web-sdk-plugin-searchbox';
 
 /* COMMONS ROULES */
 
