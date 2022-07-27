@@ -78,6 +78,7 @@
         </div>
         <!-- /.col dx -->
       </div>
+
       <div class="my-3 d-flex justify-content-center align-items-center">
         <img
           style="
@@ -92,37 +93,75 @@
         />
       </div>
       <!-- /titleAndThumb -->
-      <div class="row row-cols-2 mt-4" id="hosting">
-        <div class="col d-flex my-3">
-          <div class="col-10 d-flex flex-column justify-content-center">
-            <h4>
-              {{ apartment.title }} - Host:
-              {{ apartment.user ? apartment.user.name : "" }}
-            </h4>
-            <h4></h4>
-            <p class="pb-4 m-0 border-bottom">
-              <span> <strong>Camere</strong> : {{ apartment.rooms }}</span>
-              &bull;
-              <span> <strong>Letti</strong> : {{ apartment.beds }} </span>
-              &bull;
-              <span> <strong>Bagni</strong> : {{ apartment.baths }}</span>
-            </p>
+
+      <!-- INFO APPARTAMENTO -->
+      <div class="row row-cols-2 mt-4 border-bottom" id="hosting">
+        <div class="col my-3">
+          <div class="row border-bottom pb-1">
+            <div class="d-flex justify-content-between align-items-top">
+              <div
+                class="
+                  apartment-info
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                "
+              >
+                <div>
+                  <h3 class="font-weight-bold">
+                    <strong>
+                      {{ apartment.title }}
+                    </strong>
+                    <br />
+                  </h3>
+                  <p>
+                    Host:
+                    {{ apartment.user ? apartment.user.name : "" }}
+                  </p>
+                </div>
+              </div>
+              <div class="profile-img">
+                <img
+                  style="width: 100px; aspect-ratio: 1/1"
+                  class="rounded-circle"
+                  src="https://picsum.photos/200/300"
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
-          <!-- /.col info hosting -->
-          <div class="col d-flex align-items-center justify-content-end pb-5">
-            <img
-              style="width: 100px; aspect-ratio: 1/1"
-              class="rounded-circle"
-              src="https://picsum.photos/200/300"
-              alt=""
-            />
+          <div class="row">
+            <div class="col mt-4">
+              <h5>Informazioni alloggio:</h5>
+              <ul>
+                <li><strong>Camere</strong> : {{ apartment.rooms }}</li>
+                <li><strong>Letti</strong> : {{ apartment.beds }}</li>
+                <li><strong>Bagni</strong> : {{ apartment.baths }}</li>
+              </ul>
+            </div>
+            <div class="services mt-2">
+              <h5>Servizi:</h5>
+              <ul>
+                <li v-for="service in apartment.services" :key="service.id">
+                  <span v-html="service.icon"></span>
+
+                  {{ service.name }}
+                </li>
+              </ul>
+            </div>
           </div>
-          <!-- /.col img hosting -->
         </div>
-        <!-- /.col sx-->
-        <div class="col"></div>
+        <div class="col">
+          <div class="map">
+            <div id="map" style="width: 100%; height: 100%"></div>
+          </div>
+        </div>
         <!-- /.col dx-->
+
+        <!-- /.col info hosting -->
       </div>
+      <!-- /.col sx-->
+
       <!-- /HostingAndbooking -->
       <div class="col mt-4 border-bottom">
         <h5>Descrizione alloggio</h5>
@@ -131,47 +170,12 @@
         </p>
       </div>
       <!-- /Description -->
-      <div class="row border-bottom mt-4">
-        <h3>Da sapere</h3>
-        <div class="col">
-          <h5>Servizi</h5>
-          <ul>
-            <li>Loop here!</li>
-          </ul>
-        </div>
-        <!-- /.col servizi sx -->
-        <div class="col">
-          <h5>Salute e sicurezza</h5>
-          <ul>
-            <li>
-              Si applicano le pratiche di sicurezza di Airbnb per l'emergenza
-              COVID-19
-            </li>
-            <li>Rilevatore di monossido di carbonio non segnalato</li>
-            <li>Telecamera di sicurezza o dispositivo di registrazione</li>
-          </ul>
-        </div>
-        <!-- /.col (non toccare, statica) centrale -->
-        <div class="col">
-          <h5>Termini di cancellazione</h5>
-          <ul>
-            <li>Cancellazione gratuita entro il giorno 1 mag.</li>
-            <li>
-              Leggi i termini di cancellazione completi dell'host, che si
-              applicano anche in caso di malattia o disagi legati alla pandemia
-              di COVID-19.
-            </li>
-          </ul>
-        </div>
-
-        <!-- /.col (non toccare, statica) dx -->
-      </div>
 
       <div class="message mt-4">
         <h3>Contatta il proprietario dell'appartamento:</h3>
         <form @submit.prevent="sendMessage">
           <div v-if="success" class="alert alert-success" role="alert">
-            <h3>{{message}}</h3>
+            <h3>{{ message }}</h3>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
@@ -208,7 +212,7 @@
           <div class="mb-3">
             <label for="subject" class="form-label">Subject:</label>
             <input
-            required
+              required
               v-model="subject"
               type="text"
               class="form-control"
@@ -244,20 +248,23 @@
 </template>
 
 <script>
+import tt from "@tomtom-international/web-sdk-maps";
 export default {
   name: "Apartment",
 
   data() {
     return {
       apartment: "",
-      success:false,
+      success: false,
       query: "",
       radius: "",
       email: "",
       full_name: "",
       content: "",
       subject: "",
-      message:""
+      message: "",
+      lat: "",
+      lon: "",
     };
   },
   methods: {
@@ -268,6 +275,11 @@ export default {
         .get("/api/apartments/" + this.$route.params.slug)
         .then((response) => {
           this.apartment = response.data;
+          console.log(response.data.lat);
+          this.lat = response.data.lat;
+          this.lon = response.data.lon;
+
+          this.getMap();
         })
         .catch((e) => {
           console.error(e);
@@ -277,33 +289,57 @@ export default {
       this.success = false;
       let data = {
         email: this.email,
-            full_name: this.full_name,
-            content: this.content,
-            apartment_id: this.apartment.id,
-            subject: this.subject,
+        full_name: this.full_name,
+        content: this.content,
+        apartment_id: this.apartment.id,
+        subject: this.subject,
       };
 
       axios
         .post("/message/create", data)
         .then((response) => {
-          this.email = '',
-        this.full_name = '',
-        this.content = '',
-        this.subject = '',
-        this.success = true;
-        this.message = response.data.message;
-
+          (this.email = ""),
+            (this.full_name = ""),
+            (this.content = ""),
+            (this.subject = ""),
+            (this.success = true);
+          this.message = response.data.message;
         })
         .catch((e) => {
           console.error(e);
           this.success = true;
-          this.message = "ERRORE - Messaggio Non Inviato"
+          this.message = "ERRORE - Messaggio Non Inviato";
         });
+    },
+    getMap() {
+      let cordinate = [this.lon, this.lat];
+      console.log(cordinate);
+      var map = tt.map({
+        key: "wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj",
+        container: "map",
+        center: cordinate,
+        zoom: 13,
+      });
+
+      let marker = new tt.Marker().setLngLat(cordinate).addTo(map);
+      let popupOffsets = {
+        top: [0, 0],
+        bottom: [0, -45],
+        "bottom-right": [0, -70],
+        "bottom-left": [0, -70],
+        left: [25, -35],
+        right: [-25, -35],
+      };
+
+      // Show pop-up
+      let popup = new tt.Popup({
+        offset: popupOffsets,
+      }).setHTML(this.apartment.title + "<br>" + this.apartment.address);
+      marker.setPopup(popup).togglePopup();
     },
   },
   mounted() {
     this.getApartment();
-    console.log(window.User);
     if (window.User) {
       this.email = window.User.email;
       this.full_name = window.User.name;
@@ -313,4 +349,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.map {
+  height: 500px;
+  width: 100%;
+  margin-bottom: 3rem;
+}
 </style>
+
