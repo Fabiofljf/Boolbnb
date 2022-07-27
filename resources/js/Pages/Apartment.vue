@@ -1,7 +1,8 @@
 <template>
   <div id="SingleApartment" class="mt-5">
     <div id="titleAndThumb" class="container">
-      <router-link :to="{ name: 'search', params: { query: query, radius: radius } }"
+      <router-link
+        :to="{ name: 'search', params: { query: query, radius: radius } }"
         >Torna Alla tua ricerca:</router-link
       >
       <h2 class="">{{ apartment.title }}</h2>
@@ -44,8 +45,8 @@
                   />
                 </svg>
               </span>
-              &bull; <strong v-if="apartment.user.name">{{ apartment.user.name }}</strong>
-              |
+              &bull;
+              <strong>{{ apartment.user ? apartment.user.name : "" }}</strong>
             </p>
             <p>
               <!-- Icona location -->
@@ -91,11 +92,14 @@
         />
       </div>
       <!-- /titleAndThumb -->
-      <div class="row row-cols-2" id="hosting">
+      <div class="row row-cols-2 mt-4" id="hosting">
         <div class="col d-flex my-3">
           <div class="col-10 d-flex flex-column justify-content-center">
-
-            <h4>{{ apartment.title }} - Host: {{ apartment.user.name  }}</h4>
+            <h4>
+              {{ apartment.title }} - Host:
+              {{ apartment.user ? apartment.user.name : "" }}
+            </h4>
+            <h4></h4>
             <p class="pb-4 m-0 border-bottom">
               <span> <strong>Camere</strong> : {{ apartment.rooms }}</span>
               &bull;
@@ -120,30 +124,32 @@
         <!-- /.col dx-->
       </div>
       <!-- /HostingAndbooking -->
-      <div class="col mt-3 border-bottom">
+      <div class="col mt-4 border-bottom">
         <h5>Descrizione alloggio</h5>
         <p class="description">
           {{ apartment.description }}
         </p>
       </div>
       <!-- /Description -->
-      <div class="row">
+      <div class="row border-bottom mt-4">
         <h3>Da sapere</h3>
         <div class="col">
-            <h5>Servizi</h5>
-            <ul>
-                <li>Loop here!</li>
-            </ul>
+          <h5>Servizi</h5>
+          <ul>
+            <li>Loop here!</li>
+          </ul>
         </div>
         <!-- /.col servizi sx -->
         <div class="col">
-            <h5>Salute e sicurezza</h5>
-            <ul>
-                <li>Si applicano le pratiche di sicurezza di Airbnb per l'emergenza COVID-19</li>
-                <li>Rilevatore di monossido di carbonio non segnalato</li>
-                <li>Telecamera di sicurezza o dispositivo di registrazione</li>
-            </ul>
-
+          <h5>Salute e sicurezza</h5>
+          <ul>
+            <li>
+              Si applicano le pratiche di sicurezza di Airbnb per l'emergenza
+              COVID-19
+            </li>
+            <li>Rilevatore di monossido di carbonio non segnalato</li>
+            <li>Telecamera di sicurezza o dispositivo di registrazione</li>
+          </ul>
         </div>
         <!-- /.col (non toccare, statica) centrale -->
         <div class="col">
@@ -157,7 +163,79 @@
             </li>
           </ul>
         </div>
+
         <!-- /.col (non toccare, statica) dx -->
+      </div>
+
+      <div class="message mt-4">
+        <h3>Contatta il proprietario dell'appartamento:</h3>
+        <form @submit.prevent="sendMessage">
+          <div v-if="success" class="alert alert-success" role="alert">
+            <h3>{{message}}</h3>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input
+              v-model="email"
+              required
+              type="email"
+              class="form-control"
+              name="email"
+              id="email"
+              aria-describedby="emailHelpId"
+              placeholder="mario.rossi@gmail.com"
+            />
+            <small id="emailHelpId" class="form-text text-muted"
+              >inserisci la tua email</small
+            >
+          </div>
+          <div class="mb-3">
+            <label for="full_name" class="form-label">Nome e Cognome</label>
+            <input
+              v-model="full_name"
+              required
+              type="text"
+              class="form-control"
+              name="full_name"
+              id="full_name"
+              aria-describedby="full_namehelpId"
+              placeholder="Mario Rossi"
+            />
+            <small id="full_namehelpId" class="form-text text-muted"
+              >Inserisci il tuo nome completo</small
+            >
+          </div>
+          <div class="mb-3">
+            <label for="subject" class="form-label">Subject:</label>
+            <input
+            required
+              v-model="subject"
+              type="text"
+              class="form-control"
+              name="subject"
+              id="subject"
+              aria-describedby="subjecthelpId"
+              placeholder="FAQ: Costi Aggiuntivi"
+            />
+            <small id="subjecthelpId" class="form-text text-muted"
+              >Inserisci il "Subject" dell'email</small
+            >
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label">Messaggio:</label>
+            <textarea
+              v-model="content"
+              required
+              class="form-control"
+              name="content"
+              id="content"
+              rows="6"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary text-white">
+            Invia
+          </button>
+        </form>
       </div>
       <!-- /Services -->
     </div>
@@ -172,22 +250,64 @@ export default {
   data() {
     return {
       apartment: "",
+      success:false,
       query: "",
       radius: "",
+      email: "",
+      full_name: "",
+      content: "",
+      subject: "",
+      message:""
     };
   },
+  methods: {
+    getApartment() {
+      this.query = this.$route.params.query;
+      this.radius = this.$route.params.radius;
+      axios
+        .get("/api/apartments/" + this.$route.params.slug)
+        .then((response) => {
+          this.apartment = response.data;
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    },
+    sendMessage() {
+      this.success = false;
+      let data = {
+        email: this.email,
+            full_name: this.full_name,
+            content: this.content,
+            apartment_id: this.apartment.id,
+            subject: this.subject,
+      };
+
+      axios
+        .post("/message/create", data)
+        .then((response) => {
+          this.email = '',
+        this.full_name = '',
+        this.content = '',
+        this.subject = '',
+        this.success = true;
+        this.message = response.data.message;
+
+        })
+        .catch((e) => {
+          console.error(e);
+          this.success = true;
+          this.message = "ERRORE - Messaggio Non Inviato"
+        });
+    },
+  },
   mounted() {
-    this.query = this.$route.params.query;
-    this.radius = this.$route.params.radius;
-    axios
-      .get("/api/apartments/" + this.$route.params.slug)
-      .then((response) => {
-        console.log(response.data);
-        this.apartment = response.data;
-      })
-      .catch((e) => {
-        console.error(e);
-      });
+    this.getApartment();
+    console.log(window.User);
+    if (window.User) {
+      this.email = window.User.email;
+      this.full_name = window.User.name;
+    }
   },
 };
 </script>

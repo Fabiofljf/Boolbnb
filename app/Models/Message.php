@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Message extends Model
 {
+    protected $fillable = ['email', 'full_name', 'content', 'apartment_id', 'subject'];
     /**
      * Get the apartment that owns the Apartment
      *

@@ -95,7 +95,11 @@
 
     </main>
     <!-- /#site_main_front -->
-
+    @if(auth()->check())
+    <script>
+        window.User = {!! auth()->user()  !!}
+    </script>
+    @endif
 </body>
 
 </html>

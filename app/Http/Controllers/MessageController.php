@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 
 class MessageController extends Controller
 {
@@ -13,9 +14,10 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Apartment $apartment)
     {
-        //
+
+         return view('admin.message.index', compact('apartment'));
     }
 
     /**
@@ -36,7 +38,24 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newrequest = json_decode($request);
+
+       $val_data = $request->validate( [
+            'email' => 'required|email',
+            'full_name' => 'required',
+            'subject' => 'required',
+            'content' => 'required',
+            'apartment_id' => ['required','exists:apartments,id'],
+
+        ]);
+
+        $newMessage = Message::create($val_data);
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Messaggio inviato con successo!',
+            'data' => $newMessage
+        ], 200);
     }
 
     /**

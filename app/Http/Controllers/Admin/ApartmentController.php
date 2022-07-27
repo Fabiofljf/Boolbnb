@@ -90,7 +90,10 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         if (Auth::id() === $apartment->user_id) {
-            return view('admin.apartment.show', compact('apartment'));
+           // $apartment->load(['messages','services']);
+           $messages = $apartment->messages()->orderBy('created_at', 'desc')->get();
+           $services = $apartment->services();
+            return view('admin.apartment.show', compact('apartment', 'services', 'messages'));
         } else {
             dd('utente non autorizzato');
         }
@@ -190,6 +193,25 @@ class ApartmentController extends Controller
             };
             $apartment->delete();
             return redirect()->back()->with('message', "Appartamento \"$apartment->title\" eliminato con successo");
+        } else {
+            dd('utente non autorizzato');
+        }
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Apartment  $apartment
+     * @return \Illuminate\Http\Response
+     */
+    public function showMessage(Apartment $apartment)
+    {
+        dd($apartment);
+        if (Auth::id() === $apartment->user_id) {
+           // $apartment->load(['messages','services']);
+           $messages = $apartment->messages()->orderBy('created_at', 'desc')->get();
+           $services = $apartment->services();
+            return view('admin.apartment.show', compact('apartment', 'services', 'messages'));
         } else {
             dd('utente non autorizzato');
         }
