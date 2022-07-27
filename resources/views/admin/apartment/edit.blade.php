@@ -143,6 +143,10 @@
                     Non visibile
                 </label>
             </div>
+
+          <!--  {{-- <a class='btn btn-light border rounded border-dark text-dark btn-sm' href="{{ route('admin.publicity.index')}}">
+                    Sponsorizza appartamento                          
+            </a> --}}   -->   
             <button type="submit" class="btn btn-primary text-white">Conferma modifiche</button>
 
         </form>

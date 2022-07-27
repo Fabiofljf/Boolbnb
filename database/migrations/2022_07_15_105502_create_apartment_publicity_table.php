@@ -18,8 +18,8 @@ class CreateApartmentPublicityTable extends Migration
             $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete();
             $table->unsignedBigInteger('publicity_id')->nullable();
             $table->foreign('publicity_id')->references('id')->on('publicities')->cascadeOnDelete(); 
-            $table->date('publicity_start_date')->nullable();
-            $table->date('publicity_expiration_date')->nullable();
+            $table->dateTime('publicity_start_date')->nullable();
+            $table->dateTime('publicity_expiration_date')->nullable();
         });
     }
 
