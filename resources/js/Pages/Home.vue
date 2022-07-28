@@ -63,8 +63,10 @@
     <section id="sponsorizate">
       <div class="container">
         <h4 class="d-flex justify-content-end mt-4 m-2 p-3">In Evidenza</h4>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-3">
-          <div class="col col card text-start">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4 py-3">
+          <div class="col">
+            <a href="#">
+            <div class="card-hover card text-start">
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
             <div class="card-body">
               <div class="header-card row">
@@ -77,36 +79,13 @@
                 <p class="card-text costum-text">descrizione appartamento</p>
               </div>
             </div>
-          </div>
-          <div class="col card text-start">
-            <img class="img-fluid" src="./../../img/placeholder.jpg" />
-            <div class="card-body">
-              <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">
-                  titolo dell'appartamento
-                </h4>
-                <h4 class="col-4 costum-rate costum-title">rate</h4>
-              </div>
-              <div class="description-card">
-                <p class="costum-text">descrizione appartamento</p>
-              </div>
             </div>
+
+            </a>
           </div>
-          <div class="col card text-start">
-            <img class="img-fluid" src="./../../img/placeholder.jpg" />
-            <div class="card-body">
-              <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">
-                  titolo dell'appartamento
-                </h4>
-                <h4 class="col-4 costum-rate costum-title">rate</h4>
-              </div>
-              <div class="description-card">
-                <p class="card-text costum-text">descrizione appartamento</p>
-              </div>
-            </div>
-          </div>
-          <div class="col card text-start">
+          <div class="col">
+            <a href="#">
+            <div class="card-hover card text-start">
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
             <div class="card-body">
               <div class="header-card row">
@@ -119,8 +98,13 @@
                 <p class="card-text costum-text">descrizione appartamento</p>
               </div>
             </div>
+            </div>
+
+            </a>
           </div>
-          <div class="col card text-start">
+          <div class="col">
+            <a href="#">
+            <div class="card-hover card text-start">
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
             <div class="card-body">
               <div class="header-card row">
@@ -133,7 +117,49 @@
                 <p class="card-text costum-text">descrizione appartamento</p>
               </div>
             </div>
+            </div>
+
+            </a>
           </div>
+          <div class="col">
+            <a href="#">
+            <div class="card-hover card text-start">
+            <img class="img-fluid" src="./../../img/placeholder.jpg" />
+            <div class="card-body">
+              <div class="header-card row">
+                <h4 class="col-8 card-title costum-title">
+                  titolo dell'appartamento
+                </h4>
+                <h4 class="col-4 costum-rate costum-title">rate</h4>
+              </div>
+              <div class="description-card">
+                <p class="card-text costum-text">descrizione appartamento</p>
+              </div>
+            </div>
+            </div>
+
+            </a>
+          </div>
+           <div class="col">
+            <a href="#">
+            <div class="card-hover card text-start">
+            <img class="img-fluid" src="./../../img/placeholder.jpg" />
+            <div class="card-body">
+              <div class="header-card row">
+                <h4 class="col-8 card-title costum-title">
+                  titolo dell'appartamento
+                </h4>
+                <h4 class="col-4 costum-rate costum-title">rate</h4>
+              </div>
+              <div class="description-card">
+                <p class="card-text costum-text">descrizione appartamento</p>
+              </div>
+            </div>
+            </div>
+
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -143,7 +169,7 @@
         <h4 class="d-flex justify-content-end mt-4 m-2 p-3">
           I nostri appartamenti
         </h4>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 g-4 py-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4 py-3">
           <div
             class="col mb-3"
             v-for="apartment in apartments"
