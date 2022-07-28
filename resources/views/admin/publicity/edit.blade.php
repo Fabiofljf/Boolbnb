@@ -31,6 +31,11 @@
                                     placeholder="{{ $publicity->price }} €" value="{{ $publicity->price }}" readonly>
                             </div>
                         </label>
+                        @if (session('message'))
+                            <div class="alert alert-danger">
+                                {{ session('message') }}
+                            </div>
+                        @endif
 
                         <div class="bt-drop-in-wrapper">
                             <div id="bt-dropin"></div>
@@ -49,13 +54,15 @@
         var form = document.querySelector('#payment-form');
         var client_token = "{{ $token }}";
 
+        console.log(braintree);
         braintree.dropin.create({
             authorization: client_token,
             selector: '#bt-dropin',
-            paypal: {
+            /* paypal: {
                 flow: 'vault'
-            }
+            } */
         }, function(createErr, instance) {
+            console.log(instance);
             if (createErr) {
                 console.log('Create Error', createErr);
                 return;
@@ -64,6 +71,7 @@
                 event.preventDefault();
 
                 instance.requestPaymentMethod(function(err, payload) {
+                    console.log(payload);
                     if (err) {
                         console.log('Request Payment Method Error', err);
                         return;
