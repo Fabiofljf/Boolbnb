@@ -138,13 +138,14 @@
                     },
                   }"
                 >
-                  <div class="card_hover card h-100 text-start">
+                  <div class="card h-100 text-start">
                     <img
                       :src="'storage/' + apartment.thumb"
                       :alt="apartment.title"
                     />
-                    <div class="card-body">
-                      <h4 class="card-title">{{ apartment.title }}</h4>
+                    <div class="header-card row">
+                      <h4 class="col-8 card-title costum-title">{{ apartment.title }}</h4>
+                      <h4 class=" col-4 costum-rate costum-title">rate</h4>
                     </div>
                   </div>
                 </router-link>
@@ -360,6 +361,27 @@ export default {
         transform: rotate(360deg);
       }
     }
+  }
+}
+.card{
+  border: none;
+  height: 100%;
+  background-color: #F8FAFC;
+  transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 5px;
+}
+.header-card{
+  margin-top: 10px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  .costum-title{
+    color: #050505;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>

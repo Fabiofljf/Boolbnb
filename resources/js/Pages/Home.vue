@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper mt-5">
-    <section class="container my-5 p_relative">
+    <section id="search" class="container my-5 p_relative">
       <div class="row align-items-center">
         <div class="col">
           <h1>Benvenuto in boolbnb</h1>
@@ -36,65 +36,76 @@
     </section>
     <!-- /welcomepages -->
 
-    <!-- INIZIO CARD -->
-    <section id="promotion" class="shadow h_400 bg_secondary">
+    <section id="sponsorizate">
       <div class="container">
-        <h4 class="d-flex justify-content-end m-2 p-3">I trend del momento</h4>
-        <div class="row row-cols-5">
-          <div class="col">
-            <div class="card text-start">
-              <img :src="'storage/' + 'apartment_images/apartment-1.webp'" alt="" />
-              <div class="card-body">
-                <h4 class="card-title">title</h4>
-                <p class="card-text">description</p>
+        <h4 class="d-flex justify-content-end mt-4 m-2 p-3">
+          Sponsorizzato
+        </h4>
+        <div class="row row-cols-5 g-4 py-3">
+          <div class="col col card text-start">
+            <img class="img-fluid" src="./../../img/placeholder.jpg" />
+            <div class="card-body">
+              <div class="header-card row">
+                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
+                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+              </div>
+              <div class="description-card">
+                <p class="card-text costum-text">descrizione appartamento</p>
               </div>
             </div>
           </div>
-          <!-- .col -->
-          <div class="col">
-            <div class="card text-start">
-              <img :src="'storage/' + 'apartment_images/apartment-1.webp'" alt="" />
-              <div class="card-body">
-                <h4 class="card-title">title</h4>
-                <p class="card-text">description</p>
+          <div class="col card text-start">
+            <img class="img-fluid" src="./../../img/placeholder.jpg" />
+            <div class="card-body">
+              <div class="header-card row">
+                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
+                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+              </div>
+              <div class="description-card">
+                <p class="costum-text">descrizione appartamento</p>
               </div>
             </div>
           </div>
-          <!-- .col -->
-          <div class="col">
-            <div class="card text-start">
-              <img :src="'storage/' + 'apartment_images/apartment-1.webp'" alt="" />
-              <div class="card-body">
-                <h4 class="card-title">title</h4>
-                <p class="card-text">description</p>
+          <div class="col card text-start">
+            <img class="img-fluid" src="./../../img/placeholder.jpg" />
+            <div class="card-body">
+              <div class="header-card row">
+                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
+                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+              </div>
+              <div class="description-card">
+                <p class="card-text costum-text">descrizione appartamento</p>
               </div>
             </div>
           </div>
-          <!-- .col -->
-          <div class="col">
-            <div class="card text-start">
-              <img :src="'storage/' + 'apartment_images/apartment-1.webp'" alt="" />
-              <div class="card-body">
-                <h4 class="card-title">title</h4>
-                <p class="card-text">description</p>
+          <div class="col card text-start">
+            <img class="img-fluid" src="./../../img/placeholder.jpg" />
+            <div class="card-body">
+              <div class="header-card row">
+                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
+                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+              </div>
+              <div class="description-card">
+                <p class="card-text costum-text">descrizione appartamento</p>
               </div>
             </div>
           </div>
-          <!-- .col -->
-          <div class="col">
-            <div class="card text-start">
-              <img :src="'storage/' + 'apartment_images/apartment-1.webp'" alt="" />
-              <div class="card-body">
-                <h4 class="card-title">title</h4>
-                <p class="card-text">description</p>
+          <div class="col card text-start">
+            <img class="img-fluid" src="./../../img/placeholder.jpg" />
+            <div class="card-body">
+              <div class="header-card row">
+                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
+                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+              </div>
+              <div class="description-card">
+                <p class="card-text costum-text">descrizione appartamento</p>
               </div>
             </div>
           </div>
-          <!-- .col -->
         </div>
       </div>
+      
     </section>
-    <!-- /#promotion -->
 
     <section id="normal" class="py-3">
       <div class="container">
@@ -102,16 +113,21 @@
           I nostri appartamenti
         </h4>
         <div class="row row-cols-5 g-4 py-3">
-          <div class="col" v-for="apartment in apartments" :key="apartment.id">
+          <div class="col mb-3" v-for="apartment in apartments" :key="apartment.id">
             <router-link :to="{
               name: 'apartment',
               params: { slug: apartment.slug, query: query },
             }">
-              <div class="card_hover card h-100 text-start">
+              <div class="card-hover card text-start">
                 <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
                 <div class="card-body">
-                  <h4 class="card-title">{{ apartment.title }}</h4>
-                  <p class="card-text">{{ trimText(apartment.description) }}</p>
+                  <div class="header-card row">
+                    <h4 class="col-8 card-title costum-title">{{ apartment.title }}</h4>
+                    <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                  </div>
+                  <div class="description-card">
+                    <p class="costum-text">{{ trimText(apartment.description) }}</p>
+                  </div>
                 </div>
                 <!-- In valutazione perché optato per la soluzione del click sull'intera card dell'appartamento-->
                 <!--  <router-link class="btn btn-primary" :to="{ name: 'apartment', params: { slug: apartment.slug } }">Visualizza</router-link>
@@ -248,4 +264,56 @@ export default {
     }
   }
 }
+
+#trend img{
+  fill: red;
+}
+.row{
+  background-color: #F8FAFC;
+}
+.card{
+  border: none;
+  height: 100%;
+  background-color: #F8FAFC;
+  transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 5px;
+  img{
+    width: 240px;
+    min-height: 160px;
+    border-radius: 5px;
+  }
+  .card-body{
+    height: 100px;
+    padding: 0;
+    max-width: 240px;
+      .header-card{
+      margin-top: 10px;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      
+      .costum-rate{
+        text-align: right;
+      }
+      .costum-title{
+        color: #050505;
+        font-size: 14px;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+.costum-text{
+      color: #717171;
+      font-size: 12px;
+  }
+
+
+
+
+
+
 </style>
