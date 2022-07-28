@@ -12,6 +12,7 @@ Vue.use(VueRouter)
 import Home from './Pages/Home';
 import Search from './Pages/Search';
 import Apartment from './Pages/Apartment';
+import PageNotFound from './Pages/error/PageNotFound'
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -23,6 +24,7 @@ const routes = [
     { path: '/', component: Home, name: 'home' },
     { path: '/search', component: Search, name: 'search' },
     { path: '/apartment/:slug', component: Apartment, name: "apartment" },
+    { path: "*", component: PageNotFound },
 ]
 
 // 3. Create the router instance and pass the routes option
