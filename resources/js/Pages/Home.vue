@@ -1,46 +1,77 @@
 <template>
   <div class="wrapper mt-5">
-    <section id="search" class="container my-5 p_relative">
-      <div class="row align-items-center">
-        <div class="col">
-          <h1>Benvenuto in boolbnb</h1>
-          <h3>Lasciati ispirare dai luoghi o effettua la tua ricerca</h3>
-          
-        </div>
-        <!-- Benvenuto -->
-        <div class="col d-flex align-items-center justify-content-end">
-            <div class="search d-flex align-items-center w-75">
-            <div class="dropdown flex-grow-1">
-              <input type="text" id="query_address" class="w-100" placeholder="Digita un indirizzo" v-model="query"
-                @keyup="getAutocomplete" @keyup.38="listUp" @keyup.40="listDown" />
-              <ul class="dropdown_menu w-100" v-if="query.length > 0">
-                <li v-for="(address, index) in autocomplete" :key="index">
-                  <input type="text" class="w-100" readonly :value="address" @click="setQuery(address)">
-                </li>
-              </ul>
-            </div>
-            <router-link :to="{ name: 'search', params: { query: query } }">
-              <button type="button" class="btn btn-sm btn-primary text-white">Cerca</button>
-            </router-link>
+    <section id="search" class="container my-5 position-relative">
+      <img class="w-100 img-fluid hero-img" src="./../../img/hero-img.jpg" alt="" />
+      <div class="">
+        <div
+          class=" jumbo-search w-75
+            row
+            row-cols-1
+            align-items-center
+            position-absolute
+            top-50
+            start-50
+            translate-middle
+          "
+        >
+          <div class="col">
+            <h1>Benvenuto in boolbnb</h1>
+            <h3>Lasciati ispirare dai luoghi o effettua la tua ricerca</h3>
           </div>
+          <!-- Benvenuto -->
+          <div class="col d-flex ">
+            <div class="d-flex align-items-center w-50">
+              <div class="dropdown flex-grow-1">
+                <input
+                  type="text"
+                  id="query_address"
+                  class="w-100 search-bar"
+                  placeholder="Digita un indirizzo"
+                  v-model="query"
+                  @keyup="getAutocomplete"
+                  @keyup.38="listUp"
+                  @keyup.40="listDown"
+                />
+                <ul class="dropdown_menu w-100" v-if="autocomplete.length > 1">
+                  <li v-for="(address, index) in autocomplete" :key="index">
+                    <input
+                      type="text"
+                      class="w-100"
+                      readonly
+                      :value="address"
+                      @click="setQuery(address)"
+                    />
+                  </li>
+                </ul>
+              </div>
+              <router-link
+                class="ms-1"
+                :to="{ name: 'search', params: { query: query } }"
+              >
+                <button type="button" class="btn btn-sm btn-primary text-white">
+                  Cerca
+                </button>
+              </router-link>
+            </div>
+          </div>
+          <!-- filter -->
         </div>
-        <!-- filter -->
       </div>
     </section>
     <!-- /welcomepages -->
 
     <section id="sponsorizate">
       <div class="container">
-        <h4 class="d-flex justify-content-end mt-4 m-2 p-3">
-          Sponsorizzato
-        </h4>
-        <div class="row row-cols-5 g-4 py-3">
+        <h4 class="d-flex justify-content-end mt-4 m-2 p-3">In Evidenza</h4>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 py-3">
           <div class="col col card text-start">
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
             <div class="card-body">
               <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
-                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                <h4 class="col-8 card-title costum-title">
+                  titolo dell'appartamento
+                </h4>
+                <h4 class="col-4 costum-rate costum-title">rate</h4>
               </div>
               <div class="description-card">
                 <p class="card-text costum-text">descrizione appartamento</p>
@@ -51,8 +82,10 @@
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
             <div class="card-body">
               <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
-                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                <h4 class="col-8 card-title costum-title">
+                  titolo dell'appartamento
+                </h4>
+                <h4 class="col-4 costum-rate costum-title">rate</h4>
               </div>
               <div class="description-card">
                 <p class="costum-text">descrizione appartamento</p>
@@ -63,8 +96,10 @@
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
             <div class="card-body">
               <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
-                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                <h4 class="col-8 card-title costum-title">
+                  titolo dell'appartamento
+                </h4>
+                <h4 class="col-4 costum-rate costum-title">rate</h4>
               </div>
               <div class="description-card">
                 <p class="card-text costum-text">descrizione appartamento</p>
@@ -75,8 +110,10 @@
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
             <div class="card-body">
               <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
-                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                <h4 class="col-8 card-title costum-title">
+                  titolo dell'appartamento
+                </h4>
+                <h4 class="col-4 costum-rate costum-title">rate</h4>
               </div>
               <div class="description-card">
                 <p class="card-text costum-text">descrizione appartamento</p>
@@ -87,8 +124,10 @@
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
             <div class="card-body">
               <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">titolo dell'appartamento</h4>
-                <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                <h4 class="col-8 card-title costum-title">
+                  titolo dell'appartamento
+                </h4>
+                <h4 class="col-4 costum-rate costum-title">rate</h4>
               </div>
               <div class="description-card">
                 <p class="card-text costum-text">descrizione appartamento</p>
@@ -97,7 +136,6 @@
           </div>
         </div>
       </div>
-      
     </section>
 
     <section id="normal" class="py-3">
@@ -105,21 +143,33 @@
         <h4 class="d-flex justify-content-end mt-4 m-2 p-3">
           I nostri appartamenti
         </h4>
-        <div class="row row-cols-5 g-4 py-3">
-          <div class="col mb-3" v-for="apartment in apartments" :key="apartment.id">
-            <router-link :to="{
-              name: 'apartment',
-              params: { slug: apartment.slug, query: query },
-            }">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 g-4 py-3">
+          <div
+            class="col mb-3"
+            v-for="apartment in apartments"
+            :key="apartment.id"
+          >
+            <router-link
+              :to="{
+                name: 'apartment',
+                params: { slug: apartment.slug, query: query },
+              }"
+            >
               <div class="card-hover card text-start">
-                <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
+                <img
+                  :src="'storage/' + apartment.thumb"
+                  :alt="apartment.title"
+                />
                 <div class="card-body">
-                  <div class="header-card row">
-                    <h4 class="col-8 card-title costum-title">{{ apartment.title }}</h4>
-                    <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                  <div class="header-card">
+                    <h4 class=" card-title costum-title">
+                      {{ apartment.title }}
+                    </h4>
                   </div>
                   <div class="description-card">
-                    <p class="costum-text">{{ trimText(apartment.description) }}</p>
+                    <p class="costum-text">
+                      {{ trimText(apartment.description) }}
+                    </p>
                   </div>
                 </div>
                 <!-- In valutazione perché optato per la soluzione del click sull'intera card dell'appartamento-->
@@ -134,7 +184,8 @@
     <!-- /#normal -->
     <!-- /FINE CARD -->
 
-    <div class="
+    <div
+      class="
         btn btn-dark
         d-flex
         align-items-center
@@ -144,15 +195,25 @@
         justify-content-center
         w_fix
         p_fixed_maps
-      ">
+        text-white
+      "
+    >
       <p class="me-2 mb-0">
         <a href="#search">Ricerca alloggio</a>
         <!-- <router-link :to="{ name: 'search' }"></router-link> -->
       </p>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-          d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-map"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+        />
       </svg>
     </div>
     <!-- /maps -->
@@ -172,10 +233,10 @@ export default {
   },
   methods: {
     listDown() {
-      console.log('giu');
-      const list = document.getElementById('dropdown_menu'); // targets the <ul>
-      const first = document.getElementById('dropdown_menu').firstChild; // targets the first <li>
-      const maininput = document.getElementById('query_address');  // targets the input, which triggers the functions populating the list
+      console.log("giu");
+      const list = document.getElementById("dropdown_menu"); // targets the <ul>
+      const first = document.getElementById("dropdown_menu").firstChild; // targets the first <li>
+      const maininput = document.getElementById("query_address"); // targets the input, which triggers the functions populating the list
       if (document.activeElement == maininput) {
         // if the currently focused element is the main input --> focus the first <li>
         first.firstChild.focus();
@@ -185,39 +246,44 @@ export default {
       }
     },
     listUp() {
-      console.log('su');
-      const list = document.getElementById('dropdown_menu'); // targets the <ul>
+      console.log("su");
+      const list = document.getElementById("dropdown_menu"); // targets the <ul>
       const first = list.firstChild; // targets the first <li>
-      const maininput = document.getElementById('query_address');  // targets the input, which triggers the functions populating the list
-      if (document.activeElement != maininput || document.activeElement != first) {
+      const maininput = document.getElementById("query_address"); // targets the input, which triggers the functions populating the list
+      if (
+        document.activeElement != maininput ||
+        document.activeElement != first
+      ) {
         // stop the script if the focus is on the input or first element
         // select the element before the current, and focus it
-        document.activeElement.parentNode.previousSibling.firstChild.focus()
+        document.activeElement.parentNode.previousSibling.firstChild.focus();
       }
     },
     setQuery(add) {
       this.query = add;
-      this.autocomplete = []
+      this.autocomplete = [];
     },
     getAutocomplete() {
       //console.log('digitando');
       if (this.query) {
         axios
-          .get(`https://api.tomtom.com/search/2/search/${this.query}.json?key=ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm&limit=5&countrySet=IT&language=it-IT`)
+          .get(
+            `https://api.tomtom.com/search/2/search/${this.query}.json?key=ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm&limit=5&countrySet=IT&language=it-IT`
+          )
           .then((response) => {
             //console.log(response.data.results);
             const results = response.data.results;
-            this.autocomplete = []
-            results.forEach(result => {
+            this.autocomplete = [];
+            results.forEach((result) => {
               //console.log(result.address.freeformAddress);
-              let address = result.address.freeformAddress
-              this.autocomplete.push(address)
+              let address = result.address.freeformAddress;
+              this.autocomplete.push(address);
             });
             //console.log(this.autocomplete);
           })
           .catch((e) => {
             console.log(e);
-          })
+          });
       }
     },
 
@@ -245,51 +311,77 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+/* #search{
+  height: 300px;
+} */
+.hero-img{
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.jumbo-search{
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: rgba(244, 244, 244, 0.728) !important;
+  min-height: 200px;
+}
 .dropdown_menu {
   position: absolute;
-  width: 100%;
   z-index: 100;
+    width: 300px;
+  border-radius: 10px;
+  border: 1px solid #a5a5a5;
+  border-top: none;
+  padding: 0.8rem 0.3rem;
+  background-color: white;
 
   input {
     cursor: pointer;
 
     &:focus {
-      background-color: red;
+      background-color: rgba(117, 124, 184, 0.331);
     }
   }
 }
 
-#trend img{
+#trend img {
   fill: red;
 }
-.row{
-  background-color: #F8FAFC;
+.row {
+  background-color: #f8fafc;
 }
-.card{
+.card {
+  padding:0.5rem;
   border: none;
   height: 100%;
-  background-color: #F8FAFC;
+  background-color: #f8fafc;
   transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border-radius: 5px;
-  img{
-    width: 240px;
+   transition: transform .2s;
+ &:hover{
+    box-shadow: 0 0 10px 4px #d0d0d0e8;
+    transform: scale(1.05);
+ }
+  img {
+    
+    width: 100%;
     min-height: 160px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
-  .card-body{
+  .card-body {
     height: 100px;
-    padding: 0;
+    padding: 0.2rem;
     max-width: 240px;
-      .header-card{
+    .header-card {
       margin-top: 10px;
       padding: 0;
       display: flex;
       justify-content: space-between;
-      
-      .costum-rate{
+
+      .costum-rate {
         text-align: right;
       }
-      .costum-title{
+      .costum-title {
         color: #050505;
         font-size: 14px;
         font-weight: bold;
@@ -300,8 +392,29 @@ export default {
     }
   }
 }
-.costum-text{
-      color: #717171;
-      font-size: 12px;
+.costum-text {
+  color: #717171;
+  font-size: 12px;
+}
+.search-bar {
+  min-width: 200px;
+  border-radius: 10px;
+  border: 1px solid #c1c2c5;
+  padding: 0.3rem 0.8rem;
+}
+.search-bar:focus-visible {
+  outline: 1px solid #a5a5a5;
+}
+.dropdown_menu {
+
+  li input {
+    margin-bottom: 0.2rem;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    outline: none;
   }
+}
+a{
+  color: white;
+}
 </style>
