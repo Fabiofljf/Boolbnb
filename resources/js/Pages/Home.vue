@@ -5,7 +5,11 @@
         <div class="col">
           <h1>Benvenuto in boolbnb</h1>
           <h3>Lasciati ispirare dai luoghi o effettua la tua ricerca</h3>
-          <div class="search d-flex align-items-center">
+          
+        </div>
+        <!-- Benvenuto -->
+        <div class="col d-flex align-items-center justify-content-end">
+            <div class="search d-flex align-items-center w-75">
             <div class="dropdown flex-grow-1">
               <input type="text" id="query_address" class="w-100" placeholder="Digita un indirizzo" v-model="query"
                 @keyup="getAutocomplete" @keyup.38="listUp" @keyup.40="listDown" />
@@ -18,17 +22,6 @@
             <router-link :to="{ name: 'search', params: { query: query } }">
               <button type="button" class="btn btn-sm btn-primary text-white">Cerca</button>
             </router-link>
-          </div>
-        </div>
-        <!-- Benvenuto -->
-        <div class="col d-flex justify-content-end">
-          <div class="btn btn-light shadow">
-            filter
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter"
-              viewBox="0 0 16 16">
-              <path
-                d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
-            </svg>
           </div>
         </div>
         <!-- filter -->
@@ -153,7 +146,8 @@
         p_fixed_maps
       ">
       <p class="me-2 mb-0">
-        <router-link :to="{ name: 'search' }">Mostra la mappa</router-link>
+        <a href="#search">Ricerca alloggio</a>
+        <!-- <router-link :to="{ name: 'search' }"></router-link> -->
       </p>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map"
         viewBox="0 0 16 16">

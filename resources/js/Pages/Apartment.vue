@@ -173,7 +173,7 @@
 
       <div class="message mt-4">
         <h3>Contatta il proprietario dell'appartamento:</h3>
-        <form @submit.prevent="sendMessage">
+        <form class='pb-3' @submit.prevent="sendMessage">
           <div v-if="success" class="alert alert-success" role="alert">
             <h3>{{ message }}</h3>
           </div>
