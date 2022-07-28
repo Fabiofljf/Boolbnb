@@ -304,10 +304,4 @@ export default {
       color: #717171;
       font-size: 12px;
   }
-
-
-
-
-
-
 </style>
