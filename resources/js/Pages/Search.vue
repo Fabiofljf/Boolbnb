@@ -2,69 +2,81 @@
   <div class="wrapper">
     <section class="container my-5 p-5 shadow bg_trend">
       <h1 class="p-2">Effettua una nuova ricerca</h1>
-      <div class="row row-cols-2">
-        <div class="col">
+      <div class="row   ">
+        <div>
           <!-- Advanced search -->
           <form method="POST" @submit.prevent="getGeoPosition">
-            <div class="mb-3">
-              <label for="query" class="form-label"
-                >Cerca per città o per indirizzo:</label
-              >
-              <div class="dropdown flex-grow-1">
-                <input
-                  type="text"
-                  id="query_address"
-                  class="w-100"
-                  placeholder="Milano"
-                  v-model="query"
+          <div class="group">
+            <input 
+              autocomplete="off"
+              required="" 
+              type="text" 
+              id="query_address"
+              v-model="query"
                   @keyup="getAutocomplete"
                   @keyup.38="listUp"
                   @keyup.40="listDown"
                   @keyup.enter="getGeoPosition"
+              class="input"
+            />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Cerca per città o per indirizzo:</label>
+            <ul class="dropdown_menu w-100" v-if="query.length > 0">
+              <li v-for="(address, index) in autocomplete" :key="index">
+                <input
+                  type="text"
+                  class="w-100"
+                  readonly
+                  :value="address"
+                  @click="setQuery(address)"
                 />
-                <ul class="dropdown_menu w-100" v-if="query.length > 0">
-                  <li v-for="(address, index) in autocomplete" :key="index">
-                    <input
-                      type="text"
-                      class="w-100"
-                      readonly
-                      :value="address"
-                      @click="setQuery(address)"
-                    />
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="radius">Distanza dal centro (in km):</label>
-              <input
+              </li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="sx col-md-6">
+            <div class="group mt-3">
+              <label for="radius">Distanza dal centro (in km):</label>  
+              <br><br>
+              <input 
                 type="number"
                 class="form-control"
                 name="radius"
                 id="radius"
-                placeholder="20"
+                min="0"
+                step="10"
                 v-model="radius"
-                @keyup.enter="getGeoPosition"
+                    @keyup.enter="getGeoPosition"
               />
+              <span class="highlight"></span>
+              <span class="bar"></span>
             </div>
-            <div class="mb-3">
+
+            <div class="group">
               <label for="rooms" class="form-label"
                 >Numero minimo di stanze:</label
               >
+              <br><br>
               <input
                 type="number"
                 class="form-control"
                 name="rooms"
                 id="rooms"
                 min="1"
-                max="20"
+                max="10"
                 v-model="rooms"
               />
             </div>
-            <div class="mb-3">
+          </div>
+          
+
+          <div class="dx col-md-6">
+            <div class="group">
               <label for="beds" class="form-label"
                 >Numero minimo di letti:</label
               >
+              <br><br>
               <input
                 type="number"
                 class="form-control"
@@ -75,10 +87,12 @@
                 v-model="beds"
               />
             </div>
-            <div class="mb-3">
+        
+            <div class="group">
               <label for="baths" class="form-label"
                 >Numero minimo di bagni:</label
               >
+              <br><br>
               <input
                 type="number"
                 class="form-control"
@@ -89,11 +103,18 @@
                 v-model="baths"
               />
             </div>
-            <div class="mb-3">
+          </div>
+          </div>
+          
+
+            
+
+            <div class="group">
               <label for="services" class="form-label"
                 >Seleziona uno o più servizi:</label
               >
-              <select
+              <br><br>
+               <select
                 class="form-select"
                 name="services"
                 id="services"
@@ -109,8 +130,16 @@
                 </option>
               </select>
             </div>
-            <button type="submit" class="btn btn-primary text-white">
-              Cerca
+            <button type="submit">
+              <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                  </svg>
+                </div>
+              </div>
+              <span>cerca</span>
             </button>
           </form>
         </div>
@@ -122,7 +151,12 @@
             <h4 class="d-flex justify-content-end mt-4 m-2 p-3">
               I nostri appartamenti
             </h4>
-            <div class="row row-cols-5 g-4 py-3">
+            <div class="row 
+            row-cols-xl-5 
+            row-cols-lg-4
+            row-cols-md-3
+            row-cols-sm-1
+            g-4 py-3">
               <div
                 class="col"
                 v-for="apartment in apartments"
@@ -146,6 +180,9 @@
                     <div class="header-card row">
                       <h4 class="col-8 card-title costum-title">{{ apartment.title }}</h4>
                       <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                    </div>
+                    <div class="description-card">
+                      <p class="costum-text">{{ apartment.description }}</p>
                     </div>
                   </div>
                 </router-link>
@@ -304,9 +341,101 @@ export default {
     cursor: pointer;
 
     &:focus {
-      background-color: red;
+      background-color: #3471eb;
     }
   }
+}
+
+.group {
+ position: relative;
+}
+
+.input {
+ font-size: 16px;
+ padding: 10px 10px 10px 5px;
+ display: block;
+ width: 200px;
+ border: none;
+ border-bottom: 1px solid #515151;
+ background: transparent;
+}
+
+.input:focus {
+ outline: none;
+}
+
+label {
+ color: #999;
+ font-size: 18px;
+ font-weight: normal;
+ position: absolute;
+ pointer-events: none;
+ left: 5px;
+ top: 10px;
+ transition: 0.2s ease all;
+ -moz-transition: 0.2s ease all;
+ -webkit-transition: 0.2s ease all;
+}
+
+.input:focus ~ label, .input:valid ~ label {
+ top: -20px;
+ font-size: 14px;
+ color: #3471eb;
+}
+
+.bar {
+ position: relative;
+ display: block;
+ width: 200px;
+}
+
+.bar:before, .bar:after {
+ content: '';
+ height: 2px;
+ width: 0;
+ bottom: 1px;
+ position: absolute;
+ background: #3471eb;
+ transition: 0.2s ease all;
+ -moz-transition: 0.2s ease all;
+ -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+ left: 50%;
+}
+
+.bar:after {
+ right: 50%;
+}
+
+.input:focus ~ .bar:before, .input:focus ~ .bar:after {
+ width: 50%;
+}
+
+.highlight {
+ position: absolute;
+ height: 60%;
+ width: 100px;
+ top: 25%;
+ left: 0;
+ pointer-events: none;
+ opacity: 0.5;
+}
+
+.input:focus ~ .highlight {
+ animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+ from {
+  background: #3471eb;
+ }
+
+ to {
+  width: 0;
+  background: transparent;
+ }
 }
 
 .loader {
@@ -384,4 +513,73 @@ export default {
     text-overflow: ellipsis;
   }
 }
+.costum-text{
+  color: #515151;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+form>.row{
+  align-items: flex-end;
+}
+/* From uiverse.io by @adamgiebl */
+button {
+ font-family: inherit;
+ font-size: 20px;
+ background: #3471eb;
+ color: white;
+ padding: 0.2em 0.5em;
+ padding-left: 0.7em;
+ display: flex;
+ align-items: center;
+ border: none;
+ border-radius: 16px;
+ overflow: hidden;
+ transition: all 0.2s;
+ margin-top: 15px;
+}
+
+button span {
+ display: block;
+ margin-left: 0.3em;
+ transition: all 0.3s ease-in-out;
+}
+
+button svg {
+ display: block;
+ transform-origin: center center;
+ transition: transform 0.3s ease-in-out;
+}
+
+button:hover .svg-wrapper {
+ animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+button:hover svg {
+ transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+button:hover span {
+ transform: translateX(5em);
+}
+
+button:active {
+ transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+ from {
+  transform: translateY(0.1em);
+ }
+
+ to {
+  transform: translateY(-0.1em);
+ }
+}
+.wrapper{
+  min-height: calc(100vh - 173px);
+}
+
+
 </style>

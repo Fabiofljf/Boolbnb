@@ -95,8 +95,8 @@
       <!-- /titleAndThumb -->
 
       <!-- INFO APPARTAMENTO -->
-      <div class="row row-cols-2 mt-4 border-bottom" id="hosting">
-        <div class="col my-3">
+      <div class="row row-cols-lg-2 mt-4 border-bottom" id="hosting">
+        <div class="my-3">
           <div class="row border-bottom pb-1">
             <div class="d-flex justify-content-between align-items-top">
               <div
@@ -151,7 +151,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div>
           <div class="map">
             <div id="map" style="width: 100%; height: 100%"></div>
           </div>
@@ -177,67 +177,87 @@
           <div v-if="success" class="alert alert-success" role="alert">
             <h3>{{ message }}</h3>
           </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input
-              v-model="email"
-              required
-              type="email"
-              class="form-control"
-              name="email"
-              id="email"
-              aria-describedby="emailHelpId"
-              placeholder="mario.rossi@gmail.com"
-            />
-            <small id="emailHelpId" class="form-text text-muted"
-              >inserisci la tua email</small
-            >
+          <div class="mb-3 row">
+            <div class="sx col-md-6">
+              <div class="group mt-3">
+                <input 
+                required  
+                type="email"
+                name="email"
+                id="email"
+                class="input"
+                placeholder=""
+                >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="full_name" class="form-label">Email</label>
+              </div>
+              <small id="emailHelpId" class="form-text text-muted"
+                >inserisci la tua email</small
+              >
+              <div class="group mt-3">
+                <input required  
+                type="text"
+                name="full_name"
+                id="full_name"
+                class="input"
+                placeholder=""
+                >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="full_name" class="form-label">Nome e Cognome</label>
+              </div>
+              <small id="emailHelpId" class="form-text text-muted"
+                >inserisci nome e cognome</small
+              >
+              <div class="group mt-3">
+                <input required  
+                type="text"
+                class="input"
+                name="subject"
+                id="subject"
+                aria-describedby="subjecthelpId"
+                >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="full_name" class="form-label">Subject</label>
+              </div>
+              <small id="subjecthelpId" class="form-text text-muted"
+                >Inserisci il "Subject" dell'email</small
+              >
+            </div>
+            
+
+            <div class="dx col-md-6">
+              <div class="group mt-3">
+                <textarea required  
+                type="text"
+                class="input"
+                name="content"
+                id="content"
+                rows="6"
+                aria-describedby="subjecthelpId"
+                ></textarea>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="content" class="form-label">Messaggio:</label>
+              </div>
+            </div>
+            
+
           </div>
-          <div class="mb-3">
-            <label for="full_name" class="form-label">Nome e Cognome</label>
-            <input
-              v-model="full_name"
-              required
-              type="text"
-              class="form-control"
-              name="full_name"
-              id="full_name"
-              aria-describedby="full_namehelpId"
-              placeholder="Mario Rossi"
-            />
-            <small id="full_namehelpId" class="form-text text-muted"
-              >Inserisci il tuo nome completo</small
-            >
-          </div>
-          <div class="mb-3">
-            <label for="subject" class="form-label">Subject:</label>
-            <input
-              required
-              v-model="subject"
-              type="text"
-              class="form-control"
-              name="subject"
-              id="subject"
-              aria-describedby="subjecthelpId"
-              placeholder="FAQ: Costi Aggiuntivi"
-            />
-            <small id="subjecthelpId" class="form-text text-muted"
-              >Inserisci il "Subject" dell'email</small
-            >
-          </div>
-          <div class="mb-3">
-            <label for="content" class="form-label">Messaggio:</label>
-            <textarea
-              v-model="content"
-              required
-              class="form-control"
-              name="content"
-              id="content"
-              rows="6"
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary text-white">
-            Invia
+
+
+          <button type="submit">
+            <div class="svg-wrapper-1">
+              <div class="svg-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="none" d="M0 0h24v24H0z"></path>
+                  <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                </svg>
+              </div>
+            </div>
+            <span>invia</span>
           </button>
         </form>
       </div>
@@ -353,6 +373,159 @@ export default {
   height: 500px;
   width: 100%;
   margin-bottom: 3rem;
+}
+.group {
+ position: relative;
+}
+
+.input {
+ font-size: 16px;
+ padding: 10px 10px 10px 5px;
+ display: block;
+ width: 200px;
+ border: none;
+ border-bottom: 1px solid #515151;
+ background: transparent;
+}
+
+.input:focus {
+ outline: none;
+}
+
+label {
+ color: #999;
+ font-size: 18px;
+ font-weight: normal;
+ position: absolute;
+ pointer-events: none;
+ left: 5px;
+ top: 10px;
+ transition: 0.2s ease all;
+ -moz-transition: 0.2s ease all;
+ -webkit-transition: 0.2s ease all;
+}
+
+.input:focus ~ label, .input:valid ~ label {
+ top: -20px;
+ font-size: 14px;
+ color: #5264AE;
+}
+
+.bar {
+ position: relative;
+ display: block;
+ width: 200px;
+}
+
+.bar:before, .bar:after {
+ content: '';
+ height: 2px;
+ width: 0;
+ bottom: 1px;
+ position: absolute;
+ background: #5264AE;
+ transition: 0.2s ease all;
+ -moz-transition: 0.2s ease all;
+ -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+ left: 50%;
+}
+
+.bar:after {
+ right: 50%;
+}
+
+.input:focus ~ .bar:before, .input:focus ~ .bar:after {
+ width: 50%;
+}
+
+.highlight {
+ position: absolute;
+ height: 60%;
+ width: 100px;
+ top: 25%;
+ left: 0;
+ pointer-events: none;
+ opacity: 0.5;
+}
+
+.input:focus ~ .highlight {
+ animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+ from {
+  background: #5264AE;
+ }
+
+ to {
+  width: 0;
+  background: transparent;
+ }
+ 
+}
+@media screen and (max-width: 720px) {
+    .input{
+      width: 100%;
+    }
+ }
+ button {
+ font-family: inherit;
+ font-size: 20px;
+ background: #3471eb;
+ color: white;
+ padding: 0.2em 0.5em;
+ padding-left: 0.7em;
+ display: flex;
+ align-items: center;
+ border: none;
+ border-radius: 16px;
+ overflow: hidden;
+ transition: all 0.2s;
+ margin-top: 15px;
+}
+
+button span {
+ display: block;
+ margin-left: 0.3em;
+ transition: all 0.3s ease-in-out;
+}
+
+button svg {
+ display: block;
+ transform-origin: center center;
+ transition: transform 0.3s ease-in-out;
+}
+
+button:hover .svg-wrapper {
+ animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+button:hover svg {
+ transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+button:hover span {
+ transform: translateX(5em);
+}
+
+button:active {
+ transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+ from {
+  transform: translateY(0.1em);
+ }
+
+ to {
+  transform: translateY(-0.1em);
+ }
+}
+.wrapper{
+  min-height: calc(100vh - 173px);
 }
 </style>
 
