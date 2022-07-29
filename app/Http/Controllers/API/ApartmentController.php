@@ -7,6 +7,7 @@ use App\Models\Publicity;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Carbon;
 
 class ApartmentController extends Controller
 {
@@ -50,7 +51,7 @@ class ApartmentController extends Controller
 
         $filteredApartments = [];
 
-        if ( in_array("all",$selectedServices)) {
+        if (in_array("all", $selectedServices)) {
             $filteredApartments = $apartments;
         } else {
             foreach ($apartments as $apartment) {
@@ -63,7 +64,6 @@ class ApartmentController extends Controller
                     array_push($filteredApartments, $apartment);
                 }
             }
-
         }
 
 
@@ -118,9 +118,27 @@ class ApartmentController extends Controller
         return $response;
     }
 
-    public function apartmentPublicity(Publicity $publicity) {
-        $apartments = Apartment::whereHas('publicities')->orderByDesc('id')->get();
-     
-        return $apartments;
+    public function apartmentPublicity()
+    {
+        //$apartments = Apartment::whereHas('publicities')->orderByDesc('id')->get();
+        $apartments = Apartment::with(['publicities'])->get();
+        $currentDate = Carbon::now();
+        $apt_sponsored_id = [];
+        foreach ($apartments as $apartment) {
+            if (count($apartment->publicities) > 0) {
+                $allDates = [];
+                foreach ($apartment->publicities as $publicity) {
+                    $date = $publicity->pivot->publicity_expiration_date;
+                    array_push($allDates, $date);
+                }
+                $lastDate = max($allDates);
+                if (Carbon::parse($lastDate) > $currentDate) {
+                    array_push($apt_sponsored_id, $apartment->id);
+                }
+            }
+            //array_push($apt_sponsored, $apartment);
+        }
+        $response = Apartment::whereIn('id', $apt_sponsored_id)->with(['services', 'user'])->orderByDesc('id')->get();
+        return $response;
     }
 }
