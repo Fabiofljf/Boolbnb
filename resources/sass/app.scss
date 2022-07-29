@@ -10,7 +10,6 @@
 @import '@tomtom-international/web-sdk-maps';
 // TomTom searchbox
 @import '@tomtom-international/web-sdk-plugin-searchbox';
-
 .map {
     width: 100%;
     height: 100%;
@@ -84,4 +83,66 @@ ul {
 
 .bg_warning {
     background-color: $bg_warning;
+}
+
+.p-r {
+    position: relative;
+}
+
+.delate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(15%, -50%);
+}
+
+.col {
+    height: 100%;
+}
+
+.form-delate {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.form-delate img {
+    height: 300px;
+    width: 100%;
+}
+
+#text {
+    background-color: var(--bs-warning);
+    width: fit-content;
+    text-transform: uppercase;
+    min-width: 150px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    font-size: 0.5rem
+}
+
+.sponsored {
+    background-color: var(--bs-warning);
+}
+
+.expired {
+    background-color: var(--bs-danger);
+    color: white
+}
+
+#timer {
+    background-color: var(--bs-primary);
+    width: fit-content;
+    min-width: 150px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    font-weight: 600;
+    color: white;
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
 }

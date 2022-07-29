@@ -179,7 +179,7 @@
           </div>
           <div class="mb-3 row">
             <div class="sx col-md-6">
-              <div class="group mt-3">
+              <div class="group my-5">
                 <input 
                 v-model="email"
                 required  
@@ -193,10 +193,8 @@
                 <span class="bar"></span>
                 <label for="full_name" class="form-label">Email</label>
               </div>
-              <small id="emailHelpId" class="form-text text-muted"
-                >inserisci la tua email</small
-              >
-              <div class="group mt-3">
+              
+              <div class="group my-5">
                 <input required  
                 v-model="full_name"
                 type="text"
@@ -209,10 +207,8 @@
                 <span class="bar"></span>
                 <label for="full_name" class="form-label">Nome e Cognome</label>
               </div>
-              <small id="emailHelpId" class="form-text text-muted"
-                >inserisci nome e cognome</small
-              >
-              <div class="group mt-3">
+              
+              <div class="group my-5">
                 <input
                 v-model="subject"
                 required  
@@ -386,9 +382,10 @@ export default {
 
 .input {
  font-size: 16px;
+ margin: 15px 0;
  padding: 10px 10px 10px 5px;
  display: block;
- width: 200px;
+ width: 80%;
  border: none;
  border-bottom: 1px solid #515151;
  background: transparent;
@@ -414,7 +411,7 @@ label {
 .input:focus ~ label, .input:valid ~ label {
  top: -20px;
  font-size: 14px;
- color: #5264AE;
+ color: #3471eb;
 }
 
 .bar {
@@ -429,7 +426,7 @@ label {
  width: 0;
  bottom: 1px;
  position: absolute;
- background: #5264AE;
+ background: #3471eb;
  transition: 0.2s ease all;
  -moz-transition: 0.2s ease all;
  -webkit-transition: 0.2s ease all;
@@ -463,15 +460,15 @@ label {
 
 @keyframes inputHighlighter {
  from {
-  background: #5264AE;
+  background: #3471eb;
  }
 
  to {
   width: 0;
   background: transparent;
  }
- 
 }
+
 @media screen and (max-width: 720px) {
     .input{
       width: 100%;
