@@ -62,26 +62,36 @@
 
     <section id="sponsorizate">
       <div class="container">
-        <h4 class="d-flex justify-content-end mt-4 m-2 p-3">In Evidenza</h4>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4 py-3">
-          <div class="col">
-            <a href="#">
-            <div class="card-hover card text-start">
-            <img class="img-fluid" src="./../../img/placeholder.jpg" />
-            <div class="card-body">
-              <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">
-                  titolo dell'appartamento
-                </h4>
-                <h4 class="col-4 costum-rate costum-title">rate</h4>
+        <h4 class="d-flex justify-content-end mt-4 m-2 p-3">I Trend del momento</h4>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4 gy-5 py-3">
+          <div class="col" v-for="apartmentPublicity in apartmentPublicities" :key="apartmentPublicity.id">
+            <router-link
+                :to="{
+                  name: 'apartment',
+                  params: { slug: apartmentPublicity.slug, query: query },
+                }"
+            >
+              <div class="card-hover card text-start">
+                <div class="publicity_banner">Premium</div>
+                <img class="img-fluid" :src="'storage/' + apartmentPublicity.thumb" />
+                <div class="card-body">
+                  <div class="header-card row">
+                    <h4 class="col-8 card-title costum-title">
+                      {{ apartmentPublicity.title }}
+                    </h4>
+                    <strong class="col-4 costum-rate costum-title">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg> | 5.0
+                    </strong>
+                  </div>
+                  <div class="description-card">
+                    <p class="card-text costum-text">{{ trimText(apartmentPublicity.description) }}</p>
+                  </div>
+                </div>
               </div>
-              <div class="description-card">
-                <p class="card-text costum-text">descrizione appartamento</p>
-              </div>
-            </div>
-            </div>
 
-            </a>
+            </router-link>
           </div>
           <div class="col">
             <a href="#">
@@ -141,6 +151,25 @@
             </a>
           </div>
            <div class="col">
+            <a href="#">
+            <div class="card-hover card text-start">
+            <img class="img-fluid" src="./../../img/placeholder.jpg" />
+            <div class="card-body">
+              <div class="header-card row">
+                <h4 class="col-8 card-title costum-title">
+                  titolo dell'appartamento
+                </h4>
+                <h4 class="col-4 costum-rate costum-title">rate</h4>
+              </div>
+              <div class="description-card">
+                <p class="card-text costum-text">descrizione appartamento</p>
+              </div>
+            </div>
+            </div>
+
+            </a>
+          </div>
+          <div class="col">
             <a href="#">
             <div class="card-hover card text-start">
             <img class="img-fluid" src="./../../img/placeholder.jpg" />
@@ -255,9 +284,20 @@ export default {
       apartments: "",
       query: "",
       autocomplete: [],
+      apartmentPublicities: "",
     };
   },
   methods: {
+    getPublicityApartment(){
+      axios
+      .get('/api/apartment/publicity')
+      .then((response) => {
+        this.apartmentPublicities = response.data;
+      })
+       .catch((e) => {
+          console.error(e);
+        });
+    },
     listDown() {
       console.log("giu");
       const list = document.getElementById("dropdown_menu"); // targets the <ul>
@@ -332,6 +372,7 @@ export default {
   },
   mounted() {
     this.getCallApi();
+    this.getPublicityApartment()
   },
 };
 </script>
@@ -377,16 +418,28 @@ export default {
   background-color: #f8fafc;
 }
 .card {
+  position: relative;
   padding:0.5rem;
   border: none;
   height: 100%;
   background-color: #f8fafc;
   transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border-radius: 5px;
-   transition: transform .2s;
+   transition: transform .5s;
  &:hover{
     box-shadow: 0 0 10px 4px #d0d0d0e8;
     transform: scale(1.05);
+    z-index: 1;
+ }
+ .publicity_banner {
+  padding: 0.5rem;
+  background-color: #3471EB;
+  color: white;
+  border-radius: 6px;
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  transition: transform .5s;
  }
   img {
     
@@ -400,6 +453,7 @@ export default {
     max-width: 240px;
     .header-card {
       margin-top: 10px;
+      height: 45px;
       padding: 0;
       display: flex;
       justify-content: space-between;
@@ -409,11 +463,11 @@ export default {
       }
       .costum-title {
         color: #050505;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: bold;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        /* white-space: nowrap; */
+        /* overflow: hidden; */
+        /* text-overflow: ellipsis; */
       }
     }
   }

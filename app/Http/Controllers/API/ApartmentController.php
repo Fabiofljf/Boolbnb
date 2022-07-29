@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Apartment;
+use App\Models\Publicity;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -115,5 +116,11 @@ class ApartmentController extends Controller
         $response = Apartment::whereIn('id', $apartmentIds)->with(['services', 'user'])->orderByDesc('id')->get();
 
         return $response;
+    }
+
+    public function apartmentPublicity(Publicity $publicity) {
+        $apartments = Apartment::whereHas('publicities')->orderByDesc('id')->get();
+     
+        return $apartments;
     }
 }

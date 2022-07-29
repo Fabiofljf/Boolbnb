@@ -181,6 +181,7 @@
             <div class="sx col-md-6">
               <div class="group mt-3">
                 <input 
+                v-model="email"
                 required  
                 type="email"
                 name="email"
@@ -197,6 +198,7 @@
               >
               <div class="group mt-3">
                 <input required  
+                v-model="full_name"
                 type="text"
                 name="full_name"
                 id="full_name"
@@ -211,7 +213,9 @@
                 >inserisci nome e cognome</small
               >
               <div class="group mt-3">
-                <input required  
+                <input
+                v-model="subject"
+                required  
                 type="text"
                 class="input"
                 name="subject"
@@ -230,7 +234,9 @@
 
             <div class="dx col-md-6">
               <div class="group mt-3">
-                <textarea required  
+                <textarea
+                v-model="content"
+                required  
                 type="text"
                 class="input"
                 name="content"
