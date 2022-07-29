@@ -36,7 +36,7 @@
                 />
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label class="text-black">Cerca per città o per indirizzo:</label>
+                <label class="text-black costum-label">Inizia la tua ricerca</label>
                 <ul class="dropdown_menu w-100" v-if="query.length > 0">
                   <li v-for="(address, index) in autocomplete" :key="index">
                     <input
@@ -77,133 +77,42 @@
 
     <section id="sponsorizate">
       <div class="container">
-        <h4 class="d-flex justify-content-end mt-4 m-2 p-3">I Trend del momento</h4>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4 gy-5 py-3">
-          <div class="col" v-for="apartmentPublicity in apartmentPublicities" :key="apartmentPublicity.id">
-            <router-link
-                :to="{
-                  name: 'apartment',
-                  params: { slug: apartmentPublicity.slug, query: query },
-                }"
-            >
-              <div class="card-hover card text-start">
-                <div class="publicity_banner">Premium</div>
-                <img class="img-fluid" :src="'storage/' + apartmentPublicity.thumb" />
-                <div class="card-body">
-                  <div class="header-card row">
-                    <h4 class="col-8 card-title costum-title">
-                      {{ apartmentPublicity.title }}
-                    </h4>
-                    <strong class="col-4 costum-rate costum-title">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                      </svg> | 5.0
-                    </strong>
-                  </div>
-                  <div class="description-card">
-                    <p class="card-text costum-text">{{ trimText(apartmentPublicity.description) }}</p>
+        <div>
+          <div v-if="apartmentPublicities.length === 0"></div>
+          <h4 class="text-end">I Trend del momento</h4>
+          <div class="row flex-column align-items-end row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4 gy-5 py-3">
+            
+            <div class="col" v-for="apartmentPublicity in apartmentPublicities" :key="apartmentPublicity.id">
+            
+              <router-link
+                  :to="{
+                    name: 'apartment',
+                    params: { slug: apartmentPublicity.slug, query: query },
+                  }"
+              >
+                <div class="card-hover card text-start">
+                  <div class="publicity_banner">Premium</div>
+                  <img class="img-fluid" :src="'storage/' + apartmentPublicity.thumb" />
+                  <div class="card-body">
+                    <div class="header-card row">
+                      <h4 class="col-8 card-title costum-title">
+                        {{ apartmentPublicity.title }}
+                      </h4>
+                      <strong class="col-4 costum-rate costum-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg> | 5.0
+                      </strong>
+                    </div>
+                    <div class="description-card">
+                      <p class="card-text costum-text">{{ trimText(apartmentPublicity.description) }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-            </router-link>
+              </router-link>
+            </div>
           </div>
-          <div class="col">
-            <a href="#">
-            <div class="card-hover card text-start">
-            <img class="img-fluid" src="./../../img/placeholder.jpg" />
-            <div class="card-body">
-              <div class="header-card row ">
-                <h4 class="col-8 card-title costum-title">
-                  titolo dell'appartamento
-                </h4>
-                <h4 class="col-4 costum-rate costum-title">rate</h4>
-              </div>
-              <div class="description-card">
-                <p class="card-text costum-text">descrizione appartamento</p>
-              </div>
-            </div>
-            </div>
-
-            </a>
-          </div>
-          <div class="col">
-            <a href="#">
-            <div class="card-hover card text-start">
-            <img class="img-fluid" src="./../../img/placeholder.jpg" />
-            <div class="card-body">
-              <div class="header-card row ">
-                <h4 class="col-8 card-title costum-title">
-                  titolo dell'appartamento
-                </h4>
-                <h4 class="col-4 costum-rate costum-title">rate</h4>
-              </div>
-              <div class="description-card">
-                <p class="card-text costum-text">descrizione appartamento</p>
-              </div>
-            </div>
-            </div>
-
-            </a>
-          </div>
-          <div class="col">
-            <a href="#">
-            <div class="card-hover card text-start">
-            <img class="img-fluid" src="./../../img/placeholder.jpg" />
-            <div class="card-body">
-              <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">
-                  titolo dell'appartamento
-                </h4>
-                <h4 class="col-4 costum-rate costum-title">rate</h4>
-              </div>
-              <div class="description-card">
-                <p class="card-text costum-text">descrizione appartamento</p>
-              </div>
-            </div>
-            </div>
-
-            </a>
-          </div>
-           <div class="col">
-            <a href="#">
-            <div class="card-hover card text-start">
-            <img class="img-fluid" src="./../../img/placeholder.jpg" />
-            <div class="card-body">
-              <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">
-                  titolo dell'appartamento
-                </h4>
-                <h4 class="col-4 costum-rate costum-title">rate</h4>
-              </div>
-              <div class="description-card">
-                <p class="card-text costum-text">descrizione appartamento</p>
-              </div>
-            </div>
-            </div>
-
-            </a>
-          </div>
-          <div class="col">
-            <a href="#">
-            <div class="card-hover card text-start">
-            <img class="img-fluid" src="./../../img/placeholder.jpg" />
-            <div class="card-body">
-              <div class="header-card row">
-                <h4 class="col-8 card-title costum-title">
-                  titolo dell'appartamento
-                </h4>
-                <h4 class="col-4 costum-rate costum-title">rate</h4>
-              </div>
-              <div class="description-card">
-                <p class="card-text costum-text">descrizione appartamento</p>
-              </div>
-            </div>
-            </div>
-
-            </a>
-          </div>
-
         </div>
       </div>
     </section>
@@ -569,7 +478,7 @@ button:active {
  font-size: 16px;
  padding: 10px 10px 10px 5px;
  display: block;
- width: 200px;
+ width: 20%;
  border: none;
  border-bottom: 1px solid #515151;
  background: transparent;
@@ -651,5 +560,16 @@ label {
   width: 0;
   background: transparent;
  }
+}
+.costum-label{
+  font-size: 14px;
+}
+@media screen and (max-width: 480px) {
+  .input{
+    width: 50%;
+  }
+  .costum-label  {
+    font-size: 12px;
+  }
 }
 </style>
