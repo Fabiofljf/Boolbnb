@@ -50,6 +50,11 @@ class Apartment extends Model
         return $this->hasMany(View::class);
     }
 
+    public function images() :HasMany
+    {
+        return $this->hasMany(Image::class);
+    }
+
     /**
      * The publicities that belong to the Apartment
      *
