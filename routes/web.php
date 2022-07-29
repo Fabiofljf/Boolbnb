@@ -34,6 +34,9 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
         'apartment' => 'apartment:slug'
     ]);
 
+    Route::resource('apartments.images', 'ImageController')->only(['index', 'destroy'])->parameters([
+        'apartments' => 'apartment:slug']);
+
     Route::get('apartment/{apartment}/publicity', 'PaymentController@select')->name('publicity.index');
     Route::get('apartment/{apartment}/publicity/{publicity}', 'PaymentController@take')->name('publicity.edit');
     Route::post('apartment/{apartment}/publicity/{publicity}/checkout', 'PaymentController@checkout')->name('publicity.checkout');

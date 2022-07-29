@@ -11,10 +11,20 @@
                     <img src="{{ asset('/storage/' . $apartment->thumb) }}" alt="thumb of {{ $apartment->title }}">
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-3">
                 <div id="map" style="height:100%"></div>
             </div>
         </div>
+        @if($images)
+    <div class="article-imgs row mb-3">
+        <h3>Immagini:</h3>
+        @foreach($images as $image)
+        <div class="col-3 py-3">
+            <img class="img-fluid w-100" src="{{asset('/storage/' . $image->src)}}" alt="">
+        </div>
+        @endforeach
+    </div>
+    @endif
         <div class="apartment-description mt-3">
             <h3>Description:</h3>
             {{ $apartment->description }}
