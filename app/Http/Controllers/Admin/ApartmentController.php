@@ -7,6 +7,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApartmentRequest;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -76,6 +77,16 @@ class ApartmentController extends Controller
         $new_apartment = Apartment::create($val_data);
         $new_apartment->services()->attach($request->services);
 
+        /* Todo review code */
+        if ($request->hasFile('cover_image')) {
+            foreach ($request->file('cover_image') as $imagefile) {
+                $image = new Image();
+                $path = Storage::put('apartment_image', $imagefile);
+                $image->src = $path;
+                $image->apartment_id = $new_apartment->id;
+                $image->save();
+            }
+        }
 
         // Redirezionamento all'index admin
         return redirect()->route('admin.apartment.index')->with('message', "Appartamento creato con successo");
@@ -90,10 +101,11 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         if (Auth::id() === $apartment->user_id) {
-           // $apartment->load(['messages','services']);
-           $messages = $apartment->messages()->orderBy('created_at', 'desc')->get();
-           $services = $apartment->services();
-            return view('admin.apartment.show', compact('apartment', 'services', 'messages'));
+            // $apartment->load(['messages','services']);
+            $messages = $apartment->messages()->orderBy('created_at', 'desc')->get();
+            $services = $apartment->services();
+            $images = Image::where('apartment_id', $apartment->id)->get();
+            return view('admin.apartment.show', compact('apartment', 'services', 'messages', 'images'));
         } else {
             dd('utente non autorizzato');
         }
@@ -109,7 +121,8 @@ class ApartmentController extends Controller
     {
         if (Auth::id() === $apartment->user_id) {
             $services = Service::all();
-            return view('admin.apartment.edit', compact('apartment', 'services'));
+            $images = Image::where('apartment_id', $apartment->id)->get();
+            return view('admin.apartment.edit', compact('apartment', 'services', 'images'));
         } else {
             dd('utente non autorizzato');
         }
@@ -171,8 +184,23 @@ class ApartmentController extends Controller
             $val_data['lat'] = $request->lat;
             $val_data['lon'] = $request->lon;
 
+            if ($request->hasFile('cover_image')) {
+                $storedImages = Image::where('apartment_id', $apartment->id)->get();
+
+                foreach ($request->file('cover_image') as $imagefile) {
+                    $image = new Image();
+                    $path = Storage::put('apartment_image', $imagefile);
+                    $image->src = $path;
+                    $image->apartment_id = $apartment->id;
+                    $image->save();
+                }
+            };
+
             $apartment->update($val_data);
             $apartment->services()->sync($request->services);
+
+            $images = Image::where('apartment_id', $apartment->id)->get();
+
             return redirect()->route('admin.apartment.index')->with('message', "Appartamento \"$apartment->title\" modificato con successo");
         } else {
             dd('utente non autorizzato');
@@ -191,6 +219,11 @@ class ApartmentController extends Controller
             if ($apartment->thumb) {
                 Storage::delete($apartment->thumb);
             };
+            $storedImages = Image::where('apartment_id', $apartment->id)->get();
+            foreach ($storedImages as $image) {
+                Storage::delete($image->src);
+            }
+            Image::where('apartment_id', $apartment->id)->delete();
             $apartment->delete();
             return redirect()->back()->with('message', "Appartamento \"$apartment->title\" eliminato con successo");
         } else {
@@ -198,7 +231,7 @@ class ApartmentController extends Controller
         }
     }
 
-     /**
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Apartment  $apartment
@@ -208,12 +241,23 @@ class ApartmentController extends Controller
     {
         dd($apartment);
         if (Auth::id() === $apartment->user_id) {
-           // $apartment->load(['messages','services']);
-           $messages = $apartment->messages()->orderBy('created_at', 'desc')->get();
-           $services = $apartment->services();
+            // $apartment->load(['messages','services']);
+            $messages = $apartment->messages()->orderBy('created_at', 'desc')->get();
+            $services = $apartment->services();
             return view('admin.apartment.show', compact('apartment', 'services', 'messages'));
         } else {
             dd('utente non autorizzato');
         }
+    }
+
+    public function destroyImages(Apartment $apartment)
+    {
+        $storedImages = Image::where('apartment_id', $apartment->id)->get();
+        foreach ($storedImages as $image) {
+            Storage::delete($image->src);
+        }
+        Image::where('apartment_id', $apartment->id)->delete();
+
+        return redirect()->back()->with('message', "$apartment->title images delete successfully");
     }
 }
