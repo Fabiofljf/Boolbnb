@@ -101,6 +101,7 @@ class PaymentController extends Controller
 
                             // save and break loop
                             $publicity->apartments()->attach($apartment->id, ['publicity_start_date' => $currentDate, 'publicity_expiration_date' => $updateExpirationDate]);
+                            return redirect()->route('admin.apartment.index')->with('message', "Sponsorizzazione di \"$apartment->title\" avvenuta con successo");
                         }
                     }
                 } else {

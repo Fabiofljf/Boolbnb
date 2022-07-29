@@ -105,7 +105,18 @@ class ApartmentController extends Controller
             $messages = $apartment->messages()->orderBy('created_at', 'desc')->get();
             $services = $apartment->services();
             $images = Image::where('apartment_id', $apartment->id)->get();
-            return view('admin.apartment.show', compact('apartment', 'services', 'messages', 'images'));
+            $publicities = $apartment->publicities()->get();
+            $allDates = [];
+            foreach ($publicities as $apt_publicity) {
+                array_push($allDates, $apt_publicity->pivot->publicity_expiration_date);
+            }
+            if (count($allDates) > 0) {
+                $publicity = max($allDates);
+            } else {
+                $publicity = null;
+            }
+            //dd($publicity);
+            return view('admin.apartment.show', compact('apartment', 'services', 'publicity', 'messages', 'images'));
         } else {
             dd('utente non autorizzato');
         }
