@@ -19,7 +19,7 @@ class Apartment extends Model
     {
         return Str::slug($title, '-');
     }
-   
+
     /**
      * Get the user that owns the Apartment
      *
@@ -57,7 +57,7 @@ class Apartment extends Model
      */
     public function publicities(): BelongsToMany
     {
-        return $this->belongsToMany(Publicity::class);
+        return $this->belongsToMany(Publicity::class)->withPivot('apartment_id', 'publicity_id', 'publicity_start_date', 'publicity_expiration_date');
     }
 
     /**

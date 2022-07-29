@@ -15,6 +15,6 @@ class Publicity extends Model
      */
     public function apartments(): BelongsToMany
     {
-        return $this->belongsToMany(Apartment::class);
+        return $this->belongsToMany(Apartment::class)->withPivot('apartment_id', 'publicity_id', 'publicity_start_date', 'publicity_expiration_date');
     }
 }
