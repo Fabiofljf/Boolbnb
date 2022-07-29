@@ -43,7 +43,7 @@
                     </section>
 
                     <input id="nonce" name="payment_method_nonce" type="hidden" />
-                    <button class="button btn btn-primary text-white" type="submit"><span>Acquista
+                    <button id="button" class="button btn btn-primary text-white" type="submit"><span>Acquista
                             Sponsorizzazione</span></button>
                 </form>
             </div>
@@ -53,6 +53,7 @@
     <script>
         var form = document.querySelector('#payment-form');
         var client_token = "{{ $token }}";
+        let Button = document.getElementById('button');
 
         console.log(braintree);
         braintree.dropin.create({
@@ -73,6 +74,7 @@
                 instance.requestPaymentMethod(function(err, payload) {
                     console.log(payload);
                     if (err) {
+                        console.log('funzione');
                         console.log('Request Payment Method Error', err);
                         return;
                     }
@@ -80,6 +82,7 @@
                     // Add the nonce to the form and submit
                     document.querySelector('#nonce').value = payload.nonce;
                     form.submit();
+                    Button.classList.add('NotVisible');
                 });
             });
         });

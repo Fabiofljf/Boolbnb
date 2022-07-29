@@ -68,42 +68,42 @@
                 @endforelse
             </ul>
         </div>
-    </div>
-    <h3>Messages:</h3>
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-        @foreach ($messages as $message)
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-heading{{ $message->id }}">
-                    <button class="accordion-button collapsed justify-content-between" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $message->id }}" aria-expanded="false"
-                        aria-controls="flush-collapse{{ $message->id }}">
-                        <div class="d-flex justify-content-between w-75">
-                            <div>
-                                <strong>{{ $message->subject }}</strong>
-                            </div>
-                            <div class="text-end">
-                                Mittente:{{ $message->email }}
+        <h3>Messages:</h3>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            @foreach ($messages as $message)
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading{{ $message->id }}">
+                        <button class="accordion-button collapsed justify-content-between" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $message->id }}" aria-expanded="false"
+                            aria-controls="flush-collapse{{ $message->id }}">
+                            <div class="d-flex justify-content-between w-75">
+                                <div>
+                                    <strong>{{ $message->subject }}</strong>
+                                </div>
+                                <div class="text-end">
+                                    Mittente:{{ $message->email }}
 
+                                </div>
                             </div>
+
+                        </button>
+                    </h2>
+                    <div id="flush-collapse{{ $message->id }}" class="accordion-collapse collapse"
+                        aria-labelledby="flush-heading{{ $message->id }}" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <h5>{{ $message->subject }}</h5>
+                            <p>{{ $message->content }} </p>
+                            <p>{{ $message->full_name }}</p>
+                            <p>{{ $message->created_at }}</p>
                         </div>
-
-                    </button>
-                </h2>
-                <div id="flush-collapse{{ $message->id }}" class="accordion-collapse collapse"
-                    aria-labelledby="flush-heading{{ $message->id }}" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <h5>{{ $message->subject }}</h5>
-                        <p>{{ $message->content }} </p>
-                        <p>{{ $message->full_name }}</p>
-                        <p>{{ $message->created_at }}</p>
+                        </p>
                     </div>
-                    </p>
+
                 </div>
-
-            </div>
-        @endforeach
-
+            @endforeach
+        </div>
     </div>
+    
 
     <script>
         let apartment = <?php echo json_encode($apartment->toArray()); ?>;
