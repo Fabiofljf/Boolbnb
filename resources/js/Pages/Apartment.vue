@@ -5,30 +5,14 @@
         :to="{ name: 'search', params: { query: query, radius: radius } }"
         >Torna Alla tua ricerca:</router-link
       >
-      <h2 class="">{{ apartment.title }}</h2>
-      <div class="row">
-        <div class="col">
-          <div class="details_apartment d-flex">
-            <p>
-              <!-- Icona stella da implementare con voto -->
-              <span class="icon_color">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
-                  fill="currentColor"
-                  class="bi bi-star-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                  />
-                </svg>
-              </span>
-              &bull; <strong>5.0</strong>
-              |
-              <!-- Icona user -->
-              <span class="icon_color">
+      <h2>
+        <strong>{{ apartment.title }}</strong>
+      </h2>
+      <div class="d-flex">
+          <!-- Icona stella da implementare con voto -->
+          <div class="">
+            <div class="d-flex align-item-center">
+              <span class="icon_color px-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
@@ -46,11 +30,15 @@
                 </svg>
               </span>
               &bull;
-              <strong>{{ apartment.user ? apartment.user.name : "" }}</strong>
-            </p>
-            <p>
-              <!-- Icona location -->
-              <span class="icon_color">
+              <p class="px-2">
+                {{ apartment.user ? apartment.user.name : "" }}
+              </p>
+            </div>
+          </div>
+          <div class="">
+            <!-- Icona location -->
+            <div class="d-flex align-item-center">
+              <span class="icon_color px-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
@@ -64,19 +52,12 @@
                   />
                 </svg>
               </span>
-              &bull; <strong>{{ apartment.address }}</strong>
-            </p>
+              &bull;
+              <p class="px-2">{{ apartment.address }}</p>
+            </div>
           </div>
-        </div>
+
         <!-- /.col sx -->
-        <div class="col">
-          <div class="shareAndSave_apartment d-flex justify-content-end">
-            <p>condividi</p>
-            |
-            <p>salva</p>
-          </div>
-        </div>
-        <!-- /.col dx -->
       </div>
 
       <div class="my-3 d-flex justify-content-center align-items-center">
@@ -95,7 +76,7 @@
       <!-- /titleAndThumb -->
 
       <!-- INFO APPARTAMENTO -->
-      <div class="row row-cols-lg-2 mt-4 border-bottom" id="hosting">
+      <div class="row row-cols-1 row-cols-lg-2 mt-4 border-bottom" id="hosting">
         <div class="my-3">
           <div class="row border-bottom pb-1">
             <div class="d-flex justify-content-between align-items-top">
@@ -163,61 +144,89 @@
       <!-- /.col sx-->
 
       <!-- /HostingAndbooking -->
-      <div class="col mt-4 border-bottom">
-        <h5>Descrizione alloggio</h5>
+      <div class="col mt-4 border-bottom mb-3">
+        <h5>Descrizione alloggio:</h5>
         <p class="description">
           {{ apartment.description }}
         </p>
       </div>
       <!-- /Description -->
 
+      <!-- Gallery -->
+      <div class="gallery">
+        <h5>Galleria:</h5>
+        <div
+          class="
+            row
+            row-cols-1
+            row-cols-md-2
+            row-cols-lg-3
+            row-cols-lg-4
+            row-cols-xl-5
+            g-3
+          "
+        >
+          <div class="col" v-for="image in apartment.images" :key="image.id">
+            <div class="img-container h-100">
+              <img
+                style="width: 100%; object-fit: cover; object-position: center"
+                class="rounded-3 h-100 img-fluid"
+                :src="'/storage/' + image.src"
+                :alt="apartment.title"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="message mt-4">
         <h3>Contatta il proprietario dell'appartamento:</h3>
-        <form class='pb-3' @submit.prevent="sendMessage">
+        <form class="pb-3" @submit.prevent="sendMessage">
           <div v-if="success" class="alert alert-success" role="alert">
             <h3>{{ message }}</h3>
           </div>
           <div class="mb-3 row">
             <div class="sx col-md-6">
               <div class="group my-5">
-                <input 
-                v-model="email"
-                required  
-                type="email"
-                name="email"
-                id="email"
-                class="input"
-                placeholder=""
-                >
+                <input
+                  v-model="email"
+                  required
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="input"
+                  placeholder=""
+                />
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="full_name" class="form-label">Email</label>
               </div>
-              
+
               <div class="group my-5">
-                <input required  
-                v-model="full_name"
-                type="text"
-                name="full_name"
-                id="full_name"
-                class="input"
-                placeholder=""
-                >
+                <input
+                  required
+                  v-model="full_name"
+                  type="text"
+                  name="full_name"
+                  id="full_name"
+                  class="input"
+                  placeholder=""
+                />
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="full_name" class="form-label">Nome e Cognome</label>
               </div>
-              
+
               <div class="group my-5">
                 <input
-                v-model="subject"
-                required  
-                type="text"
-                class="input"
-                name="subject"
-                id="subject"
-                aria-describedby="subjecthelpId"
-                >
+                  v-model="subject"
+                  required
+                  type="text"
+                  class="input"
+                  name="subject"
+                  id="subject"
+                  aria-describedby="subjecthelpId"
+                />
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="full_name" class="form-label">Subject</label>
@@ -226,36 +235,40 @@
                 >Inserisci il "Subject" dell'email</small
               >
             </div>
-            
 
             <div class="dx col-md-6">
               <div class="group mt-3">
                 <textarea
-                v-model="content"
-                required  
-                type="text"
-                class="input"
-                name="content"
-                id="content"
-                rows="6"
-                aria-describedby="subjecthelpId"
+                  v-model="content"
+                  required
+                  type="text"
+                  class="input"
+                  name="content"
+                  id="content"
+                  rows="6"
+                  aria-describedby="subjecthelpId"
                 ></textarea>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="content" class="form-label">Messaggio:</label>
               </div>
             </div>
-            
-
           </div>
-
 
           <button type="submit">
             <div class="svg-wrapper-1">
               <div class="svg-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
                   <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                  <path
+                    fill="currentColor"
+                    d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                  ></path>
                 </svg>
               </div>
             </div>
@@ -377,157 +390,160 @@ export default {
   margin-bottom: 3rem;
 }
 .group {
- position: relative;
+  position: relative;
 }
 
 .input {
- font-size: 16px;
- margin: 15px 0;
- padding: 10px 10px 10px 5px;
- display: block;
- width: 80%;
- border: none;
- border-bottom: 1px solid #515151;
- background: transparent;
+  font-size: 16px;
+  margin: 15px 0;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
 }
 
 .input:focus {
- outline: none;
+  outline: none;
 }
 
 label {
- color: #999;
- font-size: 18px;
- font-weight: normal;
- position: absolute;
- pointer-events: none;
- left: 5px;
- top: 10px;
- transition: 0.2s ease all;
- -moz-transition: 0.2s ease all;
- -webkit-transition: 0.2s ease all;
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
 }
 
-.input:focus ~ label, .input:valid ~ label {
- top: -20px;
- font-size: 14px;
- color: #3471eb;
+.input:focus ~ label,
+.input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #3471eb;
 }
 
 .bar {
- position: relative;
- display: block;
- width: 200px;
+  position: relative;
+  display: block;
+  width: 200px;
 }
 
-.bar:before, .bar:after {
- content: '';
- height: 2px;
- width: 0;
- bottom: 1px;
- position: absolute;
- background: #3471eb;
- transition: 0.2s ease all;
- -moz-transition: 0.2s ease all;
- -webkit-transition: 0.2s ease all;
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #3471eb;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
 }
 
 .bar:before {
- left: 50%;
+  left: 50%;
 }
 
 .bar:after {
- right: 50%;
+  right: 50%;
 }
 
-.input:focus ~ .bar:before, .input:focus ~ .bar:after {
- width: 50%;
+.input:focus ~ .bar:before,
+.input:focus ~ .bar:after {
+  width: 50%;
 }
 
 .highlight {
- position: absolute;
- height: 60%;
- width: 100px;
- top: 25%;
- left: 0;
- pointer-events: none;
- opacity: 0.5;
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .input:focus ~ .highlight {
- animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
 }
 
 @keyframes inputHighlighter {
- from {
-  background: #3471eb;
- }
+  from {
+    background: #3471eb;
+  }
 
- to {
-  width: 0;
-  background: transparent;
- }
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
 
 @media screen and (max-width: 720px) {
-    .input{
-      width: 100%;
-    }
- }
- button {
- font-family: inherit;
- font-size: 20px;
- background: #3471eb;
- color: white;
- padding: 0.2em 0.5em;
- padding-left: 0.7em;
- display: flex;
- align-items: center;
- border: none;
- border-radius: 16px;
- overflow: hidden;
- transition: all 0.2s;
- margin-top: 15px;
+  .input {
+    width: 100%;
+  }
+}
+button {
+  font-family: inherit;
+  font-size: 20px;
+  background: #3471eb;
+  color: white;
+  padding: 0.2em 0.5em;
+  padding-left: 0.7em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+  margin-top: 15px;
 }
 
 button span {
- display: block;
- margin-left: 0.3em;
- transition: all 0.3s ease-in-out;
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
 }
 
 button svg {
- display: block;
- transform-origin: center center;
- transition: transform 0.3s ease-in-out;
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
 }
 
 button:hover .svg-wrapper {
- animation: fly-1 0.6s ease-in-out infinite alternate;
+  animation: fly-1 0.6s ease-in-out infinite alternate;
 }
 
 button:hover svg {
- transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
 }
 
 button:hover span {
- transform: translateX(5em);
+  transform: translateX(5em);
 }
 
 button:active {
- transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 @keyframes fly-1 {
- from {
-  transform: translateY(0.1em);
- }
+  from {
+    transform: translateY(0.1em);
+  }
 
- to {
-  transform: translateY(-0.1em);
- }
+  to {
+    transform: translateY(-0.1em);
+  }
 }
-.wrapper{
+.wrapper {
   min-height: calc(100vh - 173px);
 }
 </style>
