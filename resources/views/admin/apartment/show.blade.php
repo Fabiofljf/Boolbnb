@@ -26,51 +26,53 @@
             @if ($images)
                 <div class="article-imgs row mb-3">
                     <h3>Immagini:</h3>
-                    @foreach ($images as $image)
+                    @forelse ($images as $image)
                         <div class="col-3 py-3">
                             <img class="img-fluid w-100" src="{{ asset('/storage/' . $image->src) }}" alt="">
                         </div>
-                    @endforeach
+                    @empty 
+                        <div> Al momento non ci sono immagini da mostrare </div>
+                    @endforelse
                 </div>
             @endif
             <div class="apartment-description mt-3">
-                <h3>Description:</h3>
+                <h3>Descrizione:</h3>
                 {{ $apartment->description }}
             </div>
             <div class="apartment-details mt-3">
-                <h3>Details:</h3>
+                <h3>Dettagli:</h3>
                 <ul>
-                    <li>Rooms Numbers: {{ $apartment->rooms }}</li>
-                    <li>Beds Numbers: {{ $apartment->beds }}</li>
-                    <li>Baths Numbers: {{ $apartment->baths }}</li>
-                    <li>Sqm: {{ $apartment->sqm }}</li>
+                    <li> Stanze : {{ $apartment->rooms }}</li>
+                    <li> Letti : {{ $apartment->beds }}</li>
+                    <li> Bagni : {{ $apartment->baths }}</li>
+                    <li> m<sup>2</sup> : {{ $apartment->sqm }}</li>
                 </ul>
             </div>
 
             <div class="apartment-services mt-3">
-                <h3>Services:</h3>
+                <h3>Servizi:</h3>
                 <ul>
                     @forelse($apartment->services as $service)
                         <li>{!! $service->icon !!} {{ $service->name }}</li>
                     @empty
-                        <li>No Serivices 😪</li>
+                        <li> Nessun servizio 😪</li>
                     @endforelse
                 </ul>
             </div>
         </div>
         <div class="apartment-publicity mt-3">
-            <h3>Publicity:</h3>
-            <ul>
+            <h3>Sponsorizzate attive:</h3>
+            <ul class='d-flex gap-2'>
                 @forelse($apartment->publicities as $publicity)
-                    <li>{!! $publicity->icon !!} {{ $publicity->name }}</li>
+                    <li class='bg-primary rounded p-1 text-white'>{{ $publicity->type }}</li>
                 @empty
-                    <li>No Publicity 😪</li>
+                    <li>Nessuna sponsorizzazione attiva 😪</li>
                 @endforelse
             </ul>
         </div>
-        <h3>Messages:</h3>
+        <h3>Messaggi:</h3>
         <div class="accordion accordion-flush" id="accordionFlushExample">
-            @foreach ($messages as $message)
+            @forelse ($messages as $message)
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading{{ $message->id }}">
                         <button class="accordion-button collapsed justify-content-between" type="button"
@@ -100,7 +102,9 @@
                     </div>
 
                 </div>
-            @endforeach
+            @empty
+                <div> Al momento non ci sono messaggi da mostrare </div>
+            @endforelse
         </div>
     </div>
     
