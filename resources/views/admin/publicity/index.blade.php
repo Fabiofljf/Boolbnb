@@ -7,7 +7,7 @@
 @endif
    <div class="container">
    <h2 class='text-center'>Seleziona la sponsorizzazione</h2>
-     <div class="row row-cols-5">
+     <div class="row row-cols-12">
         @foreach($publicities as $publicity)
         <div class="col offset-1 mt-5 text-center">
             <a href="{{route('admin.publicity.edit', [$apartment->id, $publicity->id])}}">
