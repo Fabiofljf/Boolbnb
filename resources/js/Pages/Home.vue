@@ -140,7 +140,8 @@
                 params: { slug: apartment.slug, query: query },
               }"
             >
-              <div class="card-hover card text-start">
+              <div  class="card-hover card text-start">
+
                 <img
                   :src="'storage/' + apartment.thumb"
                   :alt="apartment.title"
@@ -161,6 +162,7 @@
                 <!--  <router-link class="btn btn-primary" :to="{ name: 'apartment', params: { slug: apartment.slug } }">Visualizza</router-link>
              -->
               </div>
+              
             </router-link>
           </div>
         </div>
