@@ -74,6 +74,7 @@
       </div>
     </section>
     <!-- /welcomepages -->
+    
 
     <section id="sponsorizzate">
       <div class="container">
@@ -92,15 +93,10 @@
                     }"
                 >
                   <div class="card-hover card text-start">
-                    <div class="publicity_banner">
-                        <strong class="col-4 costum-rate costum-title">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                          </svg> 
-                        </strong>  
-                      Premium
-                    </div>
-                    <img class="img-fluid" :src="'storage/' + apartmentPublicity.thumb" />
+
+                    <div class="publicity_banner"><img class="costum-segnaposti" src="./../../img/segnaposti.png" alt=""></div>
+                    <img class="img-fluid img-costum" :src="'storage/' + apartmentPublicity.thumb" />
+                    
                     <div class="card-body">
                       <div class="header-card row">
                         <h4 class="col card-title costum-title">
@@ -262,7 +258,7 @@ export default {
       this.autocomplete = [];
     },
     getAutocomplete() {
-      //console.log('digitando');
+      // console.log('digitando');
       if (this.query) {
         axios
           .get(
@@ -280,6 +276,7 @@ export default {
             //console.log(this.autocomplete);
           })
           .catch((e) => {
+            
             console.log(e);
           });
       }
@@ -329,12 +326,13 @@ export default {
   z-index: 100;
     width: 300px;
   border-radius: 10px;
-  border: 1px solid #a5a5a5;
+  /* border: 1px solid #3471eb; */
   border-top: none;
-  padding: 0.8rem 0.3rem;
-  background-color: white;
+  /* padding: 0.8rem 0.3rem;
+  background-color: white; */
 
   input {
+    
     cursor: pointer;
 
     &:focus {
@@ -362,16 +360,15 @@ export default {
     z-index: 1;
  }
  .publicity_banner {
-  padding: 0.5rem;
-  background-color: #3471EB;
-  color: white;
+  width: 30px;
+  height: 50px;
   border-radius: 6px;
   position: absolute;
-  top: -5%;
-  left: -5%;
+  top: 0;
+  right: 6%;
   transition: transform .5s;
  }
-  img {
+  .img-costum {
     
     width: 100%;
     min-height: 160px;
@@ -417,9 +414,9 @@ export default {
 .dropdown_menu {
 
   li input {
-    margin-bottom: 0.2rem;
+    
     border: none;
-    border-bottom: 1px solid lightgray;
+    
     outline: none;
   }
 }
@@ -580,4 +577,12 @@ label {
     font-size: 12px;
   }
 }
+.costum-segnaposti{
+  height: 100%;
+}
+
+
+
+
+
 </style>
