@@ -88,8 +88,8 @@
         </nav>
         <!-- /navbar -->
 
-        <div class="row no-gutter full_screen">
-            <div class="col-2 bg_secondary">
+        <div class="row no-gutter full_screen" id="edit_query">
+            <div class="col-12 col-sm-4 col-md-3 bg_secondary">
                 <h5 class="p-4 my-3 text-light">Esplora tutte le funzionalità</h5>
                 <aside>
                     <ul class="nav flex-column">

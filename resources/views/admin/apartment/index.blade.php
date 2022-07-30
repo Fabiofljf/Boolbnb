@@ -15,21 +15,23 @@
                 <!-- Sezione per aggiungere un ulteriore appartamento -->
                 <div class="d-flex justify-content-between py-4">
                     <h1>Lista di appartamenti</h1>
-                    <div>
-                        <a href="{{ route('admin.apartment.create') }}" class="btn btn-primary text-white">Aggiungi nuovo
+                    <div id="query_mobile">
+                        <a href="{{ route('admin.apartment.create') }}" class="media_none btn btn-primary text-white">Aggiungi nuovo
                             appartamento
+                        </a>
+                        <a href="{{ route('admin.apartment.create') }}" class="media_block btn btn-primary text-white d-none">+
                         </a>
                     </div>
                 </div>
                 <div class="row">
-                    <table class="table">
+                    <table class="table table-responsive-sm">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Titolo</th>
-                                <th>Immagine</th>
+                                <th class="d_none">Immagine</th>
                                 <th>Indirizzo</th>
-                                <th>Servizi</th>
+                                <th class="d_none">Servizi</th>
                                 <th>Azioni</th>
                             </tr>
                         </thead>
@@ -38,10 +40,10 @@
                                 <tr class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }}>
                                     <td scope="row">{{ $apartment->id }}</td>
                                     <td>{{ $apartment->title }}</td>
-                                    <td> <img style="max-width: 200px" src="{{ asset('/storage/' . $apartment->thumb) }}"
+                                    <td class="d_none"> <img style="max-width: 200px" src="{{ asset('/storage/' . $apartment->thumb) }}"
                                             alt="thumb of {{ $apartment->title }}"></td>
                                     <td>{{ $apartment->address }}</td>
-                                    <td>
+                                    <td class="d_none">
                                         @if (count($apartment->services) > 0)
                                             @foreach ($apartment->services as $service)
                                                 <span>#{{ $service->name }}</span>
