@@ -9,53 +9,53 @@
         <strong>{{ apartment.title }}</strong>
       </h2>
       <div class="d-flex">
-          <!-- Icona stella da implementare con voto -->
-          <div class="">
-            <div class="d-flex align-item-center">
-              <span class="icon_color px-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
-                  fill="currentColor"
-                  class="bi bi-person-badge"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
-                  />
-                  <path
-                    d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"
-                  />
-                </svg>
-              </span>
-              &bull;
-              <p class="px-2">
-                {{ apartment.user ? apartment.user.name : "" }}
-              </p>
-            </div>
+        <!-- Icona stella da implementare con voto -->
+        <div class="">
+          <div class="d-flex align-item-center">
+            <span class="icon_color px-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="currentColor"
+                class="bi bi-person-badge"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+                />
+                <path
+                  d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"
+                />
+              </svg>
+            </span>
+            &bull;
+            <p class="px-2">
+              {{ apartment.user ? apartment.user.name : "" }}
+            </p>
           </div>
-          <div class="">
-            <!-- Icona location -->
-            <div class="d-flex align-item-center">
-              <span class="icon_color px-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
-                  fill="currentColor"
-                  class="bi bi-geo-alt-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
-                  />
-                </svg>
-              </span>
-              &bull;
-              <p class="px-2">{{ apartment.address }}</p>
-            </div>
+        </div>
+        <div class="">
+          <!-- Icona location -->
+          <div class="d-flex align-item-center">
+            <span class="icon_color px-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="currentColor"
+                class="bi bi-geo-alt-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                />
+              </svg>
+            </span>
+            &bull;
+            <p class="px-2">{{ apartment.address }}</p>
           </div>
+        </div>
 
         <!-- /.col sx -->
       </div>
@@ -155,6 +155,7 @@
       <!-- Gallery -->
       <div class="gallery">
         <h5>Galleria:</h5>
+
         <div
           class="
             row
@@ -166,7 +167,7 @@
             g-3
           "
         >
-          <div class="col" v-for="image in apartment.images" :key="image.id">
+          <!--           <div class="col" v-for="image in apartment.images" :key="image.id">
             <div class="img-container h-100">
               <img
                 style="width: 100%; object-fit: cover; object-position: center"
@@ -175,9 +176,32 @@
                 :alt="apartment.title"
               />
             </div>
+          </div> -->
+          <div
+            class="col"
+            v-for="(image, index) in apartment.images"
+            :key="image.id"
+          >
+            <div class="img-container h-100">
+              <img
+                style="height: 100px"
+                class="rounded-3 h-100 img-fluid"
+                v-lazy="'/storage/' + image.src || '/storage/' + image.src"
+                @click="openGallery(index)"
+              />
+            </div>
           </div>
         </div>
       </div>
+      <!-- Gallery Component -->
+
+      <LightBox
+        ref="lightbox"
+        :media="media"
+        :show-caption="true"
+        :show-light-box="false"
+        :autoPlay="false"
+      />
 
       <div class="message mt-4">
         <h3>Contatta il proprietario dell'appartamento:</h3>
@@ -284,9 +308,13 @@
 
 <script>
 import tt from "@tomtom-international/web-sdk-maps";
+import VueLazyLoad from "vue-lazyload";
+import LightBox from "vue-image-lightbox";
 export default {
   name: "Apartment",
-
+  components: {
+    LightBox,
+  },
   data() {
     return {
       apartment: "",
@@ -300,6 +328,7 @@ export default {
       message: "",
       lat: "",
       lon: "",
+      media: [],
     };
   },
   methods: {
@@ -310,9 +339,19 @@ export default {
         .get("/api/apartments/" + this.$route.params.slug)
         .then((response) => {
           this.apartment = response.data;
-          console.log(response.data.lat);
+          console.log(response.data.images);
           this.lat = response.data.lat;
           this.lon = response.data.lon;
+          response.data.images.forEach((element, index) => {
+            console.log(element.src);
+            let newImage = {
+              thumb: "/storage/" + element.src,
+              src: "/storage/" + element.src,
+              caption: "Immagine n°" + (index + 1),
+            };
+
+            this.media.push(newImage);
+          });
 
           this.getMap();
         })
@@ -333,11 +372,7 @@ export default {
       axios
         .post("/message/create", data)
         .then((response) => {
-          (this.email = ""),
-            (this.full_name = ""),
-            (this.content = ""),
-            (this.subject = ""),
-            (this.success = true);
+          (this.content = ""), (this.subject = ""), (this.success = true);
           this.message = response.data.message;
         })
         .catch((e) => {
@@ -371,6 +406,9 @@ export default {
         offset: popupOffsets,
       }).setHTML(this.apartment.title + "<br>" + this.apartment.address);
       marker.setPopup(popup).togglePopup();
+    },
+    openGallery(index) {
+      this.$refs.lightbox.showImage(index);
     },
   },
   mounted() {
