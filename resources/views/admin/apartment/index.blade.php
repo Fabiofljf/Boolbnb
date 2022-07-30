@@ -37,19 +37,19 @@
                         </thead>
                         <tbody class="align-middle">
                             @forelse($apartments as $apartment)
-                                <tr class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }}>
-                                    <td scope="row">{{ $apartment->id }}</td>
-                                    <td>{{ $apartment->title }}</td>
-                                    <td class="d_none"> <img style="max-width: 200px" src="{{ asset('/storage/' . $apartment->thumb) }}"
+                                <tr>
+                                    <td scope="row" class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }}>{{ $apartment->id }}</td>
+                                    <td class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }}>{{ $apartment->title }}</td>
+                                    <td class="d_none" > <img style="max-width: 200px" class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }} src="{{ asset('/storage/' . $apartment->thumb) }}"
                                             alt="thumb of {{ $apartment->title }}"></td>
-                                    <td>{{ $apartment->address }}</td>
+                                    <td class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }}>{{ $apartment->address }}</td>
                                     <td class="d_none">
                                         @if (count($apartment->services) > 0)
                                             @foreach ($apartment->services as $service)
-                                                <span>#{{ $service->name }}</span>
+                                                <span class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }}>#{{ $service->name }}</span>
                                             @endforeach
                                         @else
-                                            <span>Nessun Servizio</span>
+                                            <span class={{ $apartment->visibility ? 'bg-light' : 'opacity-50' }}>Nessun Servizio</span>
                                         @endif
                                     </td>
                                     <td>
