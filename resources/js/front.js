@@ -5,15 +5,20 @@
  */
 
 require('./bootstrap');
+import VueLazyLoad from "vue-lazyload";
 
 window.Vue = require('vue');
 import router from './router';
 import App from './views/App';
 
+
+Vue.use(VueLazyLoad);
+require('vue-image-lightbox/dist/vue-image-lightbox.min.css');
+
 window.axios.defaults.headers.common = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json',
-}; 
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+};
 
 
 /**
@@ -38,5 +43,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#front',
     render: h => h(App),
-     router,
+    router,
 });
