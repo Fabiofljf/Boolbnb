@@ -71,8 +71,8 @@ class PaymentController extends Controller
                     'submitForSettlement' => true
                 ]
             ]);
-            $expirationDate = Carbon::now()->addHours($publicity->duration);
-            $currentDate = Carbon::now();
+            $expirationDate = Carbon::now('Europe/Rome')->addHours($publicity->duration);
+            $currentDate = Carbon::now('Europe/Rome');
             //dd($expirationDate, $publicity->duration, $currentDate);
             //dd($currentDate);
             // $apartment->publicities()->sync($request->publicities);zz
