@@ -117,7 +117,7 @@
                                                                     @method('DELETE')
 
                                                                     <button type="submit"
-                                                                        class="btn btn-danger">Elimina</button>
+                                                                        class="btn btn-danger text-white">Elimina</button>
                                                                 </form>
 
                                                             </div>

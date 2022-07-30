@@ -139,7 +139,7 @@ class ApartmentController extends Controller
             }
             //array_push($apt_sponsored, $apartment);
         }
-        $response = Apartment::whereIn('id', $apt_sponsored_id)->with(['services', 'user'])->orderByDesc('id')->get();
+        $response = Apartment::whereIn('id', $apt_sponsored_id)->with(['services', 'user'])->where("visibility","=",true)->orderByDesc('id')->get();
         return $response;
     }
 }

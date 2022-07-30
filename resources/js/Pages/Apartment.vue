@@ -3,7 +3,7 @@
     <div id="titleAndThumb" class="container">
       <router-link
         :to="{ name: 'search', params: { query: query, radius: radius } }"
-        >Torna Alla tua ricerca:</router-link
+        >Torna Alla tua ricerca</router-link
       >
       <h2>
         <strong>{{ apartment.title }}</strong>
@@ -156,7 +156,7 @@
       <div class="gallery">
         <h5>Galleria:</h5>
 
-        <div
+        <div v-if="apartment.images > 0"
           class="
             row
             row-cols-1
@@ -191,6 +191,9 @@
               />
             </div>
           </div>
+        </div>
+        <div v-else>
+          <p> Non sono presenti immagini nella galleria </p>
         </div>
       </div>
       <!-- Gallery Component -->
