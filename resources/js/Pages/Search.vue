@@ -13,7 +13,7 @@
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Cerca per città o per indirizzo:</label>
-              <ul class="dropdown_menu w-100" v-if="query.length > 0">
+              <ul class="dropdown_menu w-50" v-if="query.length > 0">
                 <li v-for="(address, index) in autocomplete" :key="index">
                   <input type="text" class="w-100" readonly :value="address" @click="setQuery(address)" />
                 </li>
@@ -111,9 +111,8 @@
                 }">
                   <div class="card h-100 text-start">
                     <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
-                    <div class="header-card row">
-                      <h4 class="col-8 card-title costum-title">{{ apartment.title }}</h4>
-                      <h4 class=" col-4 costum-rate costum-title">rate</h4>
+                    <div class="header-card ">
+                      <h4 class=" card-title costum-title">{{ apartment.title }}</h4>
                     </div>
                     <div class="description-card">
                       <p class="costum-text">{{ apartment.description }}</p>
@@ -471,6 +470,10 @@ label {
     color: #050505;
     font-size: 13px;
     font-weight: bold;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 /*     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; */
@@ -481,7 +484,7 @@ label {
   color: #515151;
   display: -webkit-box;
   overflow: hidden;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
