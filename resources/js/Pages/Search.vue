@@ -443,24 +443,37 @@ label {
 .card {
   border: none;
   height: 100%;
+  padding:0.5rem;
   background-color: #F8FAFC;
   transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border-radius: 5px;
+  transition: transform .5s;
+ &:hover{
+    box-shadow: 0 0 10px 4px #d0d0d0e8;
+    transform: scale(1.05);
+    z-index: 1;
+ }
+  img {
+    width: 100%;
+    min-height: 160px;
+    border-radius: 10px;
+  }
 }
 
 .header-card {
   margin-top: 10px;
+  height: 45px;
   padding: 0;
   display: flex;
   justify-content: space-between;
 
   .costum-title {
     color: #050505;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
-    white-space: nowrap;
+/*     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; */
   }
 }
 
