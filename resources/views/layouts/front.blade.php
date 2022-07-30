@@ -41,9 +41,9 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav me-auto w-100 justify-content-between">
                         <li class="left">
-                            <ul class="d-flex flex-column flex-sm-row">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{{ route('front.home') }}">Home</a>
+                            <ul class="d-flex flex-column flex-sm-row" id="costum-a">
+                                <li class="nav-item active" >
+                                    <a  class="nav-link" href="{{ route('front.home') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/search') }}">Ricerca avanzata</a>
