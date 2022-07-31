@@ -13,7 +13,7 @@ class ApartmentController extends Controller
 {
     public function index()
     {
-        $apartments =  Apartment::with(['services', 'user'])->where("visibility","=",true)->orderByDesc('id')->paginate(20);
+        $apartments =  Apartment::with(['services', 'user'])->where("visibility", "=", true)->orderByDesc('id')->paginate(20);
         return $apartments;
     }
 
@@ -103,7 +103,7 @@ class ApartmentController extends Controller
         $apartmentList = json_encode($apartmentList);
 
         // Get data filtered from TomTom and save ids in an Array
-        $responseTomTom = Http::get("https://api.tomtom.com/search/2/geometryFilter.json?&key=wwBjO0iyrGBDWYAR81J5EY7D4Y0HJGQj&geometryList=$geometryList&poiList=$apartmentList");
+        $responseTomTom = Http::get("https://api.tomtom.com/search/2/geometryFilter.json?&key=OQPgwY4eUitV7IRklnutdiB8DVqRx8kG&geometryList=$geometryList&poiList=$apartmentList");
 
         $apartmentIds = [];
         $apartmentsFilteredArray = json_decode($responseTomTom);
@@ -139,7 +139,7 @@ class ApartmentController extends Controller
             }
             //array_push($apt_sponsored, $apartment);
         }
-        $response = Apartment::whereIn('id', $apt_sponsored_id)->with(['services', 'user'])->where("visibility","=",true)->orderByDesc('id')->get();
+        $response = Apartment::whereIn('id', $apt_sponsored_id)->with(['services', 'user'])->where("visibility", "=", true)->orderByDesc('id')->get();
         return $response;
     }
 }

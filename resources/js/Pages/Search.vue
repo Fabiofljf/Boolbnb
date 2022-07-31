@@ -176,7 +176,7 @@ export default {
       if (this.query) {
         axios
           .get(
-            `https://api.tomtom.com/search/2/search/${this.query}.json?key=ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm&limit=5&countrySet=IT&language=it-IT`
+            `https://api.tomtom.com/search/2/search/${this.query}.json?key=OQPgwY4eUitV7IRklnutdiB8DVqRx8kG&limit=5&countrySet=IT&language=it-IT`
           )
           .then((response) => {
             const results = response.data.results;
@@ -215,7 +215,7 @@ export default {
         this.loading = true;
         axios
           .get(
-            `https://api.tomtom.com/search/2/geocode/${query}.json?key=ZKEljqh55cAJVmD8GpeG3iI4JmV5HEDm&limit=1&radius=${radius}`
+            `https://api.tomtom.com/search/2/geocode/${query}.json?key=OQPgwY4eUitV7IRklnutdiB8DVqRx8kG&limit=1&radius=${radius}`
           )
           .then((response) => {
             let lat = response.data.results[0].position.lat;
@@ -442,16 +442,18 @@ label {
 .card {
   border: none;
   height: 100%;
-  padding:0.5rem;
+  padding: 0.5rem;
   background-color: #F8FAFC;
   transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border-radius: 5px;
   transition: transform .5s;
- &:hover{
+
+  &:hover {
     box-shadow: 0 0 10px 4px #d0d0d0e8;
     transform: scale(1.05);
     z-index: 1;
- }
+  }
+
   img {
     width: 100%;
     min-height: 160px;
@@ -474,7 +476,7 @@ label {
     overflow: hidden;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-/*     white-space: nowrap;
+    /*     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; */
   }
