@@ -13,7 +13,7 @@ class ApartmentController extends Controller
 {
     public function index()
     {
-        $apartments =  Apartment::with(['services', 'user'])->where("visibility","=",true)->orderByDesc('id')->get();
+        $apartments =  Apartment::with(['services', 'user'])->where("visibility","=",true)->orderByDesc('id')->paginate(20);
         return $apartments;
     }
 

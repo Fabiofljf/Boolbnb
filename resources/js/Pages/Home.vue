@@ -128,7 +128,7 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4 py-3">
           <div
             class="col mb-3"
-            v-for="apartment in apartments"
+            v-for="apartment in apartmentsResponse.data"
             :key="apartment.id"
           >
             <router-link
@@ -163,6 +163,32 @@
               
             </router-link>
           </div>
+        </div>
+        
+        <!-- Struttura della paginazione -->   
+        <div class="text-center py-4">
+            <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" v-if="apartmentsResponse.current_page > 1">
+                <a class="page-link" href="#" aria-label="Previous" @click.prevent="getApartments(apartmentsResponse.current_page - 1)">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only text-primary">Precedente</span>
+                </a>
+                </li>
+
+                <li :class="{ 'page-item': true, 'active text-primary': page == apartmentsResponse.current_page }" v-for="page in apartmentsResponse.last_page" :key="page.id">
+                    <a class="page-link" href="#" @click.prevent="getApartments(page)">{{page}}</a>
+                </li>
+                
+
+                <li class="page-item" v-if="apartmentsResponse.current_page < apartmentsResponse.last_page">
+                <a class="page-link" href="#" aria-label="Next" @click.prevent="getApartments(apartmentsResponse.current_page + 1)">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only text-primary">Prossima</span>
+                </a>
+                </li>
+            </ul>
+            </nav>
         </div>
       </div>
     </section>
@@ -215,9 +241,24 @@ export default {
       query: "",
       autocomplete: [],
       apartmentPublicities: "",
+      apartmentsResponse: ""
     };
   },
   methods: {
+    getApartments(apartmentPage) {
+            axios.get('/api/apartments', {
+                params: {
+                    page: apartmentPage
+                }
+            }).then((response) => {
+            console.log(response);
+            console.log(response.data);
+           
+            this.apartmentsResponse = response.data
+        }).catch(e => {
+            console.error(e);
+        })
+    },
     getPublicityApartment(){
       axios
       .get('/api/apartment/publicity')
@@ -283,7 +324,6 @@ export default {
           });
       }
     },
-
     getCallApi() {
       axios
         .get("api/apartments")
@@ -302,6 +342,7 @@ export default {
     },
   },
   mounted() {
+    this.getApartments(1);
     this.getCallApi();
     this.getPublicityApartment()
   },
@@ -423,6 +464,9 @@ export default {
 }
 a{
   color: white;
+  &.page-link{
+    color:#3471eb
+  }
 }
 button {
  font-family: inherit;
