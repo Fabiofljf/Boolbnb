@@ -156,7 +156,7 @@
       <div class="gallery">
         <h5>Galleria:</h5>
 
-        <div v-if="apartment.images > 0"
+        <div
           class="
             row
             row-cols-1
@@ -192,9 +192,9 @@
             </div>
           </div>
         </div>
-        <div v-else>
+        <!--  Implementare successivamente l'eventualità che nella galleria non ci sono immagini  <div>
           <p> Non sono presenti immagini nella galleria </p>
-        </div>
+        </div> -->
       </div>
       <!-- Gallery Component -->
 
