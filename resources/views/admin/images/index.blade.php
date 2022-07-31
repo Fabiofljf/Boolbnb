@@ -7,7 +7,7 @@
     <a class="btn btn-primary text-white" href="{{route('admin.apartment.show', $apartment->slug)}}" role="button">Mostra</a>
     </p>
   </div>
-<div class="row row-cols-xl-5 gy-5 mt-1">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 gy-4 mt-1">
 
 @forelse($images as $image)
 
@@ -16,7 +16,7 @@
             <form action="{{route('admin.apartments.images.destroy', ['apartment' =>$apartment , 'image'=> $image])}}" method="post">
                 @csrf 
                 @method('DELETE')
-            <img class="costum-img-edit"src="{{asset('/storage/' . $image->src)}}" alt="apartment image">
+            <img class="img-fluid w-100 custom-img"src="{{asset('/storage/' . $image->src)}}" alt="apartment image">
             <div class="delate">
                 <button class="btn btn-danger text-white mt-2 me-2" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

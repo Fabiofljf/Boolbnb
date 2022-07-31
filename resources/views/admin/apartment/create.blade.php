@@ -89,7 +89,7 @@
 
     <div class="mb-4">
         <label for="services" class="form-label">Servizi*</label>
-        <select multiple class="form-select" name="services[]" required id="services" aria-label="services">
+        <select multiple class="form-select select-services" name="services[]" required id="services" aria-label="services">
             <option value="" disabled>Seleziona uno o più servizi</option>
             @forelse ($services as $service)
             <option value="{{ $service->id }}">{{ $service->name }}</option>
