@@ -89,14 +89,14 @@
         <!-- /navbar -->
 
         <div class="row no-gutter full_screen" id="edit_query">
-            <div class="col-12 col-sm-4 col-md-3 bg_secondary">
-                <h5 class="p-4 my-3 text-light">Esplora tutte le funzionalità</h5>
-                <aside>
+            <div class="col-12 col-sm-12 col-lg-3 bg_secondary p-4 ">
+                <h5 class="text-light">Esplora tutte le funzionalità</h5>
+                <aside class="w-100">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active text-light" aria-current="page" href="{{ route('admin.apartment.index') }}">
+                            <a class="nav-link active text-light px-2" aria-current="page" href="{{ route('admin.apartment.index') }}">
                                 <span data-feather="home" class="align-text-bottom text-light"></span>
-                                Appartamenti
+                                &bullet; Appartamenti
                             </a>
                         </li>
                         <!-- /Apartments -->
