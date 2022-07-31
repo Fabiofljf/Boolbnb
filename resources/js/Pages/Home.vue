@@ -141,6 +141,7 @@
                 <img
                   :src="'storage/' + apartment.thumb"
                   :alt="apartment.title"
+                  class="img-costum"
                 />
                 <div class="card-body">
                   <div class="header-card">
@@ -369,9 +370,8 @@ export default {
   transition: transform .5s;
  }
   .img-costum {
-    
     width: 100%;
-    min-height: 160px;
+    height: 160px;
     border-radius: 10px;
   }
   .card-body {
@@ -581,7 +581,10 @@ label {
   height: 100%;
 }
 
-
+.costum-card-img{
+  width: 100%;
+  height: 180px;
+}
 
 
 
