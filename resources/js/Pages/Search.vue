@@ -112,7 +112,7 @@
                   <div class="card h-100 text-start">
                     <img :src="'storage/' + apartment.thumb" :alt="apartment.title" />
                     <div class="header-card ">
-                      <h4 class=" card-title costum-title">{{ apartment.title }}</h4>
+                      <h4 class=" card-title custom-title">{{ apartment.title }}</h4>
                     </div>
                     <div class="description-card">
                       <p class="costum-text">{{ apartment.description }}</p>
@@ -468,11 +468,12 @@ label {
   display: flex;
   justify-content: space-between;
 
-  .costum-title {
+  .custom-title {
     color: #050505;
     font-size: 13px;
     font-weight: bold;
     display: -webkit-box;
+    line-height: 1.2rem;
     overflow: hidden;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
