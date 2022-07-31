@@ -1,10 +1,11 @@
 <template>
   <div class="wrapper mt-5">
     <section id="search" class="container my-5 position-relative">
-      <img class="w-100 img-fluid hero-img" src="./../../img/hero-img.jpg" alt="" />
+      <img class="w-100 img-fluid hero-img" src="./../../img/airbnb.jpg" alt="" />
       <div>
         <div
-          class=" jumbo-search w-75
+          class=" jumbo-search 
+            jumbo-costum
             row
             row-cols-1
             align-items-center
@@ -319,7 +320,7 @@ export default {
 .jumbo-search{
   padding: 1rem;
   border-radius: 10px;
-  background-color: rgba(244, 244, 244, 0.728) !important;
+  background-color: rgb(244 244 244 / 27%) !important;
   min-height: 200px;
 }
 .dropdown_menu {
@@ -584,6 +585,11 @@ label {
 .costum-card-img{
   width: 100%;
   height: 180px;
+}
+
+.jumbo-costum{
+  width: 70%;
+  
 }
 
 
