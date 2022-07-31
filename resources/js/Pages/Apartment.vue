@@ -245,7 +245,7 @@
               </div>
 
               <div class="group my-5">
-                <input
+                <select
                   v-model="subject"
                   required
                   type="text"
@@ -253,7 +253,13 @@
                   name="subject"
                   id="subject"
                   aria-describedby="subjecthelpId"
-                />
+                >
+                <option>informazione prenotazioni</option>
+                <option>informazione servizi</option>
+                <option>informazione disponibilità</option>
+                <option>altro</option>
+                </select>
+                
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="full_name" class="form-label">Subject</label>
